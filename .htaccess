@@ -1,0 +1,4 @@
+ErrorDocument 404 /error404.html
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www.meshcheryakov.com$ [NC]
+RewriteRule ^(.*)$ https://meshcheryakov.com/$1 [R=301,L]
