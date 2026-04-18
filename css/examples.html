@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Примеры оптимизированной адаптивности</title>
+    <link rel="stylesheet" href="styles-optimized.css">
+    <link rel="stylesheet" href="utilities.css">
+    <style>
+        /* Дополнительные стили для демонстрации */
+        .demo-section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+        }
+        
+        .demo-grid-item {
+            background: var(--color-secondary);
+            padding: 1rem;
+            text-align: center;
+            border-radius: 4px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .demo-color-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin: 0.5rem;
+        }
+        
+        .demo-text {
+            background: var(--color-background);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-responsive">
+        <h1>Примеры оптимизированной адаптивности</h1>
+        
+        <!-- Пример 1: Адаптивная сетка -->
+        <section class="demo-section">
+            <h2>1. Адаптивная сетка с CSS переменными</h2>
+            <div class="grid grid-2 grid-tablet-4 grid-desktop-6">
+                <div class="demo-grid-item">Элемент 1</div>
+                <div class="demo-grid-item">Элемент 2</div>
+                <div class="demo-grid-item">Элемент 3</div>
+                <div class="demo-grid-item">Элемент 4</div>
+                <div class="demo-grid-item">Элемент 5</div>
+                <div class="demo-grid-item">Элемент 6</div>
+            </div>
+        </section>
+
+        <!-- Пример 2: Адаптивные отступы -->
+        <section class="demo-section">
+            <h2>2. Адаптивные отступы с утилитами</h2>
+            <div class="demo-text m-3 mt-4 mb-2 p-4">
+                Этот блок использует утилитарные классы для отступов:
+                <code>m-3 mt-4 mb-2 p-4</code>
+            </div>
+        </section>
+
+        <!-- Пример 3: Адаптивная типографика -->
+        <section class="demo-section">
+            <h2>3. Адаптивная типографика</h2>
+            <p class="text-xs">Маленький текст (text-xs)</p>
+            <p class="text-sm">Обычный текст (text-sm)</p>
+            <p class="text-base">Базовый текст (text-base)</p>
+            <p class="text-lg">Большой текст (text-lg)</p>
+            <p class="text-xl">Очень большой текст (text-xl)</p>
+            <p class="text-2xl">Заголовочный текст (text-2xl)</p>
+        </section>
+
+        <!-- Пример 4: Адаптивное отображение -->
+        <section class="demo-section">
+            <h2>4. Адаптивное отображение элементов</h2>
+            <div class="d-block d-tablet-none">
+                <p>Этот блок виден только на мобильных устройствах</p>
+            </div>
+            <div class="d-none d-tablet-block d-desktop-none">
+                <p>Этот блок виден только на планшетах</p>
+            </div>
+            <div class="d-none d-desktop-block">
+                <p>Этот блок виден только на десктопе</p>
+            </div>
+        </section>
+
+        <!-- Пример 5: Адаптивные цвета -->
+        <section class="demo-section">
+            <h2>5. CSS переменные для цветов</h2>
+            <div class="d-flex flex-wrap">
+                <div class="demo-color-box bg-primary"></div>
+                <div class="demo-color-box bg-secondary"></div>
+                <div class="demo-color-box bg-white border"></div>
+                <div class="demo-color-box bg-transparent border"></div>
+            </div>
+        </section>
+
+        <!-- Пример 6: Адаптивные переходы -->
+        <section class="demo-section">
+            <h2>6. Адаптивные переходы</h2>
+            <div class="demo-text transition-all hover:scale-105 cursor-pointer">
+                Наведи на меня - увидишь плавный переход с масштабированием
+            </div>
+        </section>
+
+        <!-- Пример 7: Адаптивные контейнеры -->
+        <section class="demo-section">
+            <h2>7. Адаптивные контейнеры</h2>
+            <div class="container-responsive bg-secondary p-4">
+                <p>Этот контейнер автоматически адаптирует отступы под размер экрана</p>
+            </div>
+        </section>
+
+        <!-- Пример 8: Адаптивные изображения -->
+        <section class="demo-section">
+            <h2>8. Адаптивные изображения</h2>
+            <div class="grid grid-2 grid-tablet-4">
+                <div class="aspect-square bg-primary d-flex items-center justify-center">
+                    <span class="text-white">1:1</span>
+                </div>
+                <div class="aspect-video bg-secondary d-flex items-center justify-center">
+                    <span class="text-white">16:9</span>
+                </div>
+                <div class="aspect-photo bg-primary d-flex items-center justify-center">
+                    <span class="text-white">4:3</span>
+                </div>
+                <div class="aspect-square bg-secondary d-flex items-center justify-center">
+                    <span class="text-white">1:1</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Пример 9: Доступность -->
+        <section class="demo-section">
+            <h2>9. Улучшенная доступность</h2>
+            <div class="demo-text">
+                <p>Поддержка <code>prefers-reduced-motion</code> и <code>prefers-contrast</code></p>
+                <button class="motion-reduce transition-all hover:scale-105 p-3 border cursor-pointer">
+                    Кнопка с учетом настроек доступности
+                </button>
+            </div>
+        </section>
+
+        <!-- Пример 10: Темная тема -->
+        <section class="demo-section">
+            <h2>10. Автоматическая темная тема</h2>
+            <div class="dark-mode-auto p-4 border">
+                <p>Этот блок автоматически адаптируется к системным настройкам темной темы</p>
+                <a href="#">Ссылка в темной теме</a>
+            </div>
+        </section>
+
+        <!-- Сравнение с оригинальным подходом -->
+        <section class="demo-section">
+            <h2>Сравнение подходов</h2>
+            
+            <h3>Оригинальный подход (проблемы):</h3>
+            <ul>
+                <li>8 медиа-запросов с дублированием кода</li>
+                <li>Жестко заданные значения (16px, 32px, 40px)</li>
+                <li>Сложные calc() выражения</li>
+                <li>Отсутствие централизованного управления</li>
+                <li>Сложность поддержки и изменения</li>
+            </ul>
+
+            <h3>Оптимизированный подход (преимущества):</h3>
+            <ul>
+                <li>CSS переменные для централизованного управления</li>
+                <li>Mobile-first подход с прогрессивным улучшением</li>
+                <li>Утилитарные классы для быстрой разработки</li>
+                <li>Упрощенные медиа-запросы</li>
+                <li>Лучшая поддержка доступности</li>
+                <li>Легкость изменения и масштабирования</li>
+            </ul>
+        </section>
+
+        <!-- Рекомендации по использованию -->
+        <section class="demo-section">
+            <h2>Рекомендации по использованию</h2>
+            
+            <h3>1. Структура файлов:</h3>
+            <pre><code>css/
+├── styles-optimized.css    # Основные стили с переменными
+├── utilities.css          # Утилитарные классы
+└── components.css         # Специфичные компоненты (опционально)</code></pre>
+
+            <h3>2. Подключение в HTML:</h3>
+            <pre><code>&lt;link rel="stylesheet" href="css/styles-optimized.css"&gt;
+&lt;link rel="stylesheet" href="css/utilities.css"&gt;</code></pre>
+
+            <h3>3. Использование переменных:</h3>
+            <pre><code>/* Вместо: */
+margin: 16px;
+
+/* Используйте: */
+margin: var(--spacing-md);</code></pre>
+
+            <h3>4. Использование утилит:</h3>
+            <pre><code>&lt;div class="grid grid-2 grid-tablet-4 grid-desktop-6"&gt;
+&lt;div class="p-4 m-3 text-center"&gt;
+&lt;div class="d-flex justify-between items-center"&gt;</code></pre>
+        </section>
+    </div>
+</body>
+</html>
