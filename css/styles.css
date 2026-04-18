@@ -1406,6 +1406,17 @@ float: none;
 .guideli .about-title {
     display: flex;
   }
+.guideli--closed .about,
+.guideli--closed .price,
+.guideli--closed .geo,
+.guideli--closed .about_description {
+  color: #999B9F;
+}
+.guideli--closed .closed-title {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
+}
 .guideli .stars {
     margin-left: calc(2px + 0.22vw);
     font-weight: 400;
