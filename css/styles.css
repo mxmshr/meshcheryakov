@@ -1815,6 +1815,10 @@ float: none;
       right: 0;
       top: 0;
     }
+    .metrostation {
+        margin: 0 0 0 15px;
+        scale: 0.7;
+}
     .dot-sokolnicheskaya, .dot-zamoskvoretskaya, .dot-arbatskopokrovskaya, .dot-filevskaya, .dot-kolcevaya, .dot-kaluzhskorizhskaya, .dot-taganskokrasnopresnenskaya, .dot-kalininskaya, .dot-serpuhovskotimiryazevskaya, .dot-lyublinskodmoitrovskaya, .dot-bolshayakolcevaya, .dot-kahovskaya, .dot-butovskaya, .dot-monorels, .dot-mcd, .dot-nekrasovskaya, .dot-troitskaya, .dot-rublyovoarhangelskaya, .dot-biryulovskaya, .dot-solncevskaya {
       height: 12px;
       width: 12px;
