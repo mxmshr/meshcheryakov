@@ -1361,8 +1361,24 @@ float: none;
   text-align: left;
   font-size: calc(20px + 0.4vw);
   margin: 64px 0 24px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+.guidehead .link {
+  font-size: calc(16px + 0.22vw);
+  line-height: 1.4;
+}
+.guidehead sub {
+  font-size: calc(10px + 0.22vw);
+  margin: 0;
+  top: 0.35em;
+  bottom: auto;
 }
 .criteriacut {
+  cursor: pointer;
+}
+.guidetoggle {
   cursor: pointer;
 }
 .criteriacutactive {
@@ -1379,6 +1395,17 @@ float: none;
     display: none;
     margin: 0;
     padding: 0;
+}
+.guidefold-wrap {
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.guidefold {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 .crol {
     background: #f0f3f2;
@@ -1446,12 +1473,45 @@ float: none;
   margin: 0 0 0 -8px;
   color: #999b9f;
 }
+.guide__footer-links {
+  font-size: calc(16px + 0.22vw);
+  line-height: 1.4;
+  font-weight: 400;
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  padding-top: 40px;
+  padding-bottom: 32px;
+  grid-column: 1;
+}
+.guide__footer-links .guidelinks {
+  display: flex;
+  align-items: baseline;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+.guide__footer-links .guidetoggle-wrap {
+  display: inline-flex;
+  align-items: baseline;
+}
+.guide__footer-links .link,
+.guide__footer-links .guidetoggle {
+  font-size: calc(16px + 0.22vw);
+  line-height: 1.4;
+}
+.guide__footer-links sup {
+  font-size: 75%;
+  margin-left: calc(1px + 0.2vw);
+  top: -0.45em;
+  bottom: auto;
+  vertical-align: baseline;
+}
 .parking {
   position: absolute;
   height: 15px;
   width: 15px;
   align: right;
-  background: url(img/parking.svg);
+  background: url(../img/parking.svg);
   background-size: 15px 15px;
   margin: 8px 48px 0 0;
   display: block;
@@ -1706,6 +1766,9 @@ float: none;
     .guidelinks {
       margin-right: 24px;
     }
+    .guide__footer-links {
+      gap: 24px;
+    }
     .crol {
         margin: 24px 0 0 0;
         padding: calc(16px + 0.22vw) 24px calc(40px + 0.22vw) 24px;
@@ -1745,7 +1808,7 @@ float: none;
       height: 20px;
       width: 20px;
       align: right;
-      background: url(img/parking.svg);
+      background: url(../img/parking.svg);
       background-size: 20px 20px;
       margin: 8px 0 0 0;
       display: block;
@@ -2027,7 +2090,8 @@ float: none;
     {
         margin-bottom: 32px;
     }
-    .inner__nav
+    .inner__nav,
+    .guide__footer-links
     {
         padding-bottom: 32px;
         grid-column: 1/5;
@@ -2354,10 +2418,10 @@ float: none;
     {
         margin-bottom: 16px;
     }
-    .inner__nav
+    .inner__nav,
+    .guide__footer-links
     {
         padding-bottom: 32px;
-        padding-top: 80px;
         grid-column: 1/7;
     }
     .inner__nav-arrow
