@@ -22,3 +22,5 @@ jobs:
           source: "."
           target: "/home/m/maximm/meshcheryakov.com/public_html"
           strip_components: 0
+          overwrite: true
+          tar_dereference: true
