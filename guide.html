@@ -44,6 +44,15 @@
           <span class="guidelinks"><a class="criteriacut link" data-target="#criteria1">Критерии</a></span>
           <span class="guidelinks"><a class="link" href="https://yandex.ru/maps?bookmarks%5BpublicId%5D=2d866k7i&utm_source=share&utm_campaign=bookmarks">На&nbsp;карте</a><sup>↗</sup></span>
           <span class="guideupdate">Апрель 2026</span>
+          <div class="guidefilters" aria-label="Быстрые фильтры">
+            <button class="guidefilter guidefilter--active" type="button" data-filter="all" aria-pressed="true">Все</button>
+            <!--<button class="guidefilter" type="button" data-filter="top" aria-pressed="false">★★</button>*-->
+            <button class="guidefilter" type="button" data-filter="cheap" aria-pressed="false">Дешево</button>
+            <button class="guidefilter" type="button" data-filter="parking" aria-pressed="false">На машине</button>
+            <button class="guidefilter" type="button" data-filter="quiet" aria-pressed="false">Тихо</button>
+            <button class="guidefilter" type="button" data-filter="power" aria-pressed="false">Розетки</button>
+            <button class="guidefilter" type="button" data-filter="wifi" aria-pressed="false">Вайфай</button>
+          </div>
           <div id="criteria1" class="criteria">
             <div class="crol">
               <div class="crli"><div class="crli__header">Рабочие условия</div>Не&nbsp;узкий и&nbsp;не&nbsp;низкий стол, стул со&nbsp;спинкой, розетки, вайфай, не&nbsp;громкая музыка.<div class="crli__additional">Созваниваться можно везде, везде это компромисс между «меня не&nbsp;слышно» и «я всем мешаю».</div></div>
@@ -651,6 +660,7 @@
               </div>
             </li>
           </ul>
+          <div class="guideempty" aria-live="polite">Ничего не нашлось. Снимите один из фильтров.</div>
         </section>
       <nav class="guide__footer-links">
         <span class="guidelinks"><span class="guidetoggle-wrap"><a class="guidetoggle link" data-target="#closed-list">Закрылись</a><sup id="closed-count"></sup></span></span>
@@ -750,6 +760,84 @@
   <script>
   var closedCount = $("#closed-list .guideli--closed").length;
   $("#closed-count").text(closedCount);
+  var activeGuideFilters = [];
+  var $guideItems = $(".inner__text .guide > .guideli");
+
+  function guideText($item) {
+    return $item.text().replace(/\s+/g, " ").toLowerCase();
+  }
+
+  function guideMatchesFilter($item, filter) {
+    var text = guideText($item);
+    var price = $.trim($item.find(".price").first().text());
+
+    if (filter === "top") {
+      return $item.find(".about-title sup").first().text().indexOf("★★") !== -1;
+    }
+
+    if (filter === "cheap") {
+      return price === "₽";
+    }
+
+    if (filter === "parking") {
+      return $item.find(".parking").length > 0;
+    }
+
+    if (filter === "quiet") {
+      return /тих|спокойн|не шумн/.test(text);
+    }
+
+    if (filter === "power") {
+      return /розет|удлинител/.test(text);
+    }
+
+    if (filter === "wifi") {
+      return /(вайфай|wi-?fi|wifi)/.test(text) && !/(нет вайфая|плохой вайфай|слабый вайфай|ограниченный вайфай|вайфай слабый)/.test(text);
+    }
+
+    return true;
+  }
+
+  function updateGuideFilters() {
+    var visibleCount = 0;
+
+    $guideItems.each(function () {
+      var $item = $(this);
+      var isVisible = activeGuideFilters.every(function (filter) {
+        return guideMatchesFilter($item, filter);
+      });
+
+      $item.toggleClass("guideli--filtered", !isVisible);
+      if (isVisible) {
+        visibleCount++;
+      }
+    });
+
+    $(".guideempty").toggle(activeGuideFilters.length > 0 && visibleCount === 0);
+    $(".guidefilter[data-filter='all']")
+      .toggleClass("guidefilter--active", activeGuideFilters.length === 0)
+      .attr("aria-pressed", activeGuideFilters.length === 0);
+  }
+
+  $(".guidefilter").click(function () {
+    var $filter = $(this);
+    var filter = $filter.data("filter");
+
+    if (filter === "all") {
+      activeGuideFilters = [];
+      $(".guidefilter").not($filter).removeClass("guidefilter--active").attr("aria-pressed", "false");
+    } else if ($filter.hasClass("guidefilter--active")) {
+      activeGuideFilters = activeGuideFilters.filter(function (activeFilter) {
+        return activeFilter !== filter;
+      });
+      $filter.removeClass("guidefilter--active").attr("aria-pressed", "false");
+    } else {
+      activeGuideFilters.push(filter);
+      $filter.addClass("guidefilter--active").attr("aria-pressed", "true");
+    }
+
+    updateGuideFilters();
+  });
 
   $(".criteriacut, .guidetoggle").click(function () {
     var $trigger = $(this);
