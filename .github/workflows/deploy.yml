@@ -20,5 +20,5 @@ jobs:
           username: maximm
           key: ${{ secrets.BEGET_SSH_KEY }}
           source: "."
-          target: "/home/m/maximm/public_html"
+          target: "/home/m/maximm/meshcheryakov.com/public_html"
           strip_components: 0
