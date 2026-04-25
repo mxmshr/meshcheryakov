@@ -361,7 +361,6 @@ img {
 }
 .sideblock__container
 {
-    grid-row: 0;
     grid-column: 1;
 }
 .sideblock__container *
@@ -449,9 +448,6 @@ float: none;
 .sideblock--inner .sideblock__descr {
     margin-bottom: 0px;
     grid-row: 2;
-}
-.sideblock--inner .sideblock__container {
-    grid-row: 0;
 }
 .header {
     position: relative;
@@ -1135,8 +1131,8 @@ float: none;
 {
     color: #fff;
 }
-{
 .inner--dark .sideblock
+{
     color: #f0f3f2;
 }
 .inner--rar, .inner--silavetra, .inner--traktor, .inner--guide
@@ -1235,7 +1231,6 @@ float: none;
        -moz-column-gap: 40px;
             column-gap: 40px;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr, 2);
 }
 .inner__header h1
 {
@@ -1304,13 +1299,11 @@ float: none;
 .inner__close:hover
 {
   opacity: 1;
-    transform: translate(-4px,4px);
-    -webkit-transform: .1s ease-in-out;
-            transform: .1s ease-in-out;
-            transform: .1s ease-in-out, -webkit-transform .1s ease-in-out;
+    -webkit-transform: translate(-4px,4px);
+            transform: translate(-4px,4px);
     -webkit-transition: opacity .1s ease-in-out;
             transition: opacity .1s ease-in-out;
-            transition: opacity .1s ease-in-out, -webkit-transform .1s ease-in-out;
+            transition: opacity .1s ease-in-out, transform .1s ease-in-out, -webkit-transform .1s ease-in-out;
 }
 .inner__guide_desc{
   grid-column: 1/4;
@@ -1510,7 +1503,6 @@ float: none;
   position: absolute;
   height: 15px;
   width: 15px;
-  align: right;
   background: url(../img/parking.svg);
   background-size: 15px 15px;
   margin: 8px 48px 0 0;
@@ -1609,7 +1601,7 @@ float: none;
   background-color: #B9C8E7;
 }
 .dot-mcd {
-  background-color: none;
+  background-color: transparent;
   border: 2px solid red;
 }
 .dot-nekrasovskaya {
@@ -1807,7 +1799,6 @@ float: none;
       position: absolute;
       height: 20px;
       width: 20px;
-      align: right;
       background: url(../img/parking.svg);
       background-size: 20px 20px;
       margin: 8px 0 0 0;
@@ -1954,7 +1945,7 @@ float: none;
         color: #111111;
         -webkit-transition: .24s ease-in-out;
                 transition: .24s ease-in-out;
-                transition: .24s ease-in-out, -webkit-transform opacity .24s ease-in-out;
+                transition: transform .24s ease-in-out, opacity .24s ease-in-out, -webkit-transform .24s ease-in-out;
     }
     .navigation ul li
     {
@@ -2154,13 +2145,7 @@ float: none;
     }
     .sideblock_left .sideblock__descr
     {
-        grid-row: 0;
         grid-column: 1/3!important;
-    }
-    .sideblock_left .project
-    {
-        grid-row: 0;
-        grid-column: 2 2!important;
     }
     .sideblock span, .guide, .sideblock h2, .project--locked p, .header__name, .header p, .project--locked::after, .footer__link, .footer__direction, .inner__nav, .inner__header span, .guide__header, .inner__header button, .sideblock p, .mainmenu__item
     {
