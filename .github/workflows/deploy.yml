@@ -19,7 +19,7 @@ jobs:
           host: maximm.beget.tech
           username: maximm
           key: ${{ secrets.BEGET_SSH_KEY }}
-          source: "."
+          source: "*,.htaccess"
           target: "/home/m/maximm/meshcheryakov.com/public_html"
           strip_components: 0
           overwrite: true
