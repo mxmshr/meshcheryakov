@@ -1270,7 +1270,7 @@ float: none;
     line-height: var(--line-height-title);
     font-weight: 400;
     margin: 0 10% 0 -0.15vw;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
 }
 .inner__header span, .inner__header button
 {
