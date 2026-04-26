@@ -1269,7 +1269,7 @@ float: none;
     font-size: var(--font-size-title);
     line-height: var(--line-height-title);
     font-weight: 400;
-    margin: 0 25% 0 -0.15vw;
+    margin: 0 10% 0 -0.15vw;
     letter-spacing: -0.015em;
 }
 .inner__header span, .inner__header button
@@ -1358,6 +1358,12 @@ float: none;
   gap: 5px;
   margin: 40px 0 0 0;
   max-width: 880px;
+}
+@media (max-width: 767px)
+{
+  .guidefilters {
+    margin-bottom: 16px;
+  }
 }
 .guidefilter {
   appearance: none;
@@ -1552,7 +1558,7 @@ float: none;
 }
 .guideupdate {
   margin: 0 0 0 -8px;
-  color: var(--color-text-muted);
+  color: var(--color-text-primary);
 }
 .guide__footer-links {
   font-size: var(--font-size-body);
