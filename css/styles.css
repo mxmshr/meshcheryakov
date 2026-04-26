@@ -1508,12 +1508,15 @@ float: none;
   padding: 0 4px 0 0 !important;
 }
 .guideli .about {
-  grid-column: span 7 / span 7;
+  grid-column: span 8 / span 8;
   text-align: left;
 }
 .guideli .about-title {
     display: flex;
   }
+.guideli .about-title sup {
+  display: none;
+}
 .guideli--closed .about,
 .guideli--closed .price,
 .guideli--closed .geo,
@@ -1533,10 +1536,7 @@ float: none;
     text-align: left;
   }
 .guideli .price {
-  grid-column: span 1 / span 1;
-  letter-spacing: 1px;
-  -webkit-text-stroke: 0.1px var(--color-bg-primary);
-  text-align: right;
+  display: none;
 }
 .guideli .geo {
   grid-column: span 8 / span 8;
@@ -1589,16 +1589,7 @@ float: none;
   vertical-align: baseline;
 }
 .parking {
-  position: absolute;
-  height: 15px;
-  width: 15px;
-  background: url(../img/parking.svg);
-  background-size: 15px 15px;
-  margin: 8px 48px 0 0;
-  display: block;
-  right: 0;
-  top: 0;
-  cursor: pointer;
+  display: none;
 }
 
 
@@ -1890,14 +1881,12 @@ float: none;
         margin: 4px 0;
     }
     .guideli .about {
-      grid-column: span 7 / span 7;
+      grid-column: span 8 / span 8;
       text-align: left;
       position: relative;
     }
     .guideli .price {
-      grid-column: span 1 / span 1;
-      text-align: left;
-        -webkit-text-stroke: 0.1px var(--color-bg-primary);
+      display: none;
     }
     .guideli .geo {
       grid-column: span 3 / span 3;
@@ -1908,15 +1897,7 @@ float: none;
       margin: -8px 20px 16px 0;
     }
     .parking {
-      position: absolute;
-      height: 20px;
-      width: 20px;
-      background: url(../img/parking.svg);
-      background-size: 20px 20px;
-      margin: 8px 0 0 0;
-      display: block;
-      right: 0;
-      top: 0;
+      display: none;
     }
     .metrostation {
         margin: 0 0 0 15px;
