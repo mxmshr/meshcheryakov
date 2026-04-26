@@ -2337,6 +2337,12 @@ float: none;
         {
           grid-gap: 40px;
         }
+    .guideli .about {
+        grid-column: 1/7;
+    }
+    .guideli .geo {
+        grid-column: 7/9;
+    }
     .guideli {
         padding: 0 0 24px 0;
     }
