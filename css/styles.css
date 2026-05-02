@@ -1385,6 +1385,7 @@ float: none;
     transform: translateY(0);
   }
   .guidefilters {
+    gap: 6px 5px;
     margin-bottom: 16px;
   }
 }
@@ -1888,9 +1889,10 @@ float: none;
     .guidefilters {
       gap: 6px;
       margin-top: 40px;
+      margin-bottom: 24px;
     }
     .guidefilter {
-      padding: 9px 14px 8px 14px;
+      padding: 7px 13px 7px 13px;
     }
     .crol {
         margin: 24px 0 0 0;
@@ -2376,7 +2378,7 @@ float: none;
     }
     .guidefilters {
         gap: 7px;
-        margin-top: 5vw;
+        margin-top: 4vw;
         margin-bottom: 40px;
     }
     .guideseparator {
