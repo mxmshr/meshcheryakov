@@ -1656,6 +1656,7 @@ float: none;
   color: #333;
 }
 .metrostation {
+  font-size: 90%;
   margin: 0 0 0 12px;
   scale: 0.7;
 }
@@ -2374,6 +2375,10 @@ float: none;
     }
     .guideli .geo {
         grid-column: 7/9;
+    }
+    .dot-sokolnicheskaya, .dot-zamoskvoretskaya, .dot-arbatskopokrovskaya, .dot-filevskaya, .dot-kolcevaya, .dot-kaluzhskorizhskaya, .dot-taganskokrasnopresnenskaya, .dot-kalininskaya, .dot-serpuhovskotimiryazevskaya, .dot-lyublinskodmoitrovskaya, .dot-bolshayakolcevaya, .dot-kahovskaya, .dot-butovskaya, .dot-monorels, .dot-mcd, .dot-nekrasovskaya, .dot-troitskaya, .dot-rublyovoarhangelskaya, .dot-biryulovskaya, .dot-solncevskaya {
+        height: 12px;
+        width: 12px;
     }
     .guideli {
         padding: 0 0 24px 0;
