@@ -1398,6 +1398,7 @@ float: none;
   color: var(--color-text-primary);
   cursor: pointer;
   font: inherit;
+  font-size: 90%;
   line-height: 1.1;
   padding: 7px 12px 6px 12px;
   transition: background-color var(--transition-base), border-color var(--transition-base), color var(--transition-base);
@@ -1532,7 +1533,7 @@ float: none;
 .crli__additional {
     margin-top: 12px;
     color: var(--color-text-muted);
-    font-size: 85%;
+    font-size: 90%;
 }
 .first {
   padding: 0 4px 0 0 !important;
@@ -1647,8 +1648,9 @@ float: none;
     }
 .about_description {
   color: var(--color-text-muted);
+  font-size: 90%;
   padding-right: 0;
-  padding: 4px 0 0 0;
+  padding: 6px 0 2px 0;
 }
 .star {
   color: #333;
@@ -1946,7 +1948,7 @@ float: none;
       color: blue;
     }
     .about_description {
-      padding: 2px 12% 0 0;
+      padding: 3px 12% 0 0;
     }
     .line
     {
