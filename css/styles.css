@@ -1657,13 +1657,13 @@ float: none;
 }
 .metrostation {
   font-size: 88%;
-  margin: 0 0 0 12px;
+  margin: 0 0 0 4px;
 }
 .dot-sokolnicheskaya, .dot-zamoskvoretskaya, .dot-arbatskopokrovskaya, .dot-filevskaya, .dot-kolcevaya, .dot-kaluzhskorizhskaya, .dot-taganskokrasnopresnenskaya, .dot-kalininskaya, .dot-serpuhovskotimiryazevskaya, .dot-lyublinskodmoitrovskaya, .dot-bolshayakolcevaya, .dot-kahovskaya, .dot-butovskaya, .dot-monorels, .dot-mcd, .dot-nekrasovskaya, .dot-troitskaya, .dot-rublyovoarhangelskaya, .dot-biryulovskaya, .dot-solncevskaya {
-  height: 12px;
-  width: 12px;
+  height: 10px;
+  width: 10px;
   border-radius: 50%;
-  margin: 0 -4px 0 1px;
+  margin: 0 2px 0 1px;
   display: inline-block;
 }
 .dot-sokolnicheskaya {
@@ -1894,7 +1894,7 @@ float: none;
       margin-bottom: 24px;
     }
     .guidefilter {
-      padding: 7px 13px 7px 13px;
+      padding: 7px 12px 7px 12px;
     }
     .crol {
         margin: 24px 0 0 0;
@@ -1913,7 +1913,7 @@ float: none;
         margin: 4px 0;
     }
     .guideli .about {
-      grid-column: span 8 / span 8;
+      grid-column: span 7 / span 7;
       text-align: left;
       position: relative;
     }
@@ -1932,13 +1932,13 @@ float: none;
       display: none;
     }
     .metrostation {
-        margin: 0 0 0 15px;
+        margin: 0 0 0 6px;
 }
     .dot-sokolnicheskaya, .dot-zamoskvoretskaya, .dot-arbatskopokrovskaya, .dot-filevskaya, .dot-kolcevaya, .dot-kaluzhskorizhskaya, .dot-taganskokrasnopresnenskaya, .dot-kalininskaya, .dot-serpuhovskotimiryazevskaya, .dot-lyublinskodmoitrovskaya, .dot-bolshayakolcevaya, .dot-kahovskaya, .dot-butovskaya, .dot-monorels, .dot-mcd, .dot-nekrasovskaya, .dot-troitskaya, .dot-rublyovoarhangelskaya, .dot-biryulovskaya, .dot-solncevskaya {
-      height: 14px;
-      width: 14px;
+      height: 10px;
+      width: 10px;
       border-radius: 50%;
-      margin: 0 -5px 0 1px;
+      margin: 0 2px 0 1px;
     }
     .guideli .arrow {
       grid-column: span 1 / span 1;
@@ -1947,7 +1947,7 @@ float: none;
       color: blue;
     }
     .about_description {
-      padding: 3px 12% 0 0;
+      padding: 3px 5% 0 0;
     }
     .line
     {
@@ -2369,10 +2369,10 @@ float: none;
           grid-gap: 40px;
         }
     .guideli .about {
-        grid-column: 1/7;
+        grid-column: 1/6;
     }
     .guideli .geo {
-        grid-column: 7/9;
+        grid-column: 6/8;
     }
     .dot-sokolnicheskaya, .dot-zamoskvoretskaya, .dot-arbatskopokrovskaya, .dot-filevskaya, .dot-kolcevaya, .dot-kaluzhskorizhskaya, .dot-taganskokrasnopresnenskaya, .dot-kalininskaya, .dot-serpuhovskotimiryazevskaya, .dot-lyublinskodmoitrovskaya, .dot-bolshayakolcevaya, .dot-kahovskaya, .dot-butovskaya, .dot-monorels, .dot-mcd, .dot-nekrasovskaya, .dot-troitskaya, .dot-rublyovoarhangelskaya, .dot-biryulovskaya, .dot-solncevskaya {
         height: 12px;
