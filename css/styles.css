@@ -1683,6 +1683,11 @@ float: none;
   font-size: 88%;
   margin: 0 0 0 4px;
 }
+.metrostop {
+  align-items: baseline;
+  display: inline-flex;
+  white-space: nowrap;
+}
 .dot-sokolnicheskaya, .dot-zamoskvoretskaya, .dot-arbatskopokrovskaya, .dot-filevskaya, .dot-kolcevaya, .dot-kaluzhskorizhskaya, .dot-taganskokrasnopresnenskaya, .dot-kalininskaya, .dot-serpuhovskotimiryazevskaya, .dot-lyublinskodmoitrovskaya, .dot-bolshayakolcevaya, .dot-kahovskaya, .dot-butovskaya, .dot-monorels, .dot-mcd, .dot-nekrasovskaya, .dot-troitskaya, .dot-rublyovoarhangelskaya, .dot-biryulovskaya, .dot-solncevskaya {
   height: 10px;
   width: 10px;
