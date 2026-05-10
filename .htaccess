@@ -5,4 +5,5 @@ RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} ^www\.meshcheryakov\.com$ [NC]
 RewriteRule ^ https://meshcheryakov.com%{REQUEST_URI} [R=301,L]
 
-RewriteRule ^guide\.html$ /work-cafes-moscow.html [R=301,L]
+RewriteRule ^guide\.html$ /cafes-moscow.html [R=301,L]
+RewriteRule ^work-cafes-moscow\.html$ /cafes-moscow.html [R=301,L]
