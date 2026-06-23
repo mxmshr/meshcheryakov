@@ -1554,10 +1554,12 @@ float: none;
 .crli__header {
     margin-bottom: 8px;
 }
+.crli__text {
+    color: var(--color-text-primary);
+}
 .crli__additional {
     margin-top: 8px;
     color: var(--color-text-muted);
-    font-size: 88%;
 }
 .first {
   padding: 0 4px 0 0 !important;
@@ -2428,8 +2430,7 @@ float: none;
         gap: 24px 40px;
     }
     .crli__header {
-      margin-bottom: 0;
-      height: 40px;
+      margin-bottom: 12px;
     }
     .crli__additional {
     margin-top: 12px;
