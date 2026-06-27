@@ -24,8 +24,9 @@
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#333333">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-    <script src="js/lib/emerge.js"></script>
+    <link rel="preload" href="fonts/SuisseIntl-Book-WebM.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous" defer></script>
+    <script src="js/lib/emerge.js" defer></script>
 
 
     <!-- Yandex.Metrika counter -->
@@ -92,9 +93,9 @@
           </div>
           <div class="project project--multi-reindustry project--full project--free-reindustry emerge" data-effect="slide" data-up="4em" data-duration="400" data-expose="true"><a href="reindustry.html"><img src="img/project-reindustry-01-og.png" srcset="img/project-reindustry-01-og.png 500w, img/project-reindustry-01@2.png 1000w, img/project-reindustry-01@3.png 1500w"><img src="img/project-reindustry-02-og.png" srcset="img/project-reindustry-02-og.png 500w, img/project-reindustry-02@2.png 1000w, img/project-reindustry-02@3.png 1500w"></a>
           </div>
-          <div class="project project--mmlf project--center" data-effect="slide" data-up="4em" data-duration="400" data-expose="true"><a href="mmlf.html"><video autoplay muted loop playsinline><source src="img/project-mmlf-og.mp4" type="video/mp4"></video></a>
+          <div class="project project--mmlf project--center" data-effect="slide" data-up="4em" data-duration="400" data-expose="true"><a href="mmlf.html"><video muted loop playsinline preload="none" poster="img/project-mmlf-poster.jpg"><source src="img/project-mmlf-og.mp4" type="video/mp4"></video></a>
           </div>
-          <div class="project project--maslovka project--center" data-effect="slide" data-up="4em" data-duration="800" data-expose="true"><a href="maslovka.html"><video autoplay muted loop playsinline><source src="img/project-maslovka-og.mp4" type="video/mp4"></video></a>
+          <div class="project project--maslovka project--center" data-effect="slide" data-up="4em" data-duration="800" data-expose="true"><a href="maslovka.html"><video muted loop playsinline preload="none" poster="img/project-maslovka-poster.jpg"><source src="img/project-maslovka-og.mp4" type="video/mp4"></video></a>
           </div>
           <div class="project project--ksl" data-effect="slide" data-up="4em" data-duration="400" data-expose="true"><a href="ksl.html"><img src="img/project-ksl-og.png" srcset="img/project-ksl-og.png 500w, img/project-ksl@2.png 1000w, img/project-ksl@3.png 1500w"></a>
           </div>
@@ -155,4 +156,25 @@
           </svg><a class="link" href="https://t.me/mshchr">Написать в Телеграме</a><sub>vpn</sub></span>
     </div>
   </footer>
+  <script>
+    // Грузим и проигрываем видео только когда блок попал во вьюпорт
+    (function () {
+      var videos = document.querySelectorAll('video[preload="none"]');
+      if (!('IntersectionObserver' in window)) {
+        videos.forEach(function (v) { v.setAttribute('preload', 'auto'); v.play().catch(function () {}); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (entry.isIntersecting) {
+            v.play().catch(function () {});
+          } else {
+            v.pause();
+          }
+        });
+      }, { rootMargin: '200px 0px' });
+      videos.forEach(function (v) { io.observe(v); });
+    })();
+  </script>
 </body>
