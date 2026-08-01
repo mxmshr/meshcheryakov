@@ -25,6 +25,10 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <link rel="preload" href="fonts/SuisseIntl-Book-WebM.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Скрипты отложены (defer), поэтому прячем emerge-блоки до их запуска здесь,
+         иначе страница отрисуется видимой и анимация появления вызовет «дёргание» -->
+    <style>.emerge { opacity: 0; }</style>
+    <noscript><style>.emerge { opacity: 1; }</style></noscript>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous" defer></script>
     <script src="js/lib/emerge.js" defer></script>
 
