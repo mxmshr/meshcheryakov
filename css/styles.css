@@ -5,6 +5,7 @@
     --color-bg-primary: #FFFFFF;
     --color-bg-muted: #f0f3f2;
     --color-border-muted: rgba(0, 0, 0, 0.25);
+    --color-border-subtle: rgba(0, 0, 0, 0.12);
     --color-border-inverse-muted: rgba(255, 255, 255, 0.25);
     --color-shadow-soft: rgba(0, 0, 0, 0.08);
     --font-size-body: calc(16px + 0.22vw);
@@ -1546,10 +1547,14 @@ float: none;
 .crol {
     background: var(--color-bg-muted);
     margin: 16px 0 0 0;
-    padding: 20px 20px 24px 20px;
+    padding: 24px 20px 24px 20px;
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 32px;
+    gap: 24px;
+}
+.crli + .crli {
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border-subtle);
 }
 .crli__header {
     margin-bottom: 8px;
@@ -1929,9 +1934,17 @@ float: none;
     }
     .crol {
         margin: 16px 0 0 0;
-        padding: 20px 20px 28px 20px;
+        padding: 24px 20px 28px 20px;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 40px 40px;
+        gap: 28px 40px;
+    }
+    .crli + .crli {
+        padding-top: 0;
+        border-top: 0;
+    }
+    .crli:nth-child(n+3) {
+        padding-top: 28px;
+        border-top: 1px solid var(--color-border-subtle);
     }
 
     .inner__title p {
@@ -2425,12 +2438,18 @@ float: none;
     }
     .crol {
         margin: 12px 0 0 0;
-        padding: 24px 28px 32px 28px;
+        padding: 32px 32px 36px 32px;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 24px 40px;
     }
+    .crli:nth-child(n+3) {
+        padding-top: 0;
+        border-top: 0;
+    }
     .crli__header {
-      margin-bottom: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border-subtle);
     }
     .crli__additional {
     margin-top: 12px;
@@ -2718,9 +2737,6 @@ float: none;
     .crol {
         margin: 12px 0 0 0;
         gap: 32px 52px;
-    }
-    .crli__header {
-      height: 40px;
     }
     .content
     {
