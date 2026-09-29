@@ -624,8 +624,9 @@ float: none;
 {
     background-color: var(--project-bg);
 }
-/* С мышью подпись выезжает из нижнего края при наведении (карточка её обрезает) */
-@media (hover: hover)
+/* С мышью на широком экране подпись выезжает из нижнего края при наведении
+   (карточка её обрезает) */
+@media (hover: hover) and (min-width: 768px)
 {
     .project .project__caption
     {
@@ -636,9 +637,9 @@ float: none;
         transform: none;
     }
 }
-/* На тач-экранах наведения нет: подпись всегда видна, стоит под карточкой
+/* На тач-экранах и узких экранах подпись всегда видна, стоит под карточкой
    и всегда чёрная. Место под неё добавляем к отступу между карточками */
-@media (hover: none)
+@media (hover: none), (max-width: 767px)
 {
     .project
     {
@@ -1089,7 +1090,7 @@ float: none;
 }
 .project--free, .inner--free
 {
-    --project-bg: #4D536B;
+    --project-bg: #60667E;
     background-color: var(--project-bg);
 }
 .project--free-kb, .inner--free
@@ -1228,7 +1229,7 @@ float: none;
 }
 .project--learningcenter
 {
-    --project-bg: #307CCE;
+    --project-bg: #3a7be3;
     background-color: var(--project-bg);
 }
 .inner--learningcenter
