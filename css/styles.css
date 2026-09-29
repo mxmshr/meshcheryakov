@@ -579,11 +579,13 @@ float: none;
 }
 .project
 {
+    --project-gap: 20px;
+    --project-caption-space: 0px;
     position: relative;
     overflow: hidden;
     min-width: auto;
     height: 220px;
-    margin-bottom: 20px;
+    margin-bottom: calc(var(--project-gap) + var(--project-caption-space));
 }
 .project a
 {
@@ -622,8 +624,7 @@ float: none;
 {
     background-color: var(--project-bg);
 }
-/* С мышью подпись выезжает из нижнего края при наведении (карточка её обрезает),
-   на тач-экранах видна всегда */
+/* С мышью подпись выезжает из нижнего края при наведении (карточка её обрезает) */
 @media (hover: hover)
 {
     .project .project__caption
@@ -633,6 +634,30 @@ float: none;
     .project:hover .project__caption, .project:focus-within .project__caption
     {
         transform: none;
+    }
+}
+/* На тач-экранах наведения нет: подпись всегда видна, стоит под карточкой
+   и всегда чёрная. Место под неё добавляем к отступу между карточками */
+@media (hover: none)
+{
+    .project
+    {
+        --project-caption-space: calc(8px + var(--font-size-body) * 0.88 * 1.2);
+        overflow: visible;
+    }
+    .project a
+    {
+        overflow: hidden;
+    }
+    .project .project__caption,
+    .project--caption-light .project__caption,
+    .project--caption-filled .project__caption
+    {
+        top: 100%;
+        bottom: auto;
+        padding: 8px 0 0;
+        color: var(--color-text-primary);
+        background: none;
     }
 }
 .project img, .project video
@@ -1144,7 +1169,7 @@ float: none;
 }
 .project--goodfood, .inner--goodfood
 {
-    --project-bg: #98c74c;
+    --project-bg: #a3d74f;
     background-color: var(--project-bg);
 }
 .project--almaz, .inner--almaz
@@ -1159,7 +1184,7 @@ float: none;
 }
 .project--soleit, .inner--soleit
 {
-    --project-bg: #01a5e1;
+    --project-bg: #21b7ea;
     background-color: var(--project-bg);
 }
 .project--ktiam, .inner--ktiam
@@ -1234,7 +1259,7 @@ float: none;
 {
     color: var(--color-text-primary);
 }
-.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--reindustry .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path
+.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--reindustry .inner__close path, .inner--goodfood .inner__close path, .inner--soleit .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path
 {
     fill: var(--color-text-primary);
 }
@@ -2217,7 +2242,7 @@ float: none;
     .project
     {
         height: 32vw;
-        margin-bottom: 32px;
+        --project-gap: 32px;
         grid-column: span 2;
     }
     .project--full
@@ -2535,7 +2560,7 @@ float: none;
     .project
     {
         height: 21.375vw;
-        margin-bottom: 40px;
+        --project-gap: 40px;
     }
     .project--full
     {
@@ -2815,7 +2840,7 @@ float: none;
     .project
     {
         height: 21.875vw;
-        margin-bottom: 48px;
+        --project-gap: 48px;
     }
     .project--full
     {
@@ -2995,7 +3020,7 @@ float: none;
     .project
     {
         height: 22.2vw;
-        margin-bottom: 64px;
+        --project-gap: 64px;
     }
     .project--full
     {
