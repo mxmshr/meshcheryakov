@@ -593,6 +593,68 @@ float: none;
     height: 100%;
     content: '';
 }
+/* Селектор усилен, чтобы перебить .sideblock p из медиазапросов */
+.project .project__caption
+{
+    position: absolute;
+    z-index: 4;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    margin: 0;
+    padding: 6px 8px;
+    /* 88% от основного — как у фильтров и описаний в гиде по кофейням */
+    font-size: calc(var(--font-size-body) * 0.88);
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: -0.010em;
+    color: var(--color-text-primary);
+    /* Полупрозрачная плашка цвета карточки с размытием: на однотонном фоне её не видно,
+       а если в угол заходит картинка — приглушает её */
+    background-color: color-mix(in srgb, var(--project-bg) 80%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+    pointer-events: none;
+    transition: clip-path var(--transition-base);
+}
+/* Белая подпись — там, где на странице проекта белый текст (inner--dark) */
+.project--caption-light .project__caption
+{
+    color: var(--color-bg-primary);
+}
+/* Текст внутри плашки; наследуем всё явно, иначе перебьёт .sideblock span */
+.project .project__caption-text
+{
+    display: block;
+    font: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    transition: transform var(--transition-base);
+}
+/* С мышью подпись выезжает снизу при наведении, на тач-экранах видна всегда.
+   Сама плашка не сдвигается за край карточки, а раскрывается через clip-path,
+   иначе размытие захватит белый фон страницы под карточкой и плашка на время побелеет.
+   Выезжает только текст внутри неё */
+@media (hover: hover)
+{
+    .project .project__caption
+    {
+        clip-path: inset(100% 0 0 0);
+    }
+    .project .project__caption-text
+    {
+        /* Высота строки плюс нижнее поле плашки — текст идёт вровень с краем раскрытия */
+        transform: translateY(calc(100% + 6px));
+    }
+    .project:hover .project__caption, .project:focus-within .project__caption
+    {
+        clip-path: inset(0);
+    }
+    .project:hover .project__caption-text, .project:focus-within .project__caption-text
+    {
+        transform: none;
+    }
+}
 .project img, .project video
 {
     position: absolute;
@@ -1022,19 +1084,23 @@ float: none;
 }
 .project--free, .inner--free
 {
-    background-color: #4c536b;
+    --project-bg: #4c536b;
+    background-color: var(--project-bg);
 }
 .project--free-kb, .inner--free
 {
-    background-color: #be1010;
+    --project-bg: #be1010;
+    background-color: var(--project-bg);
 }
 .project--free-reindustry, .inner--free
 {
-    background-color: #8393A6;
+    --project-bg: #8393A6;
+    background-color: var(--project-bg);
 }
 .project--free-octopus, .inner--free
 {
-    background-color: #2F7FEF;
+    --project-bg: #2F7FEF;
+    background-color: var(--project-bg);
 }
 .project--404, .inner--error404
 {
@@ -1049,11 +1115,13 @@ float: none;
 }
 .project--rar, .inner--rar
 {
-    background-color: #e9e9e9;
+    --project-bg: #e9e9e9;
+    background-color: var(--project-bg);
 }
 .project--traktor, .inner--traktor
 {
-    background-color: #f1f3f2;
+    --project-bg: #f1f3f2;
+    background-color: var(--project-bg);
 }
 .project--guide, .inner--guide
 {
@@ -1061,75 +1129,93 @@ float: none;
 }
 .project--octopus, .inner--octopus
 {
-    background-color: #2F7FEF;
+    --project-bg: #2F7FEF;
+    background-color: var(--project-bg);
 }
 .project--tweek, .inner--tweek
 {
-    background-color: #E0D8F7;
+    --project-bg: #E0D8F7;
+    background-color: var(--project-bg);
 }
 .project--inone, .inner--inone
 {
-    background-color: #344e6e;
+    --project-bg: #344e6e;
+    background-color: var(--project-bg);
 }
 .project--mostravel, .inner--mostravel
 {
-    background-color: #c2433c;
+    --project-bg: #c2433c;
+    background-color: var(--project-bg);
 }
 .project--silavetra, .inner--silavetra
 {
-    background-color: #e9e9e9;
+    --project-bg: #e9e9e9;
+    background-color: var(--project-bg);
 }
 .project--astrametall, .inner--astrametall
 {
-    background-color: #0a529f;
+    --project-bg: #0a529f;
+    background-color: var(--project-bg);
 }
 .project--kb, .inner--kb
 {
-    background-color: #be1010;
+    --project-bg: #be1010;
+    background-color: var(--project-bg);
 }
 .project--goodfood, .inner--goodfood
 {
-    background-color: #98c74c;
+    --project-bg: #98c74c;
+    background-color: var(--project-bg);
 }
 .project--almaz, .inner--almaz
 {
-    background-color: #a13a35;
+    --project-bg: #a13a35;
+    background-color: var(--project-bg);
 }
 .project--uxks, .inner--uxks
 {
-    background-color: #999;
+    --project-bg: #999;
+    background-color: var(--project-bg);
 }
 .project--soleit, .inner--soleit
 {
-    background-color: #01a5e1;
+    --project-bg: #01a5e1;
+    background-color: var(--project-bg);
 }
 .project--ktiam, .inner--ktiam
 {
-    background-color: #4e93d8;
+    --project-bg: #4e93d8;
+    background-color: var(--project-bg);
 }
 .project--freeway, .inner--freeway
 {
-    background-color: #FFDB6C;
+    --project-bg: #FFDB6C;
+    background-color: var(--project-bg);
 }
 .project--region, .inner--region
 {
-    background-color: #758096;
+    --project-bg: #758096;
+    background-color: var(--project-bg);
 }
 .project--maslovka, .inner--maslovka
 {
-    background-color: #E7D3C8;
+    --project-bg: #E7D3C8;
+    background-color: var(--project-bg);
 }
 .project--mmlf, .inner--mmlf
 {
-    background-color: #391952;
+    --project-bg: #391952;
+    background-color: var(--project-bg);
 }
 .project--ksl, .inner--ksl
 {
-    background-color: #8394A6;
+    --project-bg: #8394A6;
+    background-color: var(--project-bg);
 }
 .project--octopus, .inner--octopus
 {
-    background-color: #2F7FEF;
+    --project-bg: #2F7FEF;
+    background-color: var(--project-bg);
 }
 .inner--reindustry
 {
@@ -1137,7 +1223,8 @@ float: none;
 }
 .project--learningcenter
 {
-    background-color: #307CCE;
+    --project-bg: #307CCE;
+    background-color: var(--project-bg);
 }
 .inner--learningcenter
 {
