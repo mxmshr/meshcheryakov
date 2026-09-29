@@ -609,9 +609,6 @@ float: none;
     font-weight: 400;
     letter-spacing: -0.010em;
     color: var(--color-text-primary);
-    /* Плашка цвета карточки: на однотонном фоне её не видно,
-       а если в угол заходит картинка — перекрывает её */
-    background-color: var(--project-bg);
     pointer-events: none;
     transition: transform var(--transition-base);
 }
@@ -619,6 +616,11 @@ float: none;
 .project--caption-light .project__caption
 {
     color: var(--color-bg-primary);
+}
+/* Плашка цвета карточки под подписью — там, где в угол заходит картинка */
+.project--caption-filled .project__caption
+{
+    background-color: var(--project-bg);
 }
 /* С мышью подпись выезжает из нижнего края при наведении (карточка её обрезает),
    на тач-экранах видна всегда */
@@ -1062,7 +1064,7 @@ float: none;
 }
 .project--free, .inner--free
 {
-    --project-bg: #3C3D55;
+    --project-bg: #4D536B;
     background-color: var(--project-bg);
 }
 .project--free-kb, .inner--free
@@ -1072,7 +1074,7 @@ float: none;
 }
 .project--free-reindustry, .inner--free
 {
-    --project-bg: #8393A6;
+    --project-bg: #8D9CAE;
     background-color: var(--project-bg);
 }
 .project--free-octopus, .inner--free
@@ -1098,7 +1100,7 @@ float: none;
 }
 .project--traktor, .inner--traktor
 {
-    --project-bg: #2C2C2C;
+    --project-bg: #333333;
     background-color: var(--project-bg);
 }
 .project--guide, .inner--guide
@@ -1197,7 +1199,7 @@ float: none;
 }
 .inner--reindustry
 {
-    background-color: #788A9F;
+    background-color: #8D9CAE;
 }
 .project--learningcenter
 {
@@ -1232,7 +1234,7 @@ float: none;
 {
     color: var(--color-text-primary);
 }
-.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path
+.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--reindustry .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path
 {
     fill: var(--color-text-primary);
 }
