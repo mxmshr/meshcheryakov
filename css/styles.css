@@ -609,48 +609,26 @@ float: none;
     font-weight: 400;
     letter-spacing: -0.010em;
     color: var(--color-text-primary);
-    /* Полупрозрачная плашка цвета карточки с размытием: на однотонном фоне её не видно,
-       а если в угол заходит картинка — приглушает её */
-    background-color: color-mix(in srgb, var(--project-bg) 80%, transparent);
-    -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
+    /* Плашка цвета карточки: на однотонном фоне её не видно,
+       а если в угол заходит картинка — перекрывает её */
+    background-color: var(--project-bg);
     pointer-events: none;
-    transition: clip-path var(--transition-base);
+    transition: transform var(--transition-base);
 }
 /* Белая подпись — там, где на странице проекта белый текст (inner--dark) */
 .project--caption-light .project__caption
 {
     color: var(--color-bg-primary);
 }
-/* Текст внутри плашки; наследуем всё явно, иначе перебьёт .sideblock span */
-.project .project__caption-text
-{
-    display: block;
-    font: inherit;
-    letter-spacing: inherit;
-    color: inherit;
-    transition: transform var(--transition-base);
-}
-/* С мышью подпись выезжает снизу при наведении, на тач-экранах видна всегда.
-   Сама плашка не сдвигается за край карточки, а раскрывается через clip-path,
-   иначе размытие захватит белый фон страницы под карточкой и плашка на время побелеет.
-   Выезжает только текст внутри неё */
+/* С мышью подпись выезжает из нижнего края при наведении (карточка её обрезает),
+   на тач-экранах видна всегда */
 @media (hover: hover)
 {
     .project .project__caption
     {
-        clip-path: inset(100% 0 0 0);
-    }
-    .project .project__caption-text
-    {
-        /* Высота строки плюс нижнее поле плашки — текст идёт вровень с краем раскрытия */
-        transform: translateY(calc(100% + 6px));
+        transform: translateY(100%);
     }
     .project:hover .project__caption, .project:focus-within .project__caption
-    {
-        clip-path: inset(0);
-    }
-    .project:hover .project__caption-text, .project:focus-within .project__caption-text
     {
         transform: none;
     }
@@ -1084,7 +1062,7 @@ float: none;
 }
 .project--free, .inner--free
 {
-    --project-bg: #4c536b;
+    --project-bg: #3C3D55;
     background-color: var(--project-bg);
 }
 .project--free-kb, .inner--free
@@ -1120,7 +1098,7 @@ float: none;
 }
 .project--traktor, .inner--traktor
 {
-    --project-bg: #f1f3f2;
+    --project-bg: #2C2C2C;
     background-color: var(--project-bg);
 }
 .project--guide, .inner--guide
@@ -1236,7 +1214,7 @@ float: none;
 }
 .inner--thegem
 {
-    background-color: #4C536B;
+    background-color: #3C3D55;
 }
 .inner--dark
 {
@@ -1246,7 +1224,7 @@ float: none;
 {
     color: var(--color-bg-muted);
 }
-.inner--rar, .inner--silavetra, .inner--traktor, .inner--guide
+.inner--rar, .inner--silavetra, .inner--guide
 {
     color: var(--color-text-primary);
 }
@@ -1254,7 +1232,7 @@ float: none;
 {
     color: var(--color-text-primary);
 }
-.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--traktor .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path
+.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path
 {
     fill: var(--color-text-primary);
 }
@@ -1519,6 +1497,8 @@ float: none;
 .guidefilter:not(.guidefilter--active):focus-visible {
   background: #e4e8e6;
   outline: none;
+  /* Как у ссылок: наведение срабатывает мгновенно, а возврат — плавно */
+  transition-duration: 0s;
 }
 .guidefilter--active {
   background: var(--color-text-primary);
