@@ -1102,7 +1102,7 @@ float: none;
 }
 .project--free-reindustry, .inner--free
 {
-    --project-bg: #8D9CAE;
+    --project-bg: #8393A6;
     background-color: var(--project-bg);
 }
 .project--free-octopus, .inner--free
@@ -1227,7 +1227,7 @@ float: none;
 }
 .inner--reindustry
 {
-    background-color: #8D9CAE;
+    background-color: #788A9F;
 }
 .project--learningcenter
 {
@@ -1262,7 +1262,7 @@ float: none;
 {
     color: var(--color-text-primary);
 }
-.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--reindustry .inner__close path, .inner--goodfood .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path, .inner--traktor .inner__close path
+.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--goodfood .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path, .inner--traktor .inner__close path
 {
     fill: var(--color-text-primary);
 }
