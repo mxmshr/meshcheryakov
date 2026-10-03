@@ -605,8 +605,8 @@ float: none;
     max-width: 100%;
     margin: 0;
     padding: 6px 8px;
-    /* 88% от основного — как у фильтров и описаний в гиде по кофейням */
-    font-size: calc(var(--font-size-body) * 0.88);
+    /* Такой же, как основной текст */
+    font-size: var(--font-size-body);
     line-height: 1.2;
     font-weight: 400;
     letter-spacing: -0.010em;
@@ -643,7 +643,7 @@ float: none;
 {
     .project
     {
-        --project-caption-space: calc(8px + var(--font-size-body) * 0.88 * 1.2);
+        --project-caption-space: calc(8px + var(--font-size-body) * 1.2);
         overflow: visible;
     }
     .project a
