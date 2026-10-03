@@ -13,6 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Exclude git metadata and source files from deploy
+        run: rm -rf .git img/uncompressed
+
       - name: Deploy to Beget
         uses: appleboy/scp-action@v0.1.7
         with:

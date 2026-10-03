@@ -655,18 +655,13 @@ float: none;
     grid-template-columns: 1fr;
     opacity: 1;
 }
-/* На экранах с мышью подпись мельче основного текста: 88%, как было
-   изначально. Место под неё считаем от того же размера и уменьшаем
-   на 8px: ряды чуть плотнее базового зазора */
+/* На экранах с мышью место под подпись уменьшаем на 8px:
+   ряды чуть плотнее базового зазора */
 @media (hover: hover)
 {
     .project
     {
-        --project-caption-space: calc(var(--project-caption-offset) + var(--font-size-body) * 0.88 * 1.2 - 8px);
-    }
-    .project .project__caption
-    {
-        font-size: calc(var(--font-size-body) * 0.88);
+        --project-caption-space: calc(var(--project-caption-offset) + var(--font-size-body) * 1.2 - 8px);
     }
 }
 .project img, .project video
@@ -855,8 +850,6 @@ float: none;
 .project-lock {
     position: absolute;
     z-index: 4;
-    top: calc(50% - 48px);
-    left: calc(50% - 24px);
     width: 48px;
     height: 48px;
     background-size: cover;
@@ -1999,8 +1992,6 @@ float: none;
     }
     .project-lock
     {
-        top: calc(50% - 56px);
-        left: calc(50% - 26px);
         width: 56px;
         height: 56px;
     }
@@ -2306,8 +2297,6 @@ float: none;
     }
     .project-lock
     {
-        top: calc(50% - 55px);
-        left: calc(50% - 32px);
         width: 64px;
         height: 64px;
     }
@@ -2662,10 +2651,8 @@ float: none;
     }
     .project-lock
     {
-        top: calc(50% - 50px);
-        left: calc(50% - 32px);
-        width: 64px;
-        height: 64px;
+        width: 80px;
+        height: 80px;
     }
     .project--locked::after
     {
@@ -2923,10 +2910,8 @@ float: none;
     }
     .project-lock
     {
-        top: calc(50% - 62px);
-        left: calc(50% - 40px);
-        width: 80px;
-        height: 80px;
+        width: 104px;
+        height: 104px;
     }
     .project--locked::after
     {
@@ -3072,11 +3057,8 @@ float: none;
     }
     .project-lock
     {
-      top: calc(50% - 84px);
-        /**left: 46.19%;**/
-        width: 104px;
-        height: 104px;
-        left: calc(50% - 52px);
+        width: 136px;
+        height: 136px;
     }
     .project--locked p
     {
