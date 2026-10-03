@@ -1256,7 +1256,7 @@ float: none;
 {
     color: var(--color-text-primary);
 }
-.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--reindustry .inner__close path, .inner--goodfood .inner__close path, .inner--soleit .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path, .inner--traktor .inner__close path
+.inner--silavetra .inner__close path, .inner--error404 .inner__close path, .inner--silavetra .inner__nav-arrow path, .inner--freeway .inner__close path, .inner--rar .inner__close path, .inner--reindustry .inner__close path, .inner--goodfood .inner__close path, .inner--guide .inner__close path, .inner--tweek .inner__close path, .inner--maslovka .inner__close path, .inner--traktor .inner__close path
 {
     fill: var(--color-text-primary);
 }
