@@ -607,8 +607,12 @@ float: none;
     position: absolute;
     top: 100%;
     left: 0;
-    max-width: 100%;
+    right: 0;
     margin: 0;
+    /* Одна строка: что не влезает, обрезается, а скрипт js/captions.js
+       медленно прокручивает подпись при наведении */
+    white-space: nowrap;
+    overflow: hidden;
     padding: var(--project-caption-offset) 0 0;
     /* Такой же, как основной текст */
     font-size: var(--font-size-body);
@@ -616,9 +620,6 @@ float: none;
     font-weight: 400;
     letter-spacing: -0.010em;
     display: flex;
-    /* Раскрытое название может не влезть в карточку на узких экранах:
-       тогда оно переносится на вторую строку по границам слов */
-    flex-wrap: wrap;
     color: var(--color-text-primary);
     text-decoration: none;
 }
@@ -632,9 +633,12 @@ float: none;
     opacity: 0;
     transition: grid-template-columns var(--transition-base), opacity var(--transition-base);
 }
-/* Селектор с .project перебивает общее правило .sideblock span */
+/* Селектор с .project перебивает общее правило .sideblock span.
+   flex-shrink: 0 не даёт flex-контейнеру сжимать слова, когда подпись
+   шире карточки: иначе буквы наезжают друг на друга */
 .project .project__caption span
 {
+    flex-shrink: 0;
     font-size: inherit;
     line-height: inherit;
     font-weight: inherit;
@@ -650,18 +654,6 @@ float: none;
 {
     grid-template-columns: 1fr;
     opacity: 1;
-}
-/* Обратный сегмент: виден в покое и сворачивается при наведении
-   (например, «СЛ» в «КСЛ», которое заменяется на «совета по логистике») */
-.project__caption-fold--out
-{
-    grid-template-columns: 1fr;
-    opacity: 1;
-}
-.project:hover .project__caption-fold--out
-{
-    grid-template-columns: 0fr;
-    opacity: 0;
 }
 /* На экранах с мышью подпись мельче основного текста: 88%, как было
    изначально. Место под неё считаем от того же размера и уменьшаем
@@ -1110,9 +1102,10 @@ float: none;
   width: 24px;
   height: 24px;
 }
+/* Карточка The Gem того же цвета, что и фон страницы проекта (.inner--thegem) */
 .project--free, .inner--free
 {
-    --project-bg: #60667E;
+    --project-bg: #3C3D55;
     background-color: var(--project-bg);
 }
 .project--free-kb, .inner--free
@@ -1120,9 +1113,10 @@ float: none;
     --project-bg: #be1010;
     background-color: var(--project-bg);
 }
+/* Карточка ReIndustry того же цвета, что и фон страницы проекта */
 .project--free-reindustry, .inner--free
 {
-    --project-bg: #8393A6;
+    --project-bg: #788A9F;
     background-color: var(--project-bg);
 }
 .project--free-octopus, .inner--free
@@ -1162,7 +1156,7 @@ float: none;
 }
 .project--tweek, .inner--tweek
 {
-    --project-bg: #E0D8F7;
+    --project-bg: #E5D8FA;
     background-color: var(--project-bg);
 }
 .project--inone, .inner--inone
@@ -1251,12 +1245,12 @@ float: none;
 }
 .project--learningcenter
 {
-    --project-bg: #3a7be3;
+    --project-bg: #377bed;
     background-color: var(--project-bg);
 }
 .inner--learningcenter
 {
-    background-color: #1466EC;
+    background-color: #377bed;
 }
 .inner--uxks
 {
@@ -1532,7 +1526,8 @@ float: none;
        как на широком экране. У первой группы линия уже есть в шапке */
     .sideblock + .sideblock .sideblock__descr
     {
-        padding-top: 28px;
+        margin-top: 4px;
+        padding-top: 24px;
         border-top: 1px solid var(--color-border-muted);
     }
 }
@@ -2539,7 +2534,7 @@ float: none;
         padding-right: 32px;
         padding-left: 32px;
         padding-top: 28px;
-        padding-bottom: 28px;
+        padding-bottom: 32px;
     }
     .header
     {
@@ -2872,7 +2867,7 @@ float: none;
         padding-right: 40px;
         padding-left: 40px;
         padding-top: 34px;
-        padding-bottom: 34px;
+        padding-bottom: 40px;
     }
     .guideh1 {
       margin: 0 0 2px 0;
@@ -3178,5 +3173,106 @@ float: none;
         padding: 66px;
         width: 188px;
         height: 188px;
+    }
+}
+
+/* Страницы проектов: вертикальные отступы между блоками с картинками равны
+   горизонтальному зазору между колонками на том же брейкпойнте. Правила
+   стоят в конце файла и перебивают общие отступы .sideblock */
+.inner
+{
+    --inner-gap: 16px;
+}
+@media (min-width: 768px)
+{
+    .inner
+    {
+        --inner-gap: 24px;
+    }
+}
+@media (min-width: 1025px)
+{
+    .inner
+    {
+        --inner-gap: 32px;
+    }
+}
+@media (min-width: 1680px)
+{
+    .inner
+    {
+        --inner-gap: 40px;
+    }
+}
+@media (min-width: 2400px)
+{
+    .inner
+    {
+        --inner-gap: 56px;
+    }
+}
+.inner .sideblock--inner
+{
+    row-gap: var(--inner-gap);
+    margin-bottom: var(--inner-gap);
+}
+.inner .sideblock--inner .sideblock__container
+{
+    margin-bottom: 0;
+}
+.inner .inner__gallery .grid-item
+{
+    margin-bottom: 0;
+}
+.inner .inner__gallery .grid-item + .grid-item
+{
+    margin-top: var(--inner-gap);
+}
+/* Строчное видео оставляет под собой зазор под нижний выносной элемент */
+.inner .inner__gallery video
+{
+    display: block;
+}
+
+/* Карточка с замком: замок по центру, без текста. Позиционирование через
+   margin: auto, а не transform, потому что transform занят анимацией тряски */
+.project--locked .project-lock
+{
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+/* Сетка плиток на страницах проектов: лежит внутри обычного контейнера
+   .sideblock__container, поэтому занимает ту же ширину, что и остальные
+   скриншоты (четыре колонки из шести на широких экранах). Внутри четыре
+   колонки с тем же зазором, большая плитка занимает 2×2, на узких экранах
+   две колонки */
+.inner__tiles
+{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--inner-gap);
+}
+.inner__tile img
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+}
+.inner__tile--big
+{
+    grid-column: span 2;
+    grid-row: span 2;
+}
+@media (min-width: 768px)
+{
+    .inner__tiles
+    {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
