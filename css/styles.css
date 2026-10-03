@@ -1181,7 +1181,7 @@ float: none;
 }
 .project--soleit, .inner--soleit
 {
-    --project-bg: #21b7ea;
+    --project-bg: #01a5e1;
     background-color: var(--project-bg);
 }
 .project--ktiam, .inner--ktiam
