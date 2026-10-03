@@ -651,6 +651,18 @@ float: none;
     grid-template-columns: 1fr;
     opacity: 1;
 }
+/* Обратный сегмент: виден в покое и сворачивается при наведении
+   (например, «СЛ» в «КСЛ», которое заменяется на «совета по логистике») */
+.project__caption-fold--out
+{
+    grid-template-columns: 1fr;
+    opacity: 1;
+}
+.project:hover .project__caption-fold--out
+{
+    grid-template-columns: 0fr;
+    opacity: 0;
+}
 /* На экранах с мышью подпись мельче основного текста: 88%, как было
    изначально. Место под неё считаем от того же размера и уменьшаем
    на 8px: ряды чуть плотнее базового зазора */
