@@ -1172,7 +1172,7 @@ float: none;
 }
 .project--goodfood, .inner--goodfood
 {
-    --project-bg: #a3d74f;
+    --project-bg: #addf5e;
     background-color: var(--project-bg);
 }
 .project--almaz, .inner--almaz
