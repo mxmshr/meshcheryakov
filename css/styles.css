@@ -611,6 +611,8 @@ float: none;
     font-weight: 400;
     letter-spacing: -0.010em;
     color: var(--color-text-primary);
+    /* Плашка цвета карточки, чтобы подпись читалась поверх картинки */
+    background-color: var(--project-bg);
     pointer-events: none;
     transition: transform var(--transition-base);
 }
@@ -618,11 +620,6 @@ float: none;
 .project--caption-light .project__caption
 {
     color: var(--color-bg-primary);
-}
-/* Плашка цвета карточки под подписью — там, где в угол заходит картинка */
-.project--caption-filled .project__caption
-{
-    background-color: var(--project-bg);
 }
 /* С мышью на широком экране подпись выезжает из нижнего края при наведении
    (карточка её обрезает) */
@@ -651,8 +648,7 @@ float: none;
         overflow: hidden;
     }
     .project .project__caption,
-    .project--caption-light .project__caption,
-    .project--caption-filled .project__caption
+    .project--caption-light .project__caption
     {
         top: 100%;
         bottom: auto;
