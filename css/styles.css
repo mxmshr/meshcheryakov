@@ -655,6 +655,18 @@ float: none;
     grid-template-columns: 1fr;
     opacity: 1;
 }
+/* Обратный сегмент: виден в покое и сворачивается при наведении
+   (например, «К» в «КСЛ», когда полное название начинается с «Совета») */
+.project__caption-fold--out
+{
+    grid-template-columns: 1fr;
+    opacity: 1;
+}
+.project:hover .project__caption-fold--out
+{
+    grid-template-columns: 0fr;
+    opacity: 0;
+}
 /* На экранах с мышью место под подпись уменьшаем на 8px:
    ряды чуть плотнее базового зазора */
 @media (hover: hover)
@@ -1520,7 +1532,7 @@ float: none;
     .sideblock + .sideblock .sideblock__descr
     {
         margin-top: 4px;
-        padding-top: 24px;
+        padding-top: 22px;
         border-top: 1px solid var(--color-border-muted);
     }
 }
