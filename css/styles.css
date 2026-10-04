@@ -588,7 +588,14 @@ float: none;
     --project-caption-offset: 10px;
     --project-caption-space: calc(var(--project-caption-offset) + var(--font-size-body) * 1.2);
     position: relative;
-    min-width: auto;
+    /* Карточка — элемент сетки с aspect-ratio. Явная ширина, start вместо
+       растягивания по строке и min-width: 0 нужны Safari: иначе он
+       растягивает карточку по высоте строки, пересчитывает ширину по
+       соотношению сторон и раздвигает колонку шире экрана, а высоту строки
+       считает меньше карточки, и следующая группа наезжает на неё */
+    width: 100%;
+    min-width: 0;
+    align-self: start;
     /* Высота задаётся соотношением сторон: все карточки 4:3,
        а большие с 768px, где они шире маленьких, 5:3 */
     aspect-ratio: 4 / 3;
@@ -603,7 +610,8 @@ float: none;
 }
 /* Пока макет не загрузился, карточка показывает только свой цвет, затем
    макет плавно проявляется. Класс media-fade ставит скрипт в <head>, поэтому
-   без JS макеты видны сразу; is-loaded ставит js/media-fade.js */
+   без JS макеты видны сразу; is-loaded ставит js/media-fade.js (видео —
+   когда начинает играть, до этого под ним видна обложка) */
 .media-fade .project a:not(.project__caption) img:not(.is-loaded),
 .media-fade .project a:not(.project__caption) video:not(.is-loaded)
 {
@@ -934,6 +942,12 @@ float: none;
               transform: scale(1.025, 1.025);
     }
 }
+/* У карточек с видео обложка — картинка в той же рамке, ролик лежит поверх
+   неё и проявляется, когда начинает играть (js/media-fade.js) */
+.project--center video
+{
+    z-index: 1;
+}
 .project--center img, .project--center video
 {
     top: 0%;
@@ -1221,6 +1235,61 @@ float: none;
   margin-right: 4px;
   width: 24px;
   height: 24px;
+}
+/* Ссылки на живые сайты в шапке проекта — плашки с фавиконом: на тёмном
+   фоне чуть темнее фона, на светлом чуть светлее. Текст размера body,
+   несколько плашек стоят друг за другом и переносятся целиком */
+.inner__detail.inner__sites
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    /* Отступ до текста как между абзацами: размер шрифта абзаца */
+    margin-bottom: var(--font-size-body);
+}
+.inner__header .inner__sites .inner__site
+{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.3em 0.75em 0.3em 0.5em;
+    border-radius: 0.5em;
+    background: rgba(255, 255, 255, 0.45);
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color var(--transition-base);
+}
+.inner--dark .inner__header .inner__sites .inner__site
+{
+    background: rgba(0, 0, 0, 0.14);
+}
+@media (hover: hover)
+{
+    .inner__header .inner__sites .inner__site:hover
+    {
+        background: rgba(255, 255, 255, 0.7);
+    }
+    .inner--dark .inner__header .inner__sites .inner__site:hover
+    {
+        background: rgba(0, 0, 0, 0.24);
+    }
+}
+.inner__sites .inner__site-icon
+{
+    flex-shrink: 0;
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0;
+}
+/* Фавиконы сайтов клиентов заполняют квадрат целиком, поэтому они меньше
+   анимированных логотипов Octopus и Tweek, чтобы выглядеть с ними наравне */
+.inner__sites .inner__site-icon--favicon
+{
+    width: 1.05em;
+    height: 1.05em;
 }
 /* Карточка The Gem того же цвета, что и фон страницы проекта (.inner--thegem) */
 .project--free, .inner--free
@@ -1521,6 +1590,62 @@ float: none;
 .guide__header .inner__title,  .inner--guide__title  {
     max-width: 100%!important;
 }
+/* Значок Product of the Day сразу после названия проекта: ссылка на
+   Product Hunt с подсказкой при наведении */
+.inner__award
+{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: 0.2em;
+    top: -0.06em;
+    line-height: 0;
+    text-decoration: none;
+}
+.inner__award img
+{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+/* Селектор с .inner__header перебивает общее правило .inner__header span */
+.inner__header .inner__award-tip
+{
+    /* Справа от значка: сверху шапка стоит у края экрана и обрезала бы её */
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 8px);
+    z-index: 2;
+    padding: 6px 8px;
+    border-radius: 4px;
+    background: #333;
+    color: var(--color-bg-primary);
+    font-size: var(--font-size-meta);
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: normal;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+@media (hover: hover)
+{
+    .inner__header .inner__award:hover .inner__award-tip
+    {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+.inner__header .inner__award:focus-visible .inner__award-tip
+{
+    opacity: 1;
+    visibility: visible;
+}
 .inner__title p {
     margin: 12px 0 12px 0;
 }
@@ -1529,7 +1654,9 @@ float: none;
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
     font-weight: 400; /**500**/
-    margin-bottom: 16px;
+    /* Ссылка на живой сайт отстоит от текста так же, как абзацы внутри
+       одного текстового блока: на отступ абзаца, 1em */
+    margin-bottom: 1em;
     grid-column: 1;
     grid-row: 2;
 }
@@ -2142,10 +2269,6 @@ float: none;
         width: 16px;
         height: 16px;
     }
-    .inner__detail
-    {
-        margin-bottom: 24px;
-    }
     .guidelinks {
       margin-top: 4px;
     }
@@ -2489,6 +2612,10 @@ float: none;
     {
         margin-bottom: 12px;
         grid-column: 1/5;
+    }
+    .inner__detail.inner__sites
+    {
+        margin-bottom: calc(16px + 0.75vw);
     }
     .inner__gallery .grid-item
     {
@@ -2843,7 +2970,6 @@ float: none;
     }
     .inner__detail
     {
-        margin-bottom: 24px;
         grid-column: 1/5;
     }
     .inner__detail img
@@ -3170,7 +3296,6 @@ float: none;
     .inner__detail
     {
         grid-column: 1/4;
-        margin-bottom: 40px;
     }
     .inner__detail img
     {

@@ -99,9 +99,9 @@
           </div>
           <div class="project project--multi-reindustry project--full project--free-reindustry emerge" data-ignore-media="true" data-effect="slide" data-up="4em" data-duration="400"><a href="reindustry.html"><img loading="lazy" src="img/project-reindustry-01-og.png" srcset="img/project-reindustry-01-og.png 500w, img/project-reindustry-01@2.png 1000w, img/project-reindustry-01@3.png 1500w"><img loading="lazy" src="img/project-reindustry-02-og.png" srcset="img/project-reindustry-02-og.png 500w, img/project-reindustry-02@2.png 1000w, img/project-reindustry-02@3.png 1500w"></a><a class="project__caption" href="reindustry.html"><span class="project__caption-fold"><span>Выставка&nbsp;</span></span>ReIndustry</a>
           </div>
-          <div class="project project--mmlf project--center emerge" data-ignore-media="true" data-effect="slide" data-up="4em" data-duration="400"><a href="mmlf.html"><video muted loop playsinline preload="metadata" data-emerge-event="loadedmetadata" poster="img/project-mmlf-poster.jpg"><source src="img/project-mmlf-og.mp4" type="video/mp4"></video></a><a class="project__caption" href="mmlf.html"><span>М<span class="project__caption-fold"><span>осковский&nbsp;</span></span></span><span>М<span class="project__caption-fold"><span>еждународный&nbsp;</span></span></span><span>Л<span class="project__caption-fold"><span>огистический&nbsp;</span></span></span><span>Ф<span class="project__caption-fold"><span>орум</span></span></span></a>
+          <div class="project project--mmlf project--center emerge" data-ignore-media="true" data-effect="slide" data-up="4em" data-duration="400"><a href="mmlf.html"><img loading="lazy" src="img/project-mmlf-poster.jpg" alt=""><video muted loop playsinline preload="none"><source src="img/project-mmlf-og.mp4" type="video/mp4"></video></a><a class="project__caption" href="mmlf.html"><span>М<span class="project__caption-fold"><span>осковский&nbsp;</span></span></span><span>М<span class="project__caption-fold"><span>еждународный&nbsp;</span></span></span><span>Л<span class="project__caption-fold"><span>огистический&nbsp;</span></span></span><span>Ф<span class="project__caption-fold"><span>орум</span></span></span></a>
           </div>
-          <div class="project project--maslovka project--center emerge" data-ignore-media="true" data-effect="slide" data-up="4em" data-duration="800"><a href="maslovka.html"><video muted loop playsinline preload="metadata" data-emerge-event="loadedmetadata" poster="img/project-maslovka-poster.jpg"><source src="img/project-maslovka-og.mp4" type="video/mp4"></video></a><a class="project__caption" href="maslovka.html">Музей<span class="project__caption-fold"><span>ный центр</span></span>&nbsp;на&nbsp;Масловке</a>
+          <div class="project project--maslovka project--center emerge" data-ignore-media="true" data-effect="slide" data-up="4em" data-duration="800"><a href="maslovka.html"><img loading="lazy" src="img/project-maslovka-poster.jpg" alt=""><video muted loop playsinline preload="none"><source src="img/project-maslovka-og.mp4" type="video/mp4"></video></a><a class="project__caption" href="maslovka.html">Музей<span class="project__caption-fold"><span>ный центр</span></span>&nbsp;на&nbsp;Масловке</a>
           </div>
           <div class="project project--ksl emerge" data-ignore-media="true" data-effect="slide" data-up="4em" data-duration="400"><a href="ksl.html"><img loading="lazy" src="img/project-ksl-og.png" srcset="img/project-ksl-og.png 500w, img/project-ksl@2.png 1000w, img/project-ksl@3.png 1500w"></a><a class="project__caption" href="ksl.html"><span>К<span class="project__caption-fold"><span>оординационный&nbsp;</span></span></span><span>С<span class="project__caption-fold"><span>овет по&nbsp;</span></span></span><span>Л<span class="project__caption-fold"><span>огистике</span></span></span></a>
           </div>
@@ -163,7 +163,10 @@
     </div>
   </footer>
   <script>
-    // Грузим и проигрываем видео только когда блок попал во вьюпорт
+    // Грузим и проигрываем видео только когда блок попал во вьюпорт.
+    // До этого вместо ролика видна обложка: обычная картинка с отложенной
+    // загрузкой под ним (preload="none", poster не используем, потому что
+    // у poster нет отложенной загрузки)
     (function () {
       var videos = document.querySelectorAll('.project video');
       if (!('IntersectionObserver' in window)) {
