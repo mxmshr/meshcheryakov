@@ -6,6 +6,10 @@
   var PAUSE = 1000; // пауза на краях, мс
   var START = 600;  // пауза перед стартом, чтобы название успело раскрыться
 
+  // На тач-устройствах ховера нет: браузер лишь имитирует его по тапу
+  // и синтезирует mouseenter, поэтому там прокрутку не включаем
+  if (!window.matchMedia || !window.matchMedia('(hover: hover)').matches) return;
+
   document.querySelectorAll('.project').forEach(function (card) {
     var caption = card.querySelector('.project__caption');
     if (!caption) return;
