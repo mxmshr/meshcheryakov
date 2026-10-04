@@ -589,8 +589,25 @@ float: none;
     --project-caption-space: calc(var(--project-caption-offset) + var(--font-size-body) * 1.2);
     position: relative;
     min-width: auto;
-    height: 220px;
+    /* Высота задаётся соотношением сторон: все карточки 4:3,
+       а большие с 768px, где они шире маленьких, 5:3 */
+    aspect-ratio: 4 / 3;
     margin-bottom: calc(var(--project-gap) + var(--project-caption-space));
+}
+@media (min-width: 768px)
+{
+    .project--full
+    {
+        aspect-ratio: 5 / 3;
+    }
+}
+/* Пока макет не загрузился, карточка показывает только свой цвет, затем
+   макет плавно проявляется. Класс media-fade ставит скрипт в <head>, поэтому
+   без JS макеты видны сразу; is-loaded ставит js/media-fade.js */
+.media-fade .project a:not(.project__caption) img:not(.is-loaded),
+.media-fade .project a:not(.project__caption) video:not(.is-loaded)
+{
+    opacity: 0;
 }
 /* Ссылка обрезает картинки, сама карточка остаётся overflow: visible,
    чтобы подпись под ней не обрезалась */
@@ -679,13 +696,14 @@ float: none;
 .project img, .project video
 {
     position: absolute;
-    top: 40px;
+    /* Обычные карточки: макет по центру шириной 78%, на 16% от верха
+       карточки, низ уходит за край. Карточка держит соотношение сторон,
+       поэтому композиция одинаковая на любой ширине */
+    top: 16%;
     left: 11%;
     width: 78%;
-    -webkit-transition: -webkit-transform var(--transition-base);
-            transition: -webkit-transform var(--transition-base);
-            transition:         transform var(--transition-base);
-            transition:         transform var(--transition-base), -webkit-transform var(--transition-base);
+    -webkit-transition: -webkit-transform var(--transition-base), opacity 400ms ease-out;
+            transition: transform var(--transition-base), opacity 400ms ease-out;
     -o-object-fit: contain;
        object-fit: contain;
 }
@@ -737,27 +755,6 @@ float: none;
                 transform: translateY(-12px) translateX(6px);
     }
 }
-.project--multi img:first-child, .project--multi video:first-child
-{
-    z-index: 3;
-    top: 16%;
-    left: 21.75%;
-    width: 56.5%;
-}
-.project--multi img:nth-child(2), .project--multi video:nth-child(2)
-{
-    z-index: 2;
-    top: 25%;
-    left: 7.82%;
-    width: 54.375%;
-}
-.project--multi img:nth-child(3), .project--multi video:nth-child(3)
-{
-    z-index: 1;
-    top: 29.58%;
-    left: 37.82%;
-    width: 54.375%;
-}
 
 
 
@@ -790,26 +787,76 @@ float: none;
                 transform: translateY(-12px) translateX(6px);
     }
 }
+/* Композиции из нескольких скриншотов в больших карточках (The Gem, К&Б,
+   ReIndustry) строятся по одной системе:
+   — поля слева и справа одинаковые: --mock-side от ширины карточки;
+   — передний скриншот стоит на --mock-top от высоты карточки, каждый
+     следующий слой ниже на --mock-step;
+   — задние скриншоты одной ширины --mock-back, передний шириной
+     --mock-front; у The Gem передний по центру, задние прижаты к полям,
+     у К&Б и ReIndustry передний прижат к левому полю, задний к правому.
+   Карточки держат постоянное соотношение сторон, поэтому внутри набора
+   композиция только масштабируется. Наборов два: для узких экранов, где все
+   карточки 4:3, и с 768px, где большие карточки 5:3 */
+.project--multi, .project--multi-kb, .project--multi-reindustry
+{
+    --mock-side: 8%;
+    --mock-top: 15%;
+    --mock-step: 8%;
+    --mock-back: 54%;
+    --mock-front: 58%;
+}
+.project--multi-kb, .project--multi-reindustry
+{
+    --mock-front: 68%;
+}
+@media (min-width: 768px)
+{
+    .project--multi, .project--multi-kb, .project--multi-reindustry
+    {
+        --mock-back: 42%;
+        --mock-front: 48%;
+    }
+    .project--multi-kb, .project--multi-reindustry
+    {
+        --mock-front: 56%;
+    }
+}
+.project--multi img:first-child, .project--multi video:first-child
+{
+    z-index: 3;
+    top: var(--mock-top);
+    left: calc((100% - var(--mock-front)) / 2);
+    width: var(--mock-front);
+}
+.project--multi img:nth-child(2), .project--multi video:nth-child(2)
+{
+    z-index: 2;
+    top: calc(var(--mock-top) + var(--mock-step));
+    left: var(--mock-side);
+    width: var(--mock-back);
+}
+.project--multi img:nth-child(3), .project--multi video:nth-child(3)
+{
+    z-index: 1;
+    top: calc(var(--mock-top) + var(--mock-step) * 2);
+    left: calc(100% - var(--mock-side) - var(--mock-back));
+    width: var(--mock-back);
+}
 .project--multi-kb img:first-child, .project--multi-reindustry img:first-child
 {
     z-index: 3;
-    top: 15%;
-    left: 8%;
-    width: 68%;
+    top: var(--mock-top);
+    left: var(--mock-side);
+    width: var(--mock-front);
     box-shadow: var(--color-shadow-soft) 0px 10px 40px;
 }
 .project--multi-kb img:nth-child(2), .project--multi-reindustry img:nth-child(2)
 {
     z-index: 2;
-    top: 25%;
-    left: 42%;
-    width: 50%;
-}
-/* У ReIndustry первый скриншот без тени (в медиазапросах ниже тень тоже задаётся,
-   поэтому !important) */
-.project--multi-reindustry img:first-child
-{
-    box-shadow: none !important;
+    top: calc(var(--mock-top) + var(--mock-step));
+    left: calc(100% - var(--mock-side) - var(--mock-back));
+    width: var(--mock-back);
 }
 .project--multi-octopus img:nth-child(2)
 {
@@ -846,18 +893,15 @@ float: none;
     }
 }
 /**
-@media (hover: hover)
+.project--multi-octopus:hover img
 {
-    .project--multi-octopus:hover img
-    {
-      -webkit-transform: scale(1.02, 1.02);
-              transform: scale(1.02, 1.02);
-    }**/
-    .project--side a:not(.project__caption)
-    {
-        width: 100%;
-        height: 100%;
-    }
+  -webkit-transform: scale(1.02, 1.02);
+          transform: scale(1.02, 1.02);
+}**/
+.project--side a:not(.project__caption)
+{
+    width: 100%;
+    height: 100%;
 }
 @media (hover: hover)
 {
@@ -874,7 +918,8 @@ float: none;
     left: auto;
 
     width: 91.9%;
-    height: 78.33%;
+    /* Как у центрированных карточек: 78% высоты, по 11% сверху и снизу */
+    height: 78%;
 }
 .project--center a:not(.project__caption)
 {
@@ -963,7 +1008,8 @@ float: none;
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 0;
-    padding-bottom: 24px;
+    /* Нижний отступ футера равен боковому */
+    padding-bottom: 16px;
     min-height: 90vh;
     -webkit-column-gap: 32px;
        -moz-column-gap: 32px;
@@ -2017,14 +2063,11 @@ float: none;
         margin-right: 20px;
         margin-left: 20px;
     }
-    .project
-    {
-        height: 66.66vw;
-    }
     .footer
     {
         margin-right: 20px;
         margin-left: 20px;
+        padding-bottom: 20px;
     }
     .inner
     {
@@ -2075,22 +2118,6 @@ float: none;
       text-decoration-skip-ink: none;
       text-decoration-color: var(--color-border-muted);
     }
-    .project--side img, .project--side video
-    {
-        top: 11%;
-    }
-    .project--center img, .project--center video
-    {
-        top: 0%;
-        width: 78%;
-        height: 78%;
-        overflow: auto;
-        margin: auto;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        right: 0;
-    }
     .project-lock
     {
         width: 56px;
@@ -2103,7 +2130,7 @@ float: none;
     .footer
     {
         padding-top: 0;
-        padding-bottom: 24px;
+        padding-bottom: 20px;
     }
     .inner
     {
@@ -2375,26 +2402,12 @@ float: none;
     }
     .project
     {
-        height: 32vw;
         --project-gap: 32px;
         grid-column: span 2;
     }
     .project--full
     {
-        height: 512px;
         grid-column: span 4;
-    }
-    .project img, .project video
-    {
-        top: 15.6%;
-    }
-    .project--side img, .project--side video
-    {
-        top: 11%;
-    }
-    .project--center img, .project--center video
-    {
-        top: 0%;
     }
     .project-lock
     {
@@ -2427,7 +2440,7 @@ float: none;
         margin-right: 24px;
         margin-left: 24px;
         padding-top: 20px;
-        padding-bottom: 20px;
+        padding-bottom: 24px;
         grid-template-rows: 0;
     }
     .footer
@@ -2697,58 +2710,11 @@ float: none;
     }
     .project
     {
-        height: 21.375vw;
         --project-gap: 40px;
-    }
-    .project--full
-    {
-        height: 492px;
-    }
-    .project--multi img:first-child, .project--multi video:first-child
-    {
-        z-index: 3;
-        top: 16%;
-        left: 26%;
-
-        width: 48%;
-    }
-    .project--multi img:nth-child(2), .project--multi video:nth-child(2)
-    {
-        z-index: 2;
-        top: 25%;
-        left: 7%;
-
-        width: 38.3%;
-    }
-    .project--multi img:nth-child(3), .project--multi video:nth-child(3)
-    {
-        z-index: 1;
-        top: 31.68%;
-        left: 55.6%;
-        width: 38.3%;
     }
     .project--multi-kb img:first-child, .project--multi-reindustry img:first-child
     {
-        z-index: 3;
-        top: 16%;
-        left: 9.5%;
-        width: 56%;
         box-shadow: var(--color-shadow-soft) 0px 10px 80px;
-    }
-    .project--multi-kb img:nth-child(2), .project--multi-reindustry img:nth-child(2)
-    {
-        z-index: 2;
-        top: 24%;
-        left: 50%;
-        width: 40%;
-    }
-    .project--side img, .project--side video
-    {
-        top: 11%;
-    }
-    .project--center img, .project--center video
-    {
-        top: 0%;
     }
     .project-lock
     {
@@ -2784,7 +2750,7 @@ float: none;
         margin-right: 32px;
         margin-left: 32px;
         padding-top: 28px;
-        padding-bottom: 28px;
+        padding-bottom: 32px;
     }
     .footer
     {
@@ -2971,43 +2937,11 @@ float: none;
     }
     .project
     {
-        height: 21.875vw;
         --project-gap: 48px;
-    }
-    .project--full
-    {
-        height: 35.15vw;
-    }
-    .project--multi img:first-child, .project--multi video:first-child
-    {
-        top: 16%;
-        left: 26.3%;
-        width: 46.5%;
-    }
-    .project--multi img:nth-child(2), .project--multi video:nth-child(2)
-    {
-        top: 26%;
-        left: 7%;
-        width: 44.5%;
-    }
-    .project--multi img:nth-child(3), .project--multi video:nth-child(3)
-    {
-        top: 32%;
-        left: 49%;
-        width: 44.5%;
     }
     .project--multi-kb img:first-child, .project--multi-reindustry img:first-child
     {
-        top: 16%;
-        left: 9%;
-        width: 56%;
         box-shadow: var(--color-shadow-soft) 0px 10px 160px;
-    }
-    .project--multi-kb img:nth-child(2), .project--multi-reindustry img:nth-child(2)
-    {
-        top: 24%;
-        left: 49%;
-        width: 42%;
     }
     .project-lock
     {
@@ -3029,7 +2963,7 @@ float: none;
         margin-right: 40px;
         margin-left: 40px;
         padding-top: 34px;
-        padding-bottom: 34px;
+        padding-bottom: 40px;
     }
     .footer
     {
@@ -3149,12 +3083,7 @@ float: none;
     }
     .project
     {
-        height: 22.2vw;
         --project-gap: 64px;
-    }
-    .project--full
-    {
-        height: 35.15vw;
     }
     .project-lock
     {
@@ -3182,7 +3111,7 @@ float: none;
         margin-right: 56px;
         margin-left: 56px;
         padding-top: 48px;
-        padding-bottom: 48px;
+        padding-bottom: 56px;
     }
     .footer
     {
