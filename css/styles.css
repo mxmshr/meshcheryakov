@@ -1592,30 +1592,67 @@ float: none;
 .guide__header .inner__title,  .inner--guide__title  {
     max-width: 100%!important;
 }
-/* Значок Product of the Day сразу после названия проекта: ссылка на
-   Product Hunt с подсказкой при наведении */
+/* Награды Product Hunt в строке с датой проекта: после даты точка, как
+   разделитель в меню, значки высотой с текст даты */
+.inner__header .inner__awards
+{
+    display: inline-flex;
+    align-items: center;
+    vertical-align: top;
+    height: calc(var(--line-height-body) * 1em);
+}
+.inner__header .inner__awards::before
+{
+    content: '';
+    display: block;
+    flex-shrink: 0;
+    width: 4px;
+    height: 4px;
+    margin: 0 12px;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+@media (min-width: 1025px)
+{
+    .inner__header .inner__awards::before
+    {
+        margin: 0 16px;
+    }
+}
 .inner__award
 {
     position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    width: 0.8em;
-    height: 0.8em;
-    margin-left: 0.2em;
-    top: 0.04em;
+    display: block;
+    /* Значок Product Hunt — шестиугольник 132×144, ширина по пропорциям */
+    height: 1em;
     line-height: 0;
     text-decoration: none;
 }
-/* Несколько наград подряд стоят плотнее, чем первая от названия */
 .inner__award + .inner__award
 {
-    margin-left: 0.06em;
+    margin-left: 0.25em;
 }
 .inner__award img
 {
     display: block;
-    width: 100%;
+    width: auto;
     height: 100%;
+    opacity: 0.75;
+    transition: opacity var(--transition-base);
+}
+/* При наведении значок полностью непрозрачный: сразу, а обратно плавно,
+   как у подчёркнутых ссылок */
+@media (hover: hover)
+{
+    .inner__award:hover img
+    {
+        opacity: 1;
+        transition: 0s ease-in-out;
+    }
+}
+.inner__award:focus-visible img
+{
+    opacity: 1;
 }
 /* Селектор с .inner__header перебивает общее правило .inner__header span */
 .inner__header .inner__award-tip

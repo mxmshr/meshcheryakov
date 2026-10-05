@@ -47,7 +47,9 @@
     } else if (node.nodeType === 1) {
       var placeholder = document.createComment('');
       title.replaceChild(placeholder, node);
-      title.replaceChild(mask(node), placeholder);
+      var m = mask(node);
+      m.classList.add('title-mask--element');
+      title.replaceChild(m, placeholder);
     }
   });
 
