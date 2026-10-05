@@ -1606,6 +1606,11 @@ float: none;
     line-height: 0;
     text-decoration: none;
 }
+/* Несколько наград подряд стоят плотнее, чем первая от названия */
+.inner__award + .inner__award
+{
+    margin-left: 0.06em;
+}
 .inner__award img
 {
     display: block;
@@ -1665,7 +1670,7 @@ float: none;
 {
     to { visibility: visible; }
 }
-/* Селектор с h1 перебивает общее правило .inner__header span */
+/* Обёртки букв наследуют шрифт заголовка */
 .inner__header h1 .title-word,
 .inner__header h1 .title-mask,
 .inner__header h1 .title-mask__inner
@@ -2284,9 +2289,10 @@ float: none;
         width: 24px;
         height: 24px;
     }
+    /* Центр крестика на середине заглавных букв первой строки заголовка */
     .inner__close
     {
-        top: 2px;
+        top: 4px;
     }
 
 }

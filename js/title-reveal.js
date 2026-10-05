@@ -10,13 +10,16 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) { root.classList.remove('title-reveal'); return; }
 
+  // Обёртки — собственные элементы, а не span: на них не действует общее
+  // правило .inner__header span, и даже со старыми стилями из кэша буквы
+  // остаются размером заголовка
   var STAGGER = 0.015;
   var masks = [];
 
   function mask(content) {
-    var m = document.createElement('span');
+    var m = document.createElement('title-mask');
     m.className = 'title-mask';
-    var inner = document.createElement('span');
+    var inner = document.createElement('title-mask-inner');
     inner.className = 'title-mask__inner';
     inner.appendChild(content);
     m.appendChild(inner);
@@ -33,7 +36,7 @@
       node.textContent.split(/( +)/).forEach(function (part) {
         if (!part) return;
         if (/^ +$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
-        var word = document.createElement('span');
+        var word = document.createElement('title-word');
         word.className = 'title-word';
         Array.from(part).forEach(function (ch) {
           word.appendChild(mask(document.createTextNode(ch)));

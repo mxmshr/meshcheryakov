@@ -13,6 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Version asset links so browsers never mix new pages with cached old CSS/JS
+        run: python3 .github/version-assets.py .
+
       - name: Exclude git metadata and source files from deploy
         run: rm -rf .git img/uncompressed
 
