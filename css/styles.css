@@ -1254,8 +1254,8 @@ float: none;
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
-    padding: 0.375em 0.85em 0.375em 0.6em;
-    border-radius: 0.55em;
+    padding: 0.3em 0.75em 0.3em 0.5em;
+    border-radius: 0.5em;
     background: rgba(255, 255, 255, 0.45);
     color: inherit;
     text-decoration: none;
@@ -1324,12 +1324,14 @@ float: none;
       color: #898989;
     }
 }
-.project--rar, .inner--rar
+/* Фон проекта ставим и на body: iOS 26 Safari красит область под
+   статусбаром и панелями в цвет фона body, а theme-color не учитывает */
+.project--rar, .inner--rar, body:has(.inner--rar)
 {
     --project-bg: #e9e9e9;
     background-color: var(--project-bg);
 }
-.project--traktor, .inner--traktor
+.project--traktor, .inner--traktor, body:has(.inner--traktor)
 {
     --project-bg: #F1F3F2;
     background-color: var(--project-bg);
@@ -1338,97 +1340,97 @@ float: none;
 {
     background-color: var(--color-bg-primary);
 }
-.project--octopus, .inner--octopus
+.project--octopus, .inner--octopus, body:has(.inner--octopus)
 {
     --project-bg: #2F7FEF;
     background-color: var(--project-bg);
 }
-.project--tweek, .inner--tweek
+.project--tweek, .inner--tweek, body:has(.inner--tweek)
 {
     --project-bg: #E5D8FA;
     background-color: var(--project-bg);
 }
-.project--inone, .inner--inone
+.project--inone, .inner--inone, body:has(.inner--inone)
 {
     --project-bg: #344e6e;
     background-color: var(--project-bg);
 }
-.project--mostravel, .inner--mostravel
+.project--mostravel, .inner--mostravel, body:has(.inner--mostravel)
 {
     --project-bg: #c2433c;
     background-color: var(--project-bg);
 }
-.project--silavetra, .inner--silavetra
+.project--silavetra, .inner--silavetra, body:has(.inner--silavetra)
 {
     --project-bg: #e9e9e9;
     background-color: var(--project-bg);
 }
-.project--astrametall, .inner--astrametall
+.project--astrametall, .inner--astrametall, body:has(.inner--astrametall)
 {
     --project-bg: #0a529f;
     background-color: var(--project-bg);
 }
-.project--kb, .inner--kb
+.project--kb, .inner--kb, body:has(.inner--kb)
 {
     --project-bg: #be1010;
     background-color: var(--project-bg);
 }
-.project--goodfood, .inner--goodfood
+.project--goodfood, .inner--goodfood, body:has(.inner--goodfood)
 {
     --project-bg: #addf5e;
     background-color: var(--project-bg);
 }
-.project--almaz, .inner--almaz
+.project--almaz, .inner--almaz, body:has(.inner--almaz)
 {
     --project-bg: #a13a35;
     background-color: var(--project-bg);
 }
-.project--uxks, .inner--uxks
+.project--uxks, .inner--uxks, body:has(.inner--uxks)
 {
     --project-bg: #999;
     background-color: var(--project-bg);
 }
-.project--soleit, .inner--soleit
+.project--soleit, .inner--soleit, body:has(.inner--soleit)
 {
     --project-bg: #01a5e1;
     background-color: var(--project-bg);
 }
-.project--ktiam, .inner--ktiam
+.project--ktiam, .inner--ktiam, body:has(.inner--ktiam)
 {
     --project-bg: #4e93d8;
     background-color: var(--project-bg);
 }
-.project--freeway, .inner--freeway
+.project--freeway, .inner--freeway, body:has(.inner--freeway)
 {
     --project-bg: #FFDB6C;
     background-color: var(--project-bg);
 }
-.project--region, .inner--region
+.project--region, .inner--region, body:has(.inner--region)
 {
     --project-bg: #758096;
     background-color: var(--project-bg);
 }
-.project--maslovka, .inner--maslovka
+.project--maslovka, .inner--maslovka, body:has(.inner--maslovka)
 {
     --project-bg: #E7D3C8;
     background-color: var(--project-bg);
 }
-.project--mmlf, .inner--mmlf
+.project--mmlf, .inner--mmlf, body:has(.inner--mmlf)
 {
     --project-bg: #391952;
     background-color: var(--project-bg);
 }
-.project--ksl, .inner--ksl
+.project--ksl, .inner--ksl, body:has(.inner--ksl)
 {
     --project-bg: #8394A6;
     background-color: var(--project-bg);
 }
-.project--octopus, .inner--octopus
+.project--octopus, .inner--octopus, body:has(.inner--octopus)
 {
     --project-bg: #2F7FEF;
     background-color: var(--project-bg);
 }
-.inner--reindustry
+.inner--reindustry, body:has(.inner--reindustry)
 {
     background-color: #788A9F;
 }
@@ -1437,15 +1439,15 @@ float: none;
     --project-bg: #377bed;
     background-color: var(--project-bg);
 }
-.inner--learningcenter
+.inner--learningcenter, body:has(.inner--learningcenter)
 {
     background-color: #377bed;
 }
-.inner--uxks
+.inner--uxks, body:has(.inner--uxks)
 {
     background-color: #999;
 }
-.inner--thegem
+.inner--thegem, body:has(.inner--thegem)
 {
     background-color: #3C3D55;
 }
@@ -1592,39 +1594,21 @@ float: none;
 .guide__header .inner__title,  .inner--guide__title  {
     max-width: 100%!important;
 }
-/* Награды Product Hunt в строке с датой проекта: после даты точка, как
-   разделитель в меню, значки высотой с текст даты */
-.inner__header .inner__awards
+/* Награды Product Hunt в одной строке с плашками сайтов, сразу за ними:
+   значки чуть выше текста плашки, по центру её высоты. От плашки отступ
+   вдвое больше, чем между плашками: 8px gap + 8px */
+.inner__sites .inner__awards
 {
     display: inline-flex;
     align-items: center;
-    vertical-align: top;
-    height: calc(var(--line-height-body) * 1em);
-}
-.inner__header .inner__awards::before
-{
-    content: '';
-    display: block;
-    flex-shrink: 0;
-    width: 4px;
-    height: 4px;
-    margin: 0 12px;
-    border-radius: 50%;
-    background-color: currentColor;
-}
-@media (min-width: 1025px)
-{
-    .inner__header .inner__awards::before
-    {
-        margin: 0 16px;
-    }
+    margin-left: 8px;
 }
 .inner__award
 {
     position: relative;
     display: block;
     /* Значок Product Hunt — шестиугольник 132×144, ширина по пропорциям */
-    height: 1em;
+    height: 1.8em;
     line-height: 0;
     text-decoration: none;
 }
@@ -1632,35 +1616,70 @@ float: none;
 {
     margin-left: 0.25em;
 }
-.inner__award img
+/* Значок из двух слоёв, как плашка сайта: шестиугольник с прозрачностью
+   фона плашки (на светлом фоне белый 45%, на тёмном чёрный 14%) и поверх
+   рисунок цвета текста плашки (чёрный и белый). Селектор с .inner__sites
+   перебивает общее правило .inner__detail img */
+.inner__sites .inner__award img
 {
     display: block;
     width: auto;
     height: 100%;
-    opacity: 0.75;
+    margin: 0;
+}
+.inner__sites .inner__award-badge
+{
+    opacity: 0.45;
     transition: opacity var(--transition-base);
 }
-/* При наведении значок полностью непрозрачный: сразу, а обратно плавно,
-   как у подчёркнутых ссылок */
+.inner--dark .inner__sites .inner__award-badge
+{
+    filter: brightness(0);
+    opacity: 0.14;
+}
+/* Рисунок меньше шестиугольника и стоит по его центру */
+.inner__sites .inner__award .inner__award-line
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 1.6em;
+    transform: translate(-50%, -50%);
+    filter: brightness(0);
+}
+.inner--dark .inner__sites .inner__award .inner__award-line
+{
+    filter: none;
+}
+/* При наведении шестиугольник темнеет как плашка: сразу, а обратно плавно */
 @media (hover: hover)
 {
-    .inner__award:hover img
+    .inner__sites .inner__award:hover .inner__award-badge
     {
-        opacity: 1;
+        opacity: 0.7;
         transition: 0s ease-in-out;
     }
+    .inner--dark .inner__sites .inner__award:hover .inner__award-badge
+    {
+        opacity: 0.24;
+    }
 }
-.inner__award:focus-visible img
+.inner__sites .inner__award:focus-visible .inner__award-badge
 {
-    opacity: 1;
+    opacity: 0.7;
+}
+.inner--dark .inner__sites .inner__award:focus-visible .inner__award-badge
+{
+    opacity: 0.24;
 }
 /* Селектор с .inner__header перебивает общее правило .inner__header span */
 .inner__header .inner__award-tip
 {
-    /* Справа от значка: сверху шапка стоит у края экрана и обрезала бы её */
+    /* Над значком, по центру: значки стоят в строке с плашками сайтов,
+       сверху хватает места */
     position: absolute;
-    top: 50%;
-    left: calc(100% + 8px);
+    bottom: calc(100% + 8px);
+    left: 50%;
     z-index: 2;
     padding: 6px 8px;
     border-radius: 4px;
@@ -1670,11 +1689,12 @@ float: none;
     line-height: 1.2;
     font-weight: 400;
     letter-spacing: normal;
+    text-align: center;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(-50%);
+    transform: translateX(-50%);
     transition: opacity var(--transition-base), visibility var(--transition-base);
 }
 @media (hover: hover)
