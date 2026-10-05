@@ -1254,8 +1254,8 @@ float: none;
     display: inline-flex;
     align-items: center;
     gap: 0.4em;
-    padding: 0.45em 0.95em 0.45em 0.7em;
-    border-radius: 0.6em;
+    padding: 0.375em 0.85em 0.375em 0.6em;
+    border-radius: 0.55em;
     background: rgba(255, 255, 255, 0.45);
     color: inherit;
     text-decoration: none;
@@ -1268,9 +1268,11 @@ float: none;
 }
 @media (hover: hover)
 {
+    /* Как у подчёркнутых ссылок: при наведении мгновенно, обратно плавно */
     .inner__header .inner__sites .inner__site:hover
     {
         background: rgba(255, 255, 255, 0.7);
+        transition: 0s ease-in-out;
     }
     .inner--dark .inner__header .inner__sites .inner__site:hover
     {
