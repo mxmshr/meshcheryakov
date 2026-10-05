@@ -1648,6 +1648,68 @@ float: none;
     opacity: 1;
     visibility: visible;
 }
+/* Появление заголовка проекта (js/title-reveal.js): буквы по очереди
+   выезжают снизу из масок с обрезкой. До разбивки заголовок скрыт,
+   а если скрипт не сработает, через 2,5 с он покажется сам */
+.title-reveal .inner__header h1
+{
+    visibility: hidden;
+    animation: title-reveal-failsafe 0s 2.5s forwards;
+}
+.title-reveal .inner__header h1.is-split
+{
+    visibility: visible;
+    animation: none;
+}
+@keyframes title-reveal-failsafe
+{
+    to { visibility: visible; }
+}
+/* Селектор с h1 перебивает общее правило .inner__header span */
+.inner__header h1 .title-word,
+.inner__header h1 .title-mask,
+.inner__header h1 .title-mask__inner
+{
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+}
+/* Слово не переносится посередине, хотя состоит из отдельных букв */
+.inner__header h1 .title-word
+{
+    white-space: nowrap;
+}
+.inner__header h1 .title-mask,
+.inner__header h1 .title-mask__inner
+{
+    display: inline-block;
+}
+/* Обрезка через clip-path, а не overflow: hidden — иначе inline-block
+   садится на базовую линию нижним краем, строка становится выше, и после
+   анимации контент прыгает вверх */
+.inner__header h1 .title-mask
+{
+    -webkit-clip-path: inset(0);
+            clip-path: inset(0);
+    /* Запас под выносные элементы букв, на раскладку не влияет */
+    padding: 0.12em 0;
+    margin: -0.12em 0;
+}
+.inner__header h1 .title-mask__inner
+{
+    transform: translateY(calc(100% + 0.24em));
+    /* Быстрый старт и плавное замедление, как power4.out у noth.in */
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.inner__header h1.is-revealed .title-mask__inner
+{
+    transform: none;
+}
+.inner__header h1.is-done .title-mask
+{
+    -webkit-clip-path: none;
+            clip-path: none;
+}
 .inner__title p {
     margin: 12px 0 12px 0;
 }
