@@ -1255,7 +1255,7 @@ float: none;
     align-items: center;
     gap: 0.4em;
     padding: 0.3em 0.75em 0.3em 0.5em;
-    border-radius: 0.5em;
+    border-radius: 0.4em;
     background: rgba(255, 255, 255, 0.45);
     color: inherit;
     text-decoration: none;
@@ -1710,15 +1710,18 @@ float: none;
     opacity: 1;
     visibility: visible;
 }
-/* Появление заголовка проекта (js/title-reveal.js): буквы по очереди
-   выезжают снизу из масок с обрезкой. До разбивки заголовок скрыт,
-   а если скрипт не сработает, через 2,5 с он покажется сам */
-.title-reveal .inner__header h1
+/* Появление заголовка проекта и вводного абзаца на главной
+   (js/title-reveal.js): буквы по очереди выезжают снизу из масок
+   с обрезкой. До разбивки текст скрыт, а если скрипт не сработает,
+   через 2,5 с он покажется сам */
+.title-reveal .inner__header h1,
+.title-reveal .feature > span
 {
     visibility: hidden;
     animation: title-reveal-failsafe 0s 2.5s forwards;
 }
-.title-reveal .inner__header h1.is-split
+.title-reveal .inner__header h1.is-split,
+.title-reveal .feature > span.is-split
 {
     visibility: visible;
     animation: none;
@@ -1737,19 +1740,19 @@ float: none;
     font-weight: inherit;
 }
 /* Слово не переносится посередине, хотя состоит из отдельных букв */
-.inner__header h1 .title-word
+.title-word
 {
     white-space: nowrap;
 }
-.inner__header h1 .title-mask,
-.inner__header h1 .title-mask__inner
+.title-mask,
+.title-mask__inner
 {
     display: inline-block;
 }
 /* Обрезка через clip-path, а не overflow: hidden — иначе inline-block
    садится на базовую линию нижним краем, строка становится выше, и после
    анимации контент прыгает вверх */
-.inner__header h1 .title-mask
+.title-mask
 {
     -webkit-clip-path: inset(0);
             clip-path: inset(0);
@@ -1757,17 +1760,17 @@ float: none;
     padding: 0.12em 0;
     margin: -0.12em 0;
 }
-.inner__header h1 .title-mask__inner
+.title-mask__inner
 {
     transform: translateY(calc(100% + 0.24em));
     /* Быстрый старт и плавное замедление, как power4.out у noth.in */
     transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.inner__header h1.is-revealed .title-mask__inner
+.is-revealed .title-mask__inner
 {
     transform: none;
 }
-.inner__header h1.is-done .title-mask
+.is-done .title-mask
 {
     -webkit-clip-path: none;
             clip-path: none;

@@ -29,13 +29,16 @@
          иначе страница отрисуется видимой и анимация появления вызовет «дёргание» -->
     <style>.emerge { opacity: 0; }</style>
     <noscript><style>.emerge { opacity: 1; }</style></noscript>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous" defer></script>
+    <script src="js/jquery-3.7.1.min.js" defer></script>
     <script src="js/lib/emerge.js" defer></script>
     <script src="js/captions.js" defer></script>
     <!-- Макеты в карточках проявляются по мере загрузки, карточки при этом
          появляются сразу (см. js/media-fade.js) -->
     <script>document.documentElement.classList.add('media-fade');</script>
     <script src="js/media-fade.js" defer></script>
+    <!-- Вводный абзац появляется анимацией, см. js/title-reveal.js -->
+    <script>document.documentElement.classList.add('title-reveal');</script>
+    <script src="js/title-reveal.js" defer></script>
 
 
     <!-- Yandex.Metrika counter -->
@@ -71,7 +74,7 @@
         </ul>
       </nav>
     </div>
-    <div class="feature emerge" data-effect="slide" data-up="4em" data-duration="400" data-expose="true"><span>В&nbsp;работе преследую чистоту и&nbsp;ясность. Мой&nbsp;подход инженерный, а&nbsp;не творческий. Отдельно люблю проекты, цель которых не&nbsp;только заработать.</span></div>
+    <div class="feature"><span>В&nbsp;работе преследую чистоту и&nbsp;ясность. Мой&nbsp;подход инженерный, а&nbsp;не творческий. Отдельно люблю проекты, цель которых не&nbsp;только заработать.</span></div>
     <div class="line"></div>
   </header>
   <main class="content">

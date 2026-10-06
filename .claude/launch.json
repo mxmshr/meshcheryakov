@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8080"],
       "port": 8080
+    },
+    {
+      "name": "site-rare",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "47821"],
+      "port": 47821
     }
   ]
 }
