@@ -120,28 +120,4 @@
         <changefreq>yearly</changefreq>
         <priority>0.7</priority>
     </url>
-    <url>
-        <loc>https://meshcheryakov.com/uxks.html</loc>
-        <lastmod>2026-05-07</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://meshcheryakov.com/region.html</loc>
-        <lastmod>2026-05-07</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://meshcheryakov.com/mostravel.html</loc>
-        <lastmod>2026-05-07</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://meshcheryakov.com/astrametall.html</loc>
-        <lastmod>2026-05-07</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
-    </url>
 </urlset>
