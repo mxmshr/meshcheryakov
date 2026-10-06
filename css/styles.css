@@ -1710,17 +1710,15 @@ float: none;
     opacity: 1;
     visibility: visible;
 }
-/* Появление заголовка проекта и вводного абзаца на главной
+/* Появление вводного абзаца на главной
    (js/title-reveal.js): буквы по очереди выезжают снизу из масок
    с обрезкой. До разбивки текст скрыт, а если скрипт не сработает,
    через 2,5 с он покажется сам */
-.title-reveal .inner__header h1,
 .title-reveal .feature > span
 {
     visibility: hidden;
     animation: title-reveal-failsafe 0s 2.5s forwards;
 }
-.title-reveal .inner__header h1.is-split,
 .title-reveal .feature > span.is-split
 {
     visibility: visible;
@@ -1729,15 +1727,6 @@ float: none;
 @keyframes title-reveal-failsafe
 {
     to { visibility: visible; }
-}
-/* Обёртки букв наследуют шрифт заголовка */
-.inner__header h1 .title-word,
-.inner__header h1 .title-mask,
-.inner__header h1 .title-mask__inner
-{
-    font-size: inherit;
-    line-height: inherit;
-    font-weight: inherit;
 }
 /* Слово не переносится посередине, хотя состоит из отдельных букв */
 .title-word
