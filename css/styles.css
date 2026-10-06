@@ -1246,7 +1246,46 @@ float: none;
     gap: 8px;
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
-    margin-bottom: var(--inner-gap);
+    /* Исключение из шкалы: плашки относятся к тексту под ними, поэтому
+       отступ меньше шага --inner-gap на 2 / 4 / 6 / 8 / 10px */
+    margin-bottom: 14px;
+}
+/* На мобильных плашки, перенесённые столбиком, стоят плотнее, чтобы
+   читаться одной группой */
+@media (max-width: 767px)
+{
+    .inner__detail.inner__sites
+    {
+        row-gap: 4px;
+    }
+}
+@media (min-width: 768px)
+{
+    .inner__detail.inner__sites
+    {
+        margin-bottom: 20px;
+    }
+}
+@media (min-width: 1025px)
+{
+    .inner__detail.inner__sites
+    {
+        margin-bottom: 26px;
+    }
+}
+@media (min-width: 1680px)
+{
+    .inner__detail.inner__sites
+    {
+        margin-bottom: 32px;
+    }
+}
+@media (min-width: 2400px)
+{
+    .inner__detail.inner__sites
+    {
+        margin-bottom: 46px;
+    }
 }
 .inner__header .inner__sites .inner__site
 {
@@ -1561,7 +1600,7 @@ float: none;
     font-weight: 400;
     margin-top: 0;
     margin-left: 0px;
-    margin-bottom: .2em;
+    margin-bottom: .1em;
     letter-spacing: -0.015em;
 }
 .guide__header h1
