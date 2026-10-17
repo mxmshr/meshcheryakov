@@ -49,7 +49,7 @@
               </div>
             </div>
             <section class="sideblock sideblock--inner">
-              <div class="sideblock__container inner__img"><img src="img/ksl-1.png"></div>
+              <div class="sideblock__container inner__img"><picture><source srcset="img/ksl-1.avif" type="image/avif"><img src="img/ksl-1.png" width="2400" height="6500" fetchpriority="high"></picture></div>
             </section>
             <div class="inner__container">
               <div class="inner__text">
@@ -58,13 +58,13 @@
             </div>
             <section class="sideblock sideblock_half">
               <div class="sideblock__container sideblock__container--tablet">
-                <div class="grid-item"><video autoplay muted loop playsinline><source src="img/ksl-tablet-inner-1.mp4" type="video/mp4"></video></div>
+                <div class="grid-item"><video muted loop playsinline width="1200" height="1250" preload="none"><source src="img/ksl-tablet-inner-1.mp4" type="video/mp4"></video></div>
               </div>
               <div class="sideblock__container">
-                <div class="grid-item"><video autoplay muted loop playsinline><source src="img/ksl-app-inner-1.mp4" type="video/mp4"></video></div>
+                <div class="grid-item"><video muted loop playsinline width="600" height="1170" preload="none"><source src="img/ksl-app-inner-1.mp4" type="video/mp4"></video></div>
               </div>
               <div class="sideblock__container">
-                <div class="grid-item"><img src="img/ksl-app-inner-2.png"></div>
+                <div class="grid-item"><picture><source srcset="img/ksl-app-inner-2.avif" type="image/avif"><img src="img/ksl-app-inner-2.png" width="780" height="1520" loading="lazy" decoding="async"></picture></div>
               </div>
             </section>
 
@@ -75,13 +75,13 @@
             </div>
             <section class="sideblock sideblock--inner inner__gallery sideblock--double">
               <div class="sideblock__container">
-                <div class="grid-item"><img src="img/ksl-inner-3.png"></div>
-                <div class="grid-item"><img src="img/ksl-inner-4.png"></div>
+                <div class="grid-item"><picture><source srcset="img/ksl-inner-3.avif" type="image/avif"><img src="img/ksl-inner-3.png" width="1200" height="3205" loading="lazy" decoding="async"></picture></div>
+                <div class="grid-item"><picture><source srcset="img/ksl-inner-4.avif" type="image/avif"><img src="img/ksl-inner-4.png" width="1200" height="7291" loading="lazy" decoding="async"></picture></div>
               </div>
               <div class="sideblock__container">
-                <div class="grid-item"><img src="img/ksl-inner-5.png"></div>
-                <div class="grid-item"><img src="img/ksl-inner-6.png"></div>
-                <div class="grid-item"><img src="img/ksl-inner-7.png"></div>
+                <div class="grid-item"><picture><source srcset="img/ksl-inner-5.avif" type="image/avif"><img src="img/ksl-inner-5.png" width="1200" height="5315" loading="lazy" decoding="async"></picture></div>
+                <div class="grid-item"><picture><source srcset="img/ksl-inner-6.avif" type="image/avif"><img src="img/ksl-inner-6.png" width="1440" height="3386" loading="lazy" decoding="async"></picture></div>
+                <div class="grid-item"><picture><source srcset="img/ksl-inner-7.avif" type="image/avif"><img src="img/ksl-inner-7.png" width="1440" height="2526" loading="lazy" decoding="async"></picture></div>
               </div>
             </section>
 
@@ -93,4 +93,5 @@
     </main>
   </div>
   <script src="js/close.js" defer></script>
+  <script src="js/lazy-video.js" defer></script>
 </body>

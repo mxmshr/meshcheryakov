@@ -99,6 +99,18 @@ img {
     border: 0;
 }
 
+/* <picture> отдаёт AVIF, а раскладка та же, что у голого <img>: обёртка
+   не создаёт своего блока */
+picture {
+    display: contents;
+}
+
+/* width и height в разметке только задают пропорции, чтобы место под
+   картинку и ролик было занято до загрузки: высоту считает браузер */
+img[height], video[height] {
+    height: auto;
+}
+
 svg:not(:root) {
     overflow: hidden;
 }

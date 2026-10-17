@@ -17,7 +17,7 @@ jobs:
         run: python3 .github/version-assets.py .
 
       - name: Exclude git metadata and source files from deploy
-        run: rm -rf .git img/uncompressed
+        run: rm -rf .git img/uncompressed img/halfcompressed
 
       - name: Deploy to Beget
         uses: appleboy/scp-action@v0.1.7

@@ -50,7 +50,7 @@
               </div>
             </div>
             <section class="sideblock sideblock--inner">
-              <div class="sideblock__container inner__img"><img src="img/maslovka-1.png"></div>
+              <div class="sideblock__container inner__img"><picture><source srcset="img/maslovka-1.avif" type="image/avif"><img src="img/maslovka-1.png" width="2115" height="1090" fetchpriority="high"></picture></div>
             </section>
             <div class="inner__container">
               <div class="inner__text">
@@ -58,7 +58,7 @@
               </div>
             </div>
             <section class="sideblock sideblock--inner">
-              <div class="sideblock__container inner__img"><img src="img/maslovka-2.png"></div>
+              <div class="sideblock__container inner__img"><picture><source srcset="img/maslovka-2.avif" type="image/avif"><img src="img/maslovka-2.png" width="2400" height="7061" loading="lazy" decoding="async"></picture></div>
             </section>
             <div class="inner__container">
               <div class="inner__text">
@@ -66,7 +66,7 @@
               </div>
             </div>
             <section class="sideblock sideblock--inner">
-                <div class="sideblock__container inner__img"><video autoplay muted loop playsinline><source src="img/maslovka-3.mp4" type="video/mp4"></video></div>
+                <div class="sideblock__container inner__img"><video muted loop playsinline width="1920" height="1066" preload="none"><source src="img/maslovka-3.mp4" type="video/mp4"></video></div>
             </section>
             <div class="inner__container">
               <div class="inner__text">
@@ -75,13 +75,13 @@
             </div>
             <section class="sideblock sideblock_half">
               <div class="sideblock__container sideblock__container--tablet">
-                <div class="grid-item"><video autoplay muted loop playsinline><source src="img/maslovka-tablet-inner-1.mp4" type="video/mp4"></video></div>
+                <div class="grid-item"><video muted loop playsinline width="1200" height="1376" preload="none"><source src="img/maslovka-tablet-inner-1.mp4" type="video/mp4"></video></div>
               </div>
               <div class="sideblock__container">
-                <div class="grid-item"><video autoplay muted loop playsinline><source src="img/maslovka-mob-inner-1.mp4" type="video/mp4"></video></div>
+                <div class="grid-item"><video muted loop playsinline width="600" height="1080" preload="none"><source src="img/maslovka-mob-inner-1.mp4" type="video/mp4"></video></div>
               </div>
               <div class="sideblock__container">
-                <div class="grid-item"><img src="img/maslovka-mob-inner-2.png"></div>
+                <div class="grid-item"><picture><source srcset="img/maslovka-mob-inner-2.avif" type="image/avif"><img src="img/maslovka-mob-inner-2.png" width="600" height="1080" loading="lazy" decoding="async"></picture></div>
               </div>
             </section>
 
@@ -92,10 +92,10 @@
             </div>
             <section class="sideblock sideblock--inner inner__gallery sideblock--double">
               <div class="sideblock__container">
-                <div class="grid-item"><img src="img/maslovka-inner-3.png"></div>
+                <div class="grid-item"><picture><source srcset="img/maslovka-inner-3.avif" type="image/avif"><img src="img/maslovka-inner-3.png" width="1200" height="3738" loading="lazy" decoding="async"></picture></div>
               </div>
               <div class="sideblock__container">
-                <div class="grid-item"><img src="img/maslovka-inner-4.png"></div>
+                <div class="grid-item"><picture><source srcset="img/maslovka-inner-4.avif" type="image/avif"><img src="img/maslovka-inner-4.png" width="1200" height="4206" loading="lazy" decoding="async"></picture></div>
               </div>
             </section>
             <div class="inner__container">
@@ -111,4 +111,5 @@
     </main>
   </div>
   <script src="js/close.js" defer></script>
+  <script src="js/lazy-video.js" defer></script>
 </body>
