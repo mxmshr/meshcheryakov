@@ -1733,7 +1733,7 @@ float: none;
     z-index: 2;
     padding: 6px 8px;
     border-radius: 4px;
-    background: #333;
+    background: #111;
     color: var(--color-bg-primary);
     font-size: var(--font-size-meta);
     line-height: 1.2;
@@ -1985,7 +1985,7 @@ float: none;
   position: relative;
 }
 .guidefilter__tooltip {
-  background: #333;
+  background: #111;
   border-radius: 4px;
   bottom: calc(100% + 8px);
   color: var(--color-bg-primary);
@@ -2201,7 +2201,7 @@ float: none;
       visibility: hidden;
       font-size: var(--font-size-meta);
       line-height: 1.2;
-      background-color: #333;
+      background-color: #111;
       color: var(--color-bg-primary);
       text-align: center;
       padding: 4px 8px;
