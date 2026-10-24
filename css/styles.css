@@ -594,6 +594,8 @@ float: none;
 }
 .project
 {
+    /* От подписи до следующей карточки; на десктопе (с 1025px) равен
+       горизонтальному отступу между колонками */
     --project-gap: 20px;
     /* Отступ от карточки до подписи и место под подпись, которая стоит
        под карточкой */
@@ -3014,7 +3016,7 @@ float: none;
     }
     .project
     {
-        --project-gap: 40px;
+        --project-gap: 32px;
     }
     .project--multi-kb img:first-child, .project--multi-reindustry img:first-child
     {
@@ -3225,7 +3227,7 @@ float: none;
     }
     .project
     {
-        --project-gap: 48px;
+        --project-gap: 40px;
     }
     .project--multi-kb img:first-child, .project--multi-reindustry img:first-child
     {
@@ -3365,7 +3367,7 @@ float: none;
     }
     .project
     {
-        --project-gap: 64px;
+        --project-gap: 56px;
     }
     .project-lock
     {
