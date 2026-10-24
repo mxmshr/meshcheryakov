@@ -1583,9 +1583,22 @@ float: none;
     align-items: baseline;
     justify-content: space-between;
 }
-.inner__nav a:last-child
+.inner__nav > span > a
 {
     position: relative;
+}
+/* Стрелка у ссылки на следующий проект при наведении плавно сдвигается вправо */
+.inner__nav-next
+{
+    display: inline-block;
+    transition: transform var(--transition-base);
+}
+@media (hover: hover)
+{
+    .inner__nav a:hover + .inner__nav-next
+    {
+        transform: translateX(4px);
+    }
 }
 .inner__nav-arrow
 {
