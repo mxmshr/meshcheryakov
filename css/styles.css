@@ -1680,7 +1680,7 @@ float: none;
 .inner__sites .inner__award-badge
 {
     opacity: 0.45;
-    transition: opacity var(--transition-base);
+    transition: opacity var(--transition-base), transform var(--transition-base);
 }
 .inner--dark .inner__sites .inner__award-badge
 {
@@ -1696,18 +1696,26 @@ float: none;
     height: 1.6em;
     transform: translate(-50%, -50%);
     filter: brightness(0);
+    transition: transform var(--transition-base);
 }
 .inner--dark .inner__sites .inner__award .inner__award-line
 {
     filter: none;
 }
-/* При наведении шестиугольник темнеет как плашка: сразу, а обратно плавно */
+/* При наведении шестиугольник темнеет как плашка: сразу, а обратно плавно.
+   Значок плавно приподнимается; сдвигаются картинки, а не ссылка, чтобы
+   область наведения не уезжала из-под курсора */
 @media (hover: hover)
 {
     .inner__sites .inner__award:hover .inner__award-badge
     {
         opacity: 0.7;
-        transition: 0s ease-in-out;
+        transform: translateY(-2px);
+        transition: opacity 0s ease-in-out, transform var(--transition-base);
+    }
+    .inner__sites .inner__award:hover .inner__award-line
+    {
+        transform: translate(-50%, calc(-50% - 2px));
     }
     .inner--dark .inner__sites .inner__award:hover .inner__award-badge
     {
