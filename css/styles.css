@@ -1566,6 +1566,10 @@ float: none;
 .inner__nav-next
 {
     display: inline-block;
+    /* В шрифте стрелка стоит по середине строчных, а в названиях проектов
+       много заглавных: поднимаем её ближе к середине заглавных */
+    position: relative;
+    top: -0.1em;
     transition: transform var(--transition-base);
 }
 @media (hover: hover)
