@@ -594,8 +594,8 @@ float: none;
 }
 .project
 {
-    /* От подписи до следующей карточки; на десктопе (с 1025px) равен
-       горизонтальному отступу между колонками */
+    /* От подписи до следующей карточки; на десктопе (с 1025px) на 4px
+       меньше горизонтального отступа между колонками */
     --project-gap: 20px;
     /* Отступ от карточки до подписи и место под подпись, которая стоит
        под карточкой */
@@ -1284,21 +1284,21 @@ float: none;
 {
     .inner__detail.inner__sites
     {
-        margin-bottom: 26px;
+        margin-bottom: 18px;
     }
 }
 @media (min-width: 1680px)
 {
     .inner__detail.inner__sites
     {
-        margin-bottom: 32px;
+        margin-bottom: 24px;
     }
 }
 @media (min-width: 2400px)
 {
     .inner__detail.inner__sites
     {
-        margin-bottom: 46px;
+        margin-bottom: 30px;
     }
 }
 .inner__header .inner__sites .inner__site
@@ -1903,6 +1903,17 @@ float: none;
       text-decoration-color: var(--color-text-primary);
       -webkit-transition: 0s ease-in-out;
               transition: 0s ease-in-out;
+    }
+}
+/* Ссылки главного меню без подчёркивания, оно появляется только при
+   наведении — сразу и цвета текста, как у остальных ссылок */
+.mainmenu__item .link {
+  text-decoration-line: none;
+}
+@media (hover: hover)
+{
+    .mainmenu__item .link:hover {
+      text-decoration-line: underline;
     }
 }
 .guidemeta {
@@ -2672,28 +2683,17 @@ float: none;
           width: 48px;
           height: 48px;
     }
-    /* Меню через точки, как в гиде по кофейням */
+    /* Пункты меню в строку, без разделителей */
     .navigation ul
         {
           margin: 0;
           flex-direction: row;
           align-items: center;
-          grid-gap: 12px;
+          grid-gap: 24px;
         }
     .mainmenu__item
         {
           gap: 0;
-        }
-    .mainmenu__item + .mainmenu__item::before
-        {
-          content: '';
-          display: block;
-          align-self: center;
-          width: 4px;
-          height: 4px;
-          margin-right: 12px;
-          border-radius: 50%;
-          background-color: var(--color-text-primary);
         }
     .mainmenu__item
     {
@@ -2856,7 +2856,7 @@ float: none;
     }
     .year {
       font-size: var(--font-size-year);
-      margin-bottom: calc(14px + 0.2vw);
+      margin-bottom: calc(8px + 0.2vw);
     }
     .sideblock_left .sideblock__descr
     {
@@ -2883,7 +2883,7 @@ float: none;
     .sideblock
     {
         grid-template-columns: repeat(6, 1fr);
-        column-gap: 32px;
+        column-gap: 24px;
     }
     .sideblock_half
     {
@@ -2903,7 +2903,7 @@ float: none;
     .sideblock__descr
     {
         flex-direction: column;
-        padding-top: 28px;
+        padding-top: 20px;
         border-top: 1px solid var(--color-border-muted);
         align-items: flex-start;
         grid-row: 1/10;
@@ -2940,10 +2940,10 @@ float: none;
     }
     .header
     {
-        padding-right: 32px;
-        padding-left: 32px;
-        padding-top: 28px;
-        padding-bottom: 32px;
+        padding-right: 24px;
+        padding-left: 24px;
+        padding-top: 20px;
+        padding-bottom: 24px;
     }
     .header
     {
@@ -2959,11 +2959,7 @@ float: none;
     }
     .navigation ul
         {
-          grid-gap: 16px;
-        }
-    .mainmenu__item + .mainmenu__item::before
-        {
-          margin-right: 16px;
+          grid-gap: 32px;
         }
     .guideli .about {
         grid-column: 1/7;
@@ -2981,29 +2977,29 @@ float: none;
     .guidefilters {
         gap: 6px;
         margin-top: 4vw;
-        margin-bottom: 40px;
+        margin-bottom: 32px;
     }
     .guideseparator {
         margin-right: 16px;
         margin-left: 16px;
     }
     .crol {
-        margin: 12px 0 0 0;
-        padding: 32px 32px 36px 32px;
+        margin: 8px 0 0 0;
+        padding: 24px 24px 28px 24px;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 24px 40px;
+        gap: 24px 32px;
     }
     .crli:nth-child(n+3) {
         padding-top: 0;
         border-top: 0;
     }
     .crli__header {
-      margin-bottom: 20px;
-      padding-bottom: 16px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--color-border-subtle);
     }
     .crli__additional {
-    margin-top: 12px;
+    margin-top: 8px;
 }
     .feature
     {
@@ -3011,12 +3007,12 @@ float: none;
     }
     .content
     {
-        margin-right: 32px;
-        margin-left: 32px;
+        margin-right: 24px;
+        margin-left: 24px;
     }
     .project
     {
-        --project-gap: 32px;
+        --project-gap: 20px;
     }
     .project--multi-kb img:first-child, .project--multi-reindustry img:first-child
     {
@@ -3053,10 +3049,10 @@ float: none;
     }
     .footer
     {
-        margin-right: 32px;
-        margin-left: 32px;
-        padding-top: 28px;
-        padding-bottom: 32px;
+        margin-right: 24px;
+        margin-left: 24px;
+        padding-top: 20px;
+        padding-bottom: 24px;
     }
     .footer
     {
@@ -3072,9 +3068,9 @@ float: none;
     }
     .inner
     {
-        padding-right: 32px;
-        padding-left: 32px;
-        padding-top: 28px;
+        padding-right: 24px;
+        padding-left: 24px;
+        padding-top: 20px;
     }
     .inner__container
     {
@@ -3095,7 +3091,7 @@ float: none;
     .inner__nav,
     .guide__footer-links
     {
-        padding-bottom: 32px;
+        padding-bottom: 24px;
         grid-column: 1/7;
     }
     .inner__nav-arrow
@@ -3114,7 +3110,7 @@ float: none;
         max-width: 1280px;
     }
     .guidelogo {
-      margin: -12px 1.28vw 16px 0;
+      margin: -12px 1.28vw 8px 0;
       height: calc(32px + 2.2vw);
     }
     .guideh1 {
@@ -3147,9 +3143,11 @@ float: none;
         position: fixed;
         top: 0px;
         right: 0px;
-        padding: 36px;
-        width: 108px;
-        height: 108px;
+        /* Поля кнопки уменьшаются вместе с полями страницы: крестик стоит
+           вровень с верхом заголовка и на прежнем расстоянии от текста */
+        padding: 28px;
+        width: 92px;
+        height: 92px;
     }
 }
 @media (min-width: 1400px)
@@ -3174,9 +3172,9 @@ float: none;
 {
     .sideblock
     {
-        -webkit-column-gap: 40px;
-           -moz-column-gap: 40px;
-                column-gap: 40px;
+        -webkit-column-gap: 32px;
+           -moz-column-gap: 32px;
+                column-gap: 32px;
     }
     .sideblock
     {
@@ -3184,7 +3182,7 @@ float: none;
     }
     .sideblock__descr
     {
-            padding-top: 32px;
+            padding-top: 24px;
             border-top: 1px solid var(--color-border-muted);
             gap: 8px;
     }
@@ -3200,34 +3198,34 @@ float: none;
     }
     .header
     {
-        -webkit-column-gap: 40px;
-           -moz-column-gap: 40px;
-                column-gap: 40px;
+        -webkit-column-gap: 32px;
+           -moz-column-gap: 32px;
+                column-gap: 32px;
         height: calc(100vh - 168px);
         /**max-height: 960px!important;**/
     }
     .header
     {
-        padding-right: 40px;
-        padding-left: 40px;
-        padding-top: 34px;
-        padding-bottom: 40px;
+        padding-right: 32px;
+        padding-left: 32px;
+        padding-top: 26px;
+        padding-bottom: 32px;
     }
     .guideh1 {
       margin: 0 0 2px 0;
     }
     .crol {
-        margin: 12px 0 0 0;
-        gap: 32px 52px;
+        margin: 8px 0 0 0;
+        gap: 24px 40px;
     }
     .content
     {
-        margin-right: 40px;
-        margin-left: 40px;
+        margin-right: 32px;
+        margin-left: 32px;
     }
     .project
     {
-        --project-gap: 40px;
+        --project-gap: 28px;
     }
     .project--multi-kb img:first-child, .project--multi-reindustry img:first-child
     {
@@ -3250,22 +3248,22 @@ float: none;
     }
     .footer
     {
-        margin-right: 40px;
-        margin-left: 40px;
-        padding-top: 34px;
-        padding-bottom: 40px;
+        margin-right: 32px;
+        margin-left: 32px;
+        padding-top: 26px;
+        padding-bottom: 32px;
     }
     .footer
     {
-        -webkit-column-gap: 40px;
-           -moz-column-gap: 40px;
-                column-gap: 40px;
+        -webkit-column-gap: 32px;
+           -moz-column-gap: 32px;
+                column-gap: 32px;
     }
     .inner
     {
-        padding-right: 40px;
-        padding-left: 40px;
-        padding-top: 36px;
+        padding-right: 32px;
+        padding-left: 32px;
+        padding-top: 28px;
     }
     .inner__container, .inner__table
     {
@@ -3283,7 +3281,7 @@ float: none;
     }
     .inner__nav
     {
-        padding-bottom: 40px;
+        padding-bottom: 32px;
     }
     .inner__header, .guide__header
     {
@@ -3305,9 +3303,9 @@ float: none;
     {
         top: 0px;
         right: 0px;
-        padding: 47px;
-        width: 140px;
-        height: 140px;
+        padding: 39px;
+        width: 124px;
+        height: 124px;
     }
 
 }
@@ -3315,9 +3313,9 @@ float: none;
 {
     .sideblock
     {
-        -webkit-column-gap: 56px;
-           -moz-column-gap: 56px;
-                column-gap: 56px;
+        -webkit-column-gap: 40px;
+           -moz-column-gap: 40px;
+                column-gap: 40px;
     }
     .sideblock
     {
@@ -3326,7 +3324,7 @@ float: none;
     .sideblock__descr
     {
         flex-direction: column;
-        padding-top: 40px;
+        padding-top: 32px;
         gap: 10px;
     }
     .sideblock--inner .sideblock__descr span
@@ -3335,17 +3333,17 @@ float: none;
     }
     .header
     {
-        -webkit-column-gap: 56px;
-           -moz-column-gap: 56px;
-                column-gap: 56px;
+        -webkit-column-gap: 40px;
+           -moz-column-gap: 40px;
+                column-gap: 40px;
         /**max-height: 1024px!important;**/
     }
     .header
     {
-        padding-right: 56px;
-        padding-left: 56px;
-        padding-top: 48px;
-        padding-bottom: 48px;
+        padding-right: 40px;
+        padding-left: 40px;
+        padding-top: 32px;
+        padding-bottom: 32px;
     }
     .header
     {
@@ -3357,17 +3355,17 @@ float: none;
         grid-column: 1/7;
     }
     .crol {
-        margin: 12px 0 0 0;
-        gap: 40px 64px;
+        margin: 8px 0 0 0;
+        gap: 32px 52px;
     }
     .content
     {
-        margin-right: 56px;
-        margin-left: 56px;
+        margin-right: 40px;
+        margin-left: 40px;
     }
     .project
     {
-        --project-gap: 56px;
+        --project-gap: 36px;
     }
     .project-lock
     {
@@ -3392,25 +3390,25 @@ float: none;
     }
     .footer
     {
-        margin-right: 56px;
-        margin-left: 56px;
-        padding-top: 48px;
-        padding-bottom: 56px;
+        margin-right: 40px;
+        margin-left: 40px;
+        padding-top: 32px;
+        padding-bottom: 40px;
     }
     .footer
     {
-        -webkit-column-gap: 56px;
-           -moz-column-gap: 56px;
-                column-gap: 56px;
+        -webkit-column-gap: 40px;
+           -moz-column-gap: 40px;
+                column-gap: 40px;
     }
     .inner
     {
-        padding-right: 56px;
-        padding-left: 56px;
+        padding-right: 40px;
+        padding-left: 40px;
     }
     .inner
     {
-        padding-top: 54px;
+        padding-top: 38px;
     }
     .inner__container, .inner__table
     {
@@ -3428,7 +3426,7 @@ float: none;
     }
     .inner__nav
     {
-        padding-bottom: 64px;
+        padding-bottom: 48px;
     }
     .inner__nav-arrow
     {
@@ -3455,9 +3453,9 @@ float: none;
     {
         top: 0px;
         right: 0px;
-        padding: 66px;
-        width: 188px;
-        height: 188px;
+        padding: 50px;
+        width: 156px;
+        height: 156px;
     }
 }
 
@@ -3480,21 +3478,21 @@ float: none;
 {
     .inner
     {
-        --inner-gap: 32px;
+        --inner-gap: 24px;
     }
 }
 @media (min-width: 1680px)
 {
     .inner
     {
-        --inner-gap: 40px;
+        --inner-gap: 32px;
     }
 }
 @media (min-width: 2400px)
 {
     .inner
     {
-        --inner-gap: 56px;
+        --inner-gap: 40px;
     }
 }
 .inner .sideblock--inner
