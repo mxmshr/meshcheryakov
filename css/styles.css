@@ -2138,6 +2138,26 @@ float: none;
 .guideli .about-title sup {
   display: none;
 }
+/* Ссылкой работает вся кофейня, а не только название: невидимый слой
+   ссылки растянут на сетку пункта. Отступ под пунктом в слой не входит,
+   поэтому между кофейнями остаётся некликабельный зазор. Подчёркнуто
+   по-прежнему только название, и при наведении на пункт оно темнеет,
+   как при наведении на саму ссылку */
+.guideli .guidegrid {
+  position: relative;
+}
+.guideli .about-title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+@media (hover: hover)
+{
+    .guideli .guidegrid:hover .about-title a {
+      text-decoration-color: var(--color-text-primary);
+      transition: 0s ease-in-out;
+    }
+}
 .guideli--closed .about,
 .guideli--closed .price,
 .guideli--closed .geo,
@@ -2502,7 +2522,6 @@ float: none;
     .guideli .about {
       grid-column: span 8 / span 8;
       text-align: left;
-      position: relative;
     }
     .guideli .price {
       display: none;
@@ -2510,7 +2529,6 @@ float: none;
     .guideli .geo {
       grid-column: span 3 / span 3;
       text-align: left;
-      position: relative;
     }
     .guidelogo {
       margin: -8px 20px 16px 0;
