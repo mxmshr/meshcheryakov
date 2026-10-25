@@ -1260,9 +1260,9 @@ float: none;
     gap: 8px;
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
-    /* Исключение из шкалы: плашки относятся к тексту под ними, поэтому
-       отступ меньше шага --inner-gap на 2 / 4 / 6 / 8 / 10px */
-    margin-bottom: 14px;
+    /* Плашки относятся к тексту проекта и стоят над ним чуть ближе малого
+       отступа: на три четверти от него */
+    margin-bottom: calc(var(--space-s) * 0.75);
 }
 /* На мобильных плашки, перенесённые столбиком, стоят плотнее, чтобы
    читаться одной группой */
@@ -1271,34 +1271,6 @@ float: none;
     .inner__detail.inner__sites
     {
         row-gap: 4px;
-    }
-}
-@media (min-width: 768px)
-{
-    .inner__detail.inner__sites
-    {
-        margin-bottom: 20px;
-    }
-}
-@media (min-width: 1025px)
-{
-    .inner__detail.inner__sites
-    {
-        margin-bottom: 18px;
-    }
-}
-@media (min-width: 1680px)
-{
-    .inner__detail.inner__sites
-    {
-        margin-bottom: 24px;
-    }
-}
-@media (min-width: 2400px)
-{
-    .inner__detail.inner__sites
-    {
-        margin-bottom: 30px;
     }
 }
 .inner__header .inner__sites .inner__site
@@ -1549,11 +1521,12 @@ float: none;
 {
     width: 100%;
 }
-/* После текста тот же отступ, что и между картинками. Между абзацами
-   остаётся 1em: это ритм текста, а не раскладка блоков */
+/* Текст описывает картинку под ним, поэтому стоит к ней вплотную, на
+   малом отступе. Между абзацами остаётся 1em: это ритм текста, а не
+   раскладка блоков */
 .inner__text
 {
-    margin-bottom: var(--inner-gap);
+    margin-bottom: var(--space-s);
     grid-column: 1;
 }
 .inner__text p
@@ -1571,15 +1544,15 @@ float: none;
 {
     max-width: 100%;
 }
-/* Перед навигацией отступ как после шапки: 3 шага, из них один даёт
-   margin-bottom предыдущего блока */
+/* Перед навигацией большой отступ, из него малый даёт margin-bottom
+   предыдущего блока */
 .inner__nav
 {
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
     font-weight: 400; /**500**/
     display: flex;
-    padding-top: calc(var(--inner-gap) * 2);
+    padding-top: calc(var(--space-l) - var(--space-s));
     padding-bottom: 24px;
     grid-column: 1;
     align-items: baseline;
@@ -1651,10 +1624,10 @@ float: none;
     grid-column: 1;
     grid-row: 1;
 }
-/* После шапки проекта отступ в 3 шага сетки */
+/* После заголовка и даты большой отступ */
 .inner__title
 {
-    margin-bottom: calc(var(--inner-gap) * 3);
+    margin-bottom: var(--space-l);
 }
 .guide__header .inner__title,  .inner--guide__title  {
     max-width: 100%!important;
@@ -3475,46 +3448,54 @@ float: none;
     }
 }
 
-/* Страницы проектов: все вертикальные отступы между блоками кратны шагу
-   --inner-gap, он равен горизонтальному зазору между колонками на том же
-   брейкпойнте. Между блоками один шаг, после шапки и перед навигацией три.
-   Правила стоят в конце файла и перебивают общие отступы .sideblock */
+/* Страницы проектов: вертикальные отступы двух размеров, средних нет.
+   Малый --space-s связывает то, что относится друг к другу: текст и
+   картинку под ним, картинки одной группы, плашки сайтов и текст; он равен
+   горизонтальному зазору между колонками, поэтому картинки в галереях
+   стоят на одинаковом расстоянии по обеим осям. Большой
+   --space-l отделяет главы: шапку от текста, картинку от следующего
+   текста, последний блок от навигации. Правила стоят в конце файла
+   и перебивают общие отступы .sideblock */
 .inner
 {
-    --inner-gap: 16px;
+    --space-s: 16px;
+    --space-l: 48px;
 }
 @media (min-width: 768px)
 {
     .inner
     {
-        --inner-gap: 24px;
+        --space-s: 24px;
+        --space-l: 72px;
     }
 }
 @media (min-width: 1025px)
 {
     .inner
     {
-        --inner-gap: 24px;
+        --space-l: 80px;
     }
 }
 @media (min-width: 1680px)
 {
     .inner
     {
-        --inner-gap: 32px;
+        --space-s: 32px;
+        --space-l: 104px;
     }
 }
 @media (min-width: 2400px)
 {
     .inner
     {
-        --inner-gap: 40px;
+        --space-s: 40px;
+        --space-l: 136px;
     }
 }
 .inner .sideblock--inner
 {
-    row-gap: var(--inner-gap);
-    margin-bottom: var(--inner-gap);
+    row-gap: var(--space-s);
+    margin-bottom: var(--space-s);
 }
 .inner .sideblock--inner .sideblock__container
 {
@@ -3524,12 +3505,12 @@ float: none;
 {
     margin-bottom: 0;
 }
-/* Текст после картинки начинает новую мысль, поэтому отделён от неё двумя
-   шагами. Отступы соседних блоков схлопываются, так что margin-top здесь
-   итоговый, а не прибавка к margin-bottom секции */
+/* Текст после картинки начинает новую главу. Отступы соседних блоков
+   схлопываются, так что margin-top здесь итоговый, а не прибавка
+   к margin-bottom секции */
 .inner .sideblock + .inner__container
 {
-    margin-top: calc(var(--inner-gap) * 2);
+    margin-top: var(--space-l);
 }
 /* На странице кофеен .inner__text — обёртка списка прямо в .inner, а не
    текст проекта, поэтому шкала её не касается: прежние отступы до ссылок */
@@ -3551,11 +3532,11 @@ float: none;
         margin-bottom: 20px;
     }
 }
-/* Галерея «планшет и два телефона»: те же отступы вместо старых 20px */
+/* Галерея «планшет и два телефона»: картинки одной группы на малом отступе */
 .inner .sideblock_half
 {
-    row-gap: var(--inner-gap);
-    margin-bottom: var(--inner-gap);
+    row-gap: var(--space-s);
+    margin-bottom: var(--space-s);
 }
 .inner .sideblock_half .sideblock__container--tablet
 {
@@ -3563,7 +3544,7 @@ float: none;
 }
 .inner .inner__gallery .grid-item + .grid-item
 {
-    margin-top: var(--inner-gap);
+    margin-top: var(--space-s);
 }
 /* Строчное видео оставляет под собой зазор под нижний выносной элемент */
 .inner .inner__gallery video
@@ -3591,7 +3572,7 @@ float: none;
 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--inner-gap);
+    gap: var(--space-s);
 }
 .inner__tile img
 {
