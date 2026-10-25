@@ -1878,14 +1878,23 @@ float: none;
               transition: 0s ease-in-out;
     }
 }
-/* Ссылки главного меню без подчёркивания, оно появляется только при
-   наведении — сразу и цвета текста, как у остальных ссылок */
-.mainmenu__item .link {
+/* Ссылки главного меню и футеров без подчёркивания, оно появляется только
+   при наведении — сразу и цвета текста, как у остальных ссылок. Футеры —
+   это футер главной, навигация внизу страниц проектов и ссылки внизу гида
+   по кофейням; открытый список «Закрылись» остаётся подчёркнутым, это его
+   активное состояние */
+.mainmenu__item .link,
+.footer .link,
+.inner .inner__nav a,
+.guide__footer-links .link:not(.criteriacutactive) {
   text-decoration-line: none;
 }
 @media (hover: hover)
 {
-    .mainmenu__item .link:hover {
+    .mainmenu__item .link:hover,
+    .footer .link:hover,
+    .inner .inner__nav a:hover,
+    .guide__footer-links .link:hover {
       text-decoration-line: underline;
     }
 }
