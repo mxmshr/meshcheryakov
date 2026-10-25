@@ -3109,13 +3109,29 @@ float: none;
         grid-template-columns: repeat(6, 1fr);
         max-width: 1280px;
     }
+    /* Логотип слева во всю высоту названия и строки ссылок под ним:
+       сетка из двух колонок, обёртка .guideh1 не участвует в раскладке */
     .guidelogo {
-      margin: -12px 1.28vw 8px 0;
-      height: calc(32px + 2.2vw);
+      grid-column: 1;
+      grid-row: 1 / 3;
+      align-self: start;
+      height: calc(36px + 2.8vw);
+      margin: 4px 0 0 0;
     }
     .guideh1 {
-      margin: 0 0 4px 0;
-      display: flex;
+      display: contents;
+    }
+    .guide__header h1 {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .guidemeta {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .inner--guide__title > .criteria,
+    .guidefilters {
+      grid-column: 1 / -1;
     }
     .inner__title
     {
@@ -3127,6 +3143,9 @@ float: none;
         max-width: none;
         margin-bottom: 0;
         grid-column: 1/7;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 1.28vw;
     }
     .inner__detail
     {
@@ -3210,9 +3229,6 @@ float: none;
         padding-left: 32px;
         padding-top: 26px;
         padding-bottom: 32px;
-    }
-    .guideh1 {
-      margin: 0 0 2px 0;
     }
     .crol {
         margin: 8px 0 0 0;
