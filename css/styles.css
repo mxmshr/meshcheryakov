@@ -1605,7 +1605,8 @@ float: none;
 }
 .guide__header h1
 {
-    font-size: var(--font-size-title);
+    /* Название гида чуть меньше заголовков проектов */
+    font-size: calc(var(--font-size-title) * 0.85);
     line-height: var(--line-height-title);
     font-weight: 400;
     margin: 0 10% 0 -0.15vw;
@@ -1881,11 +1882,12 @@ float: none;
 /* Ссылки главного меню и футеров без подчёркивания, оно появляется только
    при наведении — сразу и цвета текста, как у остальных ссылок. Футеры —
    это футер главной, навигация внизу страниц проектов и ссылки внизу гида
-   по кофейням; открытый список «Закрылись» остаётся подчёркнутым, это его
-   активное состояние */
+   по кофейням; ссылки под названием гида такие же. Открытые «Критерии»
+   и «Закрылись» остаются подчёркнутыми, это их активное состояние */
 .mainmenu__item .link,
 .footer .link,
 .inner .inner__nav a,
+.guidemeta .link:not(.criteriacutactive),
 .guide__footer-links .link:not(.criteriacutactive) {
   text-decoration-line: none;
 }
@@ -1894,14 +1896,18 @@ float: none;
     .mainmenu__item .link:hover,
     .footer .link:hover,
     .inner .inner__nav a:hover,
+    .guidemeta .link:hover,
     .guide__footer-links .link:hover {
       text-decoration-line: underline;
     }
 }
+/* Ссылки под названием гида стоят как пункты главного меню: без точек
+   между ними, с тем же зазором */
 .guidemeta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  column-gap: 16px;
 }
 .guidelinks {
   margin-right: 16px;
@@ -1909,15 +1915,6 @@ float: none;
 }
 .guidemeta .guidelinks {
   margin-right: 0;
-}
-.guideseparator {
-  display: inline-block;
-  width: 4px;
-  height: 4px;
-  margin: 0 12px 12px 12px;
-  border-radius: 50%;
-  background-color: var(--color-text-primary);
-  transform: translateY(2px);
 }
 .guidefilters {
   display: flex;
@@ -1930,9 +1927,6 @@ float: none;
 {
   .guidemeta .guidelinks {
     margin-top: 0;
-  }
-  .guideseparator {
-    transform: translateY(0);
   }
   .guidefilters {
     gap: 6px 5px;
@@ -2484,6 +2478,9 @@ float: none;
     .guidelinks {
       margin-right: 24px;
     }
+    .guidemeta {
+      column-gap: 24px;
+    }
     .guide__footer-links {
       gap: 24px;
     }
@@ -2640,7 +2637,7 @@ float: none;
     }
     .guide__header h1
     {
-        font-size: var(--font-size-display);
+        font-size: calc(var(--font-size-display) * 0.85);
             line-height: var(--line-height-title);
     }
     .feature span
@@ -2976,15 +2973,14 @@ float: none;
     }
     .guidefilters {
         gap: 6px;
-        margin-top: 4vw;
+        margin-top: 24px;
         margin-bottom: 32px;
     }
-    .guideseparator {
-        margin-right: 16px;
-        margin-left: 16px;
+    .guidemeta {
+        column-gap: 32px;
     }
     .crol {
-        margin: 8px 0 0 0;
+        margin: 24px 0 0 0;
         padding: 24px 24px 28px 24px;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 24px 32px;
@@ -3109,14 +3105,34 @@ float: none;
         grid-template-columns: repeat(6, 1fr);
         max-width: 1280px;
     }
-    /* Логотип слева во всю высоту названия и строки ссылок под ним:
-       сетка из двух колонок, обёртка .guideh1 не участвует в раскладке */
+    /* Логотип слева, название и ссылки под ним стоят у его верхнего
+       края: сетка из двух колонок, обёртка .guideh1 не участвует
+       в раскладке. Верх скруглённой плашки логотипа (нижние 84 из 96 точек
+       рисунка, сверху выступает фигура) вровень с верхом заглавных букв
+       названия */
     .guidelogo {
       grid-column: 1;
       grid-row: 1 / 3;
       align-self: start;
-      height: calc(36px + 2.8vw);
-      margin: 4px 0 0 0;
+      height: calc(45.5px + 3.09vw);
+      margin: calc(-4.3px - 0.09vw) 0 0 0;
+    }
+    /* Линия под логотипом, названием и ссылками отделяет шапку от
+       критериев и фильтров. Она отдельная строка сетки, поэтому критерии
+       и фильтры автоматически встают под ней; отступы до и после — шаг
+       сетки */
+    .inner--guide__title::before {
+      content: '';
+      grid-column: 1 / -1;
+      grid-row: 3;
+      margin-top: 24px;
+      border-top: 1px solid var(--color-border-muted);
+    }
+    /* Крестик стоит вровень с верхом заглавных букв названия: оно мельче
+       заголовков проектов, под которые выставлен крестик, поэтому
+       поднимаем его на разницу */
+    .inner--guide .inner__close {
+      top: calc(1px - 0.5vw);
     }
     .guideh1 {
       display: contents;
@@ -3128,6 +3144,7 @@ float: none;
     .guidemeta {
       grid-column: 2;
       grid-row: 2;
+      align-self: start;
     }
     .inner--guide__title > .criteria,
     .guidefilters {
@@ -3145,6 +3162,9 @@ float: none;
         grid-column: 1/7;
         display: grid;
         grid-template-columns: auto 1fr;
+        /* Лишняя высота логотипа уходит под ссылки, а не между ними
+           и названием */
+        grid-template-rows: auto 1fr;
         column-gap: 1.28vw;
     }
     .inner__detail
@@ -3231,8 +3251,14 @@ float: none;
         padding-bottom: 32px;
     }
     .crol {
-        margin: 8px 0 0 0;
+        margin: 32px 0 0 0;
         gap: 24px 40px;
+    }
+    .inner--guide__title::before {
+        margin-top: 32px;
+    }
+    .guidefilters {
+        margin-top: 32px;
     }
     .content
     {
@@ -3371,8 +3397,14 @@ float: none;
         grid-column: 1/7;
     }
     .crol {
-        margin: 8px 0 0 0;
+        margin: 40px 0 0 0;
         gap: 32px 52px;
+    }
+    .inner--guide__title::before {
+        margin-top: 40px;
+    }
+    .guidefilters {
+        margin-top: 40px;
     }
     .content
     {
