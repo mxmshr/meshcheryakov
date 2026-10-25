@@ -1591,7 +1591,9 @@ float: none;
 {
     position: relative;
 }
-/* Стрелка у ссылки на следующий проект при наведении плавно сдвигается вправо */
+/* Стрелка у ссылки на следующий проект при наведении сдвигается вправо,
+   как значки наград: быстро туда (0,1 с), медленнее обратно
+   (--transition-base) */
 .inner__nav-next
 {
     display: inline-block;
@@ -1606,6 +1608,7 @@ float: none;
     .inner__nav a:hover + .inner__nav-next
     {
         transform: translateX(4px);
+        transition: transform .1s ease-out;
     }
 }
 .inner__nav-arrow
@@ -2170,11 +2173,14 @@ float: none;
 }
 /* Ссылкой работает вся кофейня, а не только название: невидимый слой
    ссылки растянут на сетку пункта. Отступ под пунктом в слой не входит,
-   поэтому между кофейнями остаётся некликабельный зазор. Подчёркнуто
-   по-прежнему только название, и при наведении на пункт оно темнеет,
-   как при наведении на саму ссылку */
+   поэтому между кофейнями остаётся некликабельный зазор. Название без
+   подчёркивания, как пункты главного меню: оно появляется при наведении
+   на пункт, сразу и цвета текста */
 .guideli .guidegrid {
   position: relative;
+}
+.guideli .about-title a {
+  text-decoration-line: none;
 }
 .guideli .about-title a::after {
   content: '';
@@ -2184,6 +2190,7 @@ float: none;
 @media (hover: hover)
 {
     .guideli .guidegrid:hover .about-title a {
+      text-decoration-line: underline;
       text-decoration-color: var(--color-text-primary);
       transition: 0s ease-in-out;
     }
@@ -3017,9 +3024,10 @@ float: none;
     .guideli {
         padding: 0 0 24px 0;
     }
+    /* Над фильтрами чуть меньше большого отступа: 64px при --space-l 80px */
     .guidefilters {
         gap: 6px;
-        margin-top: var(--space-l);
+        margin-top: calc(var(--space-l) * 0.8);
         margin-bottom: 32px;
     }
     .guidemeta {
