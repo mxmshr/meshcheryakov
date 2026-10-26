@@ -461,7 +461,7 @@ float: none;
 .work__descr a {
     color: var(--color-text-primary);
     text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
+    text-underline-offset: 3px;
     text-underline-position: from-font;
     text-decoration-line: underline;
     text-decoration-style: solid;
@@ -1072,7 +1072,7 @@ float: none;
     line-height: var(--line-height-body);
     font-weight: 400; /**500**/
     text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
+    text-underline-offset: 3px;
     text-underline-position: from-font;
     text-decoration-line: underline;
     text-decoration-style: solid;
@@ -1181,7 +1181,7 @@ float: none;
 .sideblock--inner a
   {
     text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
+    text-underline-offset: 3px;
     text-underline-position: from-font;
     text-decoration-line: underline;
     text-decoration-style: solid;
@@ -1198,7 +1198,7 @@ float: none;
 .inner--dark .sideblock--inner a
   {
     text-decoration-thickness: 1px;
-    text-underline-offset: 4px;
+    text-underline-offset: 3px;
     text-underline-position: from-font;
     text-decoration-line: underline;
     text-decoration-style: solid;
@@ -1217,7 +1217,7 @@ float: none;
 .inner__text a, .inner__detail a, .inner__nav a
 {
   text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
   text-underline-position: from-font;
   text-decoration-line: underline;
   text-decoration-style: solid;
@@ -1239,7 +1239,7 @@ float: none;
 .inner--dark .inner__text a, .inner--dark .inner__detail a, .inner--dark .inner__nav a
 {
   text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
   text-underline-position: from-font;
   text-decoration-line: underline;
   text-decoration-style: solid;
@@ -1901,7 +1901,7 @@ float: none;
 .link {
   color: var(--color-text-primary);
   text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
   text-underline-position: from-font;
   text-decoration-line: underline;
   text-decoration-style: solid;
@@ -2085,7 +2085,7 @@ float: none;
 }
 .criteriacutactive {
   text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
   text-underline-position: from-font;
   text-decoration-line: underline;
   text-decoration-style: solid;
@@ -2376,7 +2376,7 @@ float: none;
     .link,
     .criteriacutactive
     {
-        text-underline-offset: 3px;
+        text-underline-offset: 2px;
     }
 }
 
@@ -2451,7 +2451,7 @@ float: none;
       height: 32px;
       width: 100%;
       text-decoration-thickness: 1px;
-      text-underline-offset: 4px;
+      text-underline-offset: 3px;
       text-underline-position: from-font;
       text-decoration-line: underline;
       text-decoration-style: solid;
@@ -2575,7 +2575,7 @@ float: none;
       height: 36px;
       width: 100%;
       text-decoration-thickness: 1px;
-      text-underline-offset: 4px;
+      text-underline-offset: 3px;
       text-underline-position: from-font;
       text-decoration-line: underline;
       text-decoration-style: solid;
