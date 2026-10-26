@@ -1989,7 +1989,13 @@ float: none;
     /* Год крупнее. Селектор длиннее общих правил .year */
     .sideblock .sideblock__descr .year
     {
-        font-size: calc(var(--font-size-year) * 1.35);
+        font-size: calc(var(--font-size-year) * 1.2);
+    }
+    /* Абзацы о себе внизу главной размером годов, чтобы не сливаться
+       с названиями проектов над ними */
+    .footer .description p
+    {
+        font-size: calc(var(--font-size-year) * 1.2);
     }
 }
 .guidefilter {
