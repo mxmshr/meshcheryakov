@@ -2173,14 +2173,11 @@ float: none;
 }
 /* Ссылкой работает вся кофейня, а не только название: невидимый слой
    ссылки растянут на сетку пункта. Отступ под пунктом в слой не входит,
-   поэтому между кофейнями остаётся некликабельный зазор. Название без
-   подчёркивания, как пункты главного меню: оно появляется при наведении
-   на пункт, сразу и цвета текста */
+   поэтому между кофейнями остаётся некликабельный зазор. Подчёркнуто
+   по-прежнему только название, и при наведении на пункт оно темнеет,
+   как при наведении на саму ссылку */
 .guideli .guidegrid {
   position: relative;
-}
-.guideli .about-title a {
-  text-decoration-line: none;
 }
 .guideli .about-title a::after {
   content: '';
@@ -2190,7 +2187,6 @@ float: none;
 @media (hover: hover)
 {
     .guideli .guidegrid:hover .about-title a {
-      text-decoration-line: underline;
       text-decoration-color: var(--color-text-primary);
       transition: 0s ease-in-out;
     }
