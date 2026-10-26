@@ -416,7 +416,7 @@ float: none;
 .sideblock__absolute {
     position: sticky;
     flex-direction: column;
-    top: 32px;
+    top: 20px;
 }
 .year {
     font-size: var(--font-size-year);
@@ -3296,9 +3296,14 @@ float: none;
     }
     .sideblock__descr
     {
-            padding-top: 24px;
+            padding-top: 26px;
             border-top: 1px solid var(--color-border-muted);
             gap: 8px;
+    }
+    /* При прилипании отступ от верха экрана равен отступу от линии */
+    .sideblock__absolute
+    {
+        top: 26px;
     }
     .project--locked p
     {
@@ -3439,6 +3444,10 @@ float: none;
         flex-direction: column;
         padding-top: 32px;
         gap: 10px;
+    }
+    .sideblock__absolute
+    {
+        top: 32px;
     }
     .sideblock--inner .sideblock__descr span
     {
