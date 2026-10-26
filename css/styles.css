@@ -1974,12 +1974,22 @@ float: none;
     margin-right: 10px;
   }
     /* На мобильных группы проектов (годы) разделены горизонтальной линией,
-       как на широком экране. У первой группы линия уже есть в шапке */
-    .sideblock + .sideblock .sideblock__descr
+       как на широком экране. Линия есть и над первой группой */
+    .content > .sideblock > .sideblock__descr
     {
-        margin-top: 4px;
-        padding-top: 22px;
+        /* Над линией заметный отступ, чтобы группы не сливались */
+        margin-top: 24px;
+        padding-top: 24px;
         border-top: 1px solid var(--color-border-muted);
+    }
+    .sideblock__descr
+    {
+        margin-bottom: 24px;
+    }
+    /* Год крупнее. Селектор длиннее общих правил .year */
+    .sideblock .sideblock__descr .year
+    {
+        font-size: calc(var(--font-size-year) * 1.35);
     }
 }
 .guidefilter {
