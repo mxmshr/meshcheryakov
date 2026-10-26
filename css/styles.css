@@ -697,6 +697,16 @@ float: none;
     overflow: hidden;
     white-space: nowrap;
 }
+/* На мобильных наведения нет, поэтому такую часть подписи показываем
+   сразу: «Клиентские проекты не публикуются» */
+@media (max-width: 767px)
+{
+    .project__caption-fold--mobile-open
+    {
+        grid-template-columns: 1fr;
+        opacity: 1;
+    }
+}
 @media (hover: hover)
 {
     .project:hover .project__caption-fold
