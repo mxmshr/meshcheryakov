@@ -2942,7 +2942,7 @@ float: none;
     .sideblock .sideblock__absolute span
     {
         display: block;
-        max-width: 70%;
+        max-width: 80%;
     }
     .sideblock--inner .sideblock__descr
     {
