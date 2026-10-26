@@ -1918,28 +1918,6 @@ float: none;
               transition: 0s ease-in-out;
     }
 }
-/* Ссылки главного меню и футеров без подчёркивания, оно появляется только
-   при наведении — сразу и цвета текста, как у остальных ссылок. Футеры —
-   это футер главной, навигация внизу страниц проектов и ссылки внизу гида
-   по кофейням; ссылки под названием гида такие же. Открытые «Критерии»
-   и «Закрылись» остаются подчёркнутыми, это их активное состояние */
-.mainmenu__item .link,
-.footer .link,
-.inner .inner__nav a,
-.guidemeta .link:not(.criteriacutactive),
-.guide__footer-links .link:not(.criteriacutactive) {
-  text-decoration-line: none;
-}
-@media (hover: hover)
-{
-    .mainmenu__item .link:hover,
-    .footer .link:hover,
-    .inner .inner__nav a:hover,
-    .guidemeta .link:hover,
-    .guide__footer-links .link:hover {
-      text-decoration-line: underline;
-    }
-}
 /* Ссылки под названием гида стоят как пункты главного меню: без точек
    между ними, с тем же зазором */
 .guidemeta {
