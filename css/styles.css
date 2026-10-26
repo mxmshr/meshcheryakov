@@ -422,10 +422,10 @@ float: none;
     font-size: var(--font-size-year);
     margin-bottom: calc((16px + 0.2vw)/2);
 }
-/* Подпись под годами того же размера, что и годы. Селектор с .sideblock
-   перебивает общее правило .sideblock span */
+/* Подпись под годами размером названий проектов на всех ширинах.
+   Селектор с .sideblock перебивает общее правило .sideblock span */
 .sideblock .sideblock__absolute span {
-    font-size: var(--font-size-year);
+    font-size: var(--font-size-body);
 }
 .sideblock span, .guide {
     font-size: calc(0.191vw + 15px);
