@@ -466,7 +466,7 @@ float: none;
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-skip-ink: none;
-    text-decoration-color: var(--color-border-muted);
+    text-decoration-color: transparent;
     opacity: 1;
     -webkit-transition: var(--transition-base);
             transition: var(--transition-base);
@@ -554,6 +554,26 @@ float: none;
 }
 .mainmenu__item svg {
     display: none;
+}
+/* Подпись «vpn» у пунктов, которые без него не открываются. Появляется
+   справа при наведении и не сдвигает соседние пункты */
+.navigation .mainmenu__item {
+    position: relative;
+}
+.mainmenu__note {
+    position: absolute;
+    left: 100%;
+    margin-left: 6px;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+}
+@media (hover: hover)
+{
+    .mainmenu__item:hover .mainmenu__note {
+        opacity: 1;
+    }
 }
 .noname {
   display: inline-block;
@@ -1087,7 +1107,7 @@ float: none;
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-skip-ink: none;
-    text-decoration-color: var(--color-border-muted);
+    text-decoration-color: transparent;
     color: var(--color-text-primary);
 }
 @media (hover: hover)
@@ -1196,7 +1216,7 @@ float: none;
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-skip-ink: none;
-    text-decoration-color: var(--color-border-muted);
+    text-decoration-color: transparent;
   }
 @media (hover: hover)
 {
@@ -1213,7 +1233,7 @@ float: none;
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-skip-ink: none;
-    text-decoration-color: var(--color-border-inverse-muted);
+    text-decoration-color: transparent;
   }
 @media (hover: hover)
 {
@@ -1232,7 +1252,7 @@ float: none;
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-skip-ink: none;
-  text-decoration-color: var(--color-border-muted);
+  text-decoration-color: transparent;
   -webkit-transition: var(--transition-base);
           transition: var(--transition-base);
           transition: var(--transition-base), -webkit-transform var(--transition-base);
@@ -1254,7 +1274,7 @@ float: none;
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-skip-ink: none;
-  text-decoration-color: var(--color-border-inverse-muted);
+  text-decoration-color: transparent;
 }
 @media (hover: hover)
 {
@@ -1916,7 +1936,7 @@ float: none;
   text-decoration-line: underline;
   text-decoration-style: solid;
   text-decoration-skip-ink: none;
-  text-decoration-color: var(--color-border-muted);
+  text-decoration-color: transparent;
   -webkit-transition: var(--transition-base);
           transition: var(--transition-base);
 }
@@ -2594,7 +2614,7 @@ float: none;
     }
     .about_description {
       font-size: 100%;
-      padding: 2px 10% 0 0;
+      padding: 0 10% 0 0;
     }
     .line
     {
