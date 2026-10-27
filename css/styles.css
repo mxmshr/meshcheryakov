@@ -770,8 +770,8 @@ float: none;
     .project:hover img, .project:hover video
     {
       cursor: pointer;
-        -webkit-transform: translateY(-12px);
-                transform: translateY(-12px);
+        -webkit-transform: translateY(-10px);
+                transform: translateY(-10px);
     }
 }
 @media (hover: hover)
