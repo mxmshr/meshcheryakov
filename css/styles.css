@@ -2137,6 +2137,10 @@ float: none;
   opacity: 1;
   visibility: visible;
 }
+/* Плавающая кнопка фильтров есть только на телефонах */
+.guidefab {
+  display: none;
+}
 .guideli--filtered {
   display: none;
 }
@@ -2461,6 +2465,87 @@ float: none;
     .guideli {
         padding-bottom: 28px;
     }
+    /* Фильтры гида — в плавающей кнопке внизу по центру экрана. Кнопка
+       раскрывает над собой карточку со списком фильтров (js в странице
+       ставит .guidefilters--open). Строки фильтров в шапке нет */
+    .guidefab {
+        position: fixed;
+        z-index: 30;
+        left: 50%;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        transform: translateX(-50%);
+        display: inline-flex;
+        align-items: baseline;
+        gap: 6px;
+        padding: 12px 20px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--color-text-primary);
+        color: var(--color-bg-primary);
+        font: inherit;
+        font-size: var(--font-size-body);
+        line-height: 1.2;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .guidefab__count {
+        color: var(--color-text-muted);
+    }
+    .guidefilters {
+        position: fixed;
+        z-index: 30;
+        left: 50%;
+        /* Над кнопкой: её отступ от низа, высота строки с полями и 8px */
+        bottom: calc(16px + 1.2 * var(--font-size-body) + 24px + 8px + env(safe-area-inset-bottom));
+        width: max-content;
+        min-width: 220px;
+        max-width: calc(100vw - 32px);
+        margin: 0;
+        padding: 8px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        border-radius: 16px;
+        background: var(--color-bg-primary);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+        opacity: 0;
+        visibility: hidden;
+        transform: translate(-50%, 8px);
+        transition: opacity .2s ease-out, transform .2s ease-out, visibility 0s .2s;
+    }
+    .guidefilters--open {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, 0);
+        transition: opacity .2s ease-out, transform .2s ease-out;
+    }
+    .guidefilters .guidefilter {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding: 10px 14px;
+        font-size: var(--font-size-body);
+        line-height: 1.2;
+        text-align: left;
+    }
+    /* Подсказка к парковке прямо в строке, а не всплывающая */
+    .guidefilters .guidefilter__tooltip {
+        position: static;
+        margin-left: auto;
+        padding: 0;
+        background: none;
+        color: var(--color-text-muted);
+        font-size: 88%;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+    /* Без строки фильтров от ссылок под названием до первой кофейни
+       столько же, сколько раньше было до фильтров (около 66px) */
+    .inner--guide__title {
+        margin-bottom: 38px;
+    }
     /* Плашки сайтов компактнее, как на десктопе: отступы в em, поэтому
        в той же пропорции к шрифту */
     .inner__header .inner__sites .inner__site
@@ -2471,9 +2556,11 @@ float: none;
     {
         padding-bottom: 19px;
     }
+    /* В гиде к 26px добавлено место под плавающую кнопку фильтров
+       (высота кнопки и её отступ от низа), чтобы она не закрывала ссылки */
     .guide__footer-links
     {
-        padding-bottom: 26px;
+        padding-bottom: calc(26px + 1.2 * var(--font-size-body) + 24px + 16px);
     }
 }
 @media (max-width: 1024px)

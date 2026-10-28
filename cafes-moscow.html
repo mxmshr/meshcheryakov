@@ -56,7 +56,7 @@
               <div class="crli"><div class="crli__header">Кофе и&nbsp;цены</div><div class="crli__text">Сет из&nbsp;большого кофе и&nbsp;сэндвича не&nbsp;должен превышать тысячу рублей.</div><div class="crli__additional">Пью обычный капучино, в&nbsp;зёрнах разбираюсь слабо, сорян.</div></div>
             </div>
           </div>
-          <div class="guidefilters" aria-label="Быстрые фильтры">
+          <div class="guidefilters" id="guidefilters" aria-label="Быстрые фильтры">
             <button class="guidefilter guidefilter--active" type="button" data-filter="all" aria-pressed="true">Все</button>
             <button class="guidefilter" type="button" data-filter="power" aria-pressed="false">Розетки</button>
             <button class="guidefilter" type="button" data-filter="wifi" aria-pressed="false">Вайфай</button>
@@ -64,6 +64,7 @@
             <button class="guidefilter" type="button" data-filter="cheap" aria-pressed="false">Дешево</button>
             <button class="guidefilter guidefilter--tooltip" type="button" data-filter="parking" aria-pressed="false">Парковка<span class="guidefilter__tooltip" role="tooltip">Бесплатно или&nbsp;40 ₽/ч</span></button>
           </div>
+          <button class="guidefab" type="button" aria-expanded="false" aria-controls="guidefilters">Фильтры<span class="guidefab__count" hidden></span></button>
         </div>
         <a class="inner__close" href="./">Закрыть<svg width="100%" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M21.2412 17.9965L33.8411 5.39665L30.5884 2.14396L17.9885 14.7438L5.40018 2.15545L2.14749 5.40814L14.7358 17.9965L2.14398 30.5884L5.39667 33.8411L17.9885 21.2492L30.5919 33.8525L33.8446 30.5999L21.2412 17.9965Z" fill="white"/>
@@ -870,7 +871,35 @@
     $(".guidefilter[data-filter='all']")
       .toggleClass("guidefilter--active", activeGuideFilters.length === 0)
       .attr("aria-pressed", activeGuideFilters.length === 0);
+    $(".guidefab__count")
+      .text(activeGuideFilters.length)
+      .prop("hidden", activeGuideFilters.length === 0);
   }
+
+  // На телефонах фильтры прячутся в плавающую кнопку внизу экрана:
+  // она раскрывает список вверх, закрывается повторным нажатием,
+  // нажатием мимо списка или клавишей Esc
+  function setGuideFab(isOpen) {
+    $(".guidefilters").toggleClass("guidefilters--open", isOpen);
+    $(".guidefab").attr("aria-expanded", isOpen);
+  }
+
+  $(".guidefab").click(function (event) {
+    event.stopPropagation();
+    setGuideFab(!$(".guidefilters").hasClass("guidefilters--open"));
+  });
+
+  $(document).on("click", function (event) {
+    if (!$(event.target).closest(".guidefilters").length) {
+      setGuideFab(false);
+    }
+  });
+
+  $(document).on("keydown", function (event) {
+    if (event.key === "Escape") {
+      setGuideFab(false);
+    }
+  });
 
   $(".guidefilter").click(function () {
     var $filter = $(this);
