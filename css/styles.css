@@ -2472,7 +2472,7 @@ float: none;
         position: fixed;
         z-index: 30;
         left: 50%;
-        bottom: calc(8px + env(safe-area-inset-bottom));
+        bottom: calc(12px + env(safe-area-inset-bottom));
         transform: translateX(-50%);
         display: inline-flex;
         align-items: baseline;
@@ -2521,7 +2521,7 @@ float: none;
         z-index: 30;
         left: 50%;
         /* Над кнопкой: её отступ от низа, высота строки с полями и 8px */
-        bottom: calc(8px + 1.2 * var(--font-size-body) + 24px + 8px + env(safe-area-inset-bottom));
+        bottom: calc(12px + 1.2 * var(--font-size-body) + 24px + 8px + env(safe-area-inset-bottom));
         width: max-content;
         min-width: 220px;
         max-width: calc(100vw - 32px);
@@ -2626,7 +2626,7 @@ float: none;
        (высота кнопки и её отступ от низа), чтобы она не закрывала ссылки */
     .guide__footer-links
     {
-        padding-bottom: calc(26px + 1.2 * var(--font-size-body) + 24px + 8px);
+        padding-bottom: calc(26px + 1.2 * var(--font-size-body) + 24px + 12px);
     }
 }
 @media (max-width: 1024px)
