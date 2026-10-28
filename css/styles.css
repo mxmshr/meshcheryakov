@@ -2541,8 +2541,11 @@ float: none;
     }
     /* Пункты без заливки: карточка целиком одного серого цвета.
        Выбранные отмечены галочкой справа */
+    /* Скругление пунктов 8px: скругление карточки 16px минус её поле 8px,
+       чтобы подсветка пункта шла параллельно краю карточки */
     .guidefilters .guidefilter,
     .guidefilters .guidefilter--active {
+        border-radius: 8px;
         background: transparent;
         border-color: transparent;
         color: var(--color-text-primary);
