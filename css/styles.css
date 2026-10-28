@@ -2514,7 +2514,10 @@ float: none;
         align-items: stretch;
         gap: 4px;
         border-radius: 16px;
-        background: var(--color-bg-primary);
+        /* Светло-серая полупрозрачная подложка с размытием того, что под ней */
+        background: rgba(240, 243, 242, 0.9);
+        -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
         touch-action: manipulation;
         opacity: 0;
@@ -2536,6 +2539,11 @@ float: none;
         font-size: var(--font-size-body);
         line-height: 1.2;
         text-align: left;
+    }
+    /* Невыбранные фильтры без своей подложки: карточка целиком одного
+       серого цвета, выбранные остаются чёрными */
+    .guidefilters .guidefilter:not(.guidefilter--active) {
+        background: transparent;
     }
     /* Подсказка к парковке прямо в строке, а не всплывающая */
     .guidefilters .guidefilter__tooltip {
