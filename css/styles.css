@@ -2556,7 +2556,7 @@ float: none;
         text-align: left;
     }
     /* Пункты без заливки: карточка целиком одного серого цвета.
-       Выбранные отмечены галочкой справа */
+       Выбранные отмечены круглой точкой справа */
     /* Скругление пунктов 8px: скругление карточки 16px минус её поле 8px,
        чтобы подсветка пункта шла параллельно краю карточки */
     .guidefilters .guidefilter,
@@ -2569,17 +2569,16 @@ float: none;
     .guidefilters .guidefilter--active::after {
         content: '';
         flex: none;
-        width: 5px;
-        height: 10px;
+        width: 6px;
+        height: 6px;
         margin-left: auto;
-        border: solid currentColor;
-        border-width: 0 1.5px 1.5px 0;
-        transform: translateY(-2px) rotate(45deg);
+        border-radius: 50%;
+        background: currentColor;
         align-self: center;
     }
     /* Подсказка к парковке не всплывает, а стоит мелким шрифтом под
        словом «Парковка». Сетка: слева слово и подсказка под ним, справа
-       галочка по центру обеих строк */
+       точка выбора по центру обеих строк */
     .guidefilters .guidefilter--tooltip {
         display: grid;
         grid-template-columns: 1fr auto;
