@@ -15,9 +15,6 @@
     --font-size-title: calc(28px + 2vw);
     --line-height-title: 1.05;
     --font-size-year: calc(16px + 0.42vw);
-    /* Посередине между --font-size-body и годами на мобильной главной
-       (--font-size-year * 1.2): около 19px на экране 375px */
-    --font-size-lead: calc(17.6px + 0.362vw);
     --font-size-meta: calc(10px + 0.22vw);
     --font-size-tooltip: calc(12px + 0.16vw);
     --transition-base: .25s ease-in-out;
@@ -420,6 +417,15 @@ float: none;
     position: sticky;
     flex-direction: column;
     top: 20px;
+}
+/* На сенсорных экранах без мыши год с описанием прокручивается вместе
+   со страницей, как на телефонах: и на планшетах в горизонтальной
+   ориентации, которые получают десктопную раскладку */
+@media (hover: none) and (pointer: coarse)
+{
+    .sideblock__absolute {
+        position: static;
+    }
 }
 .year {
     font-size: var(--font-size-year);
@@ -1817,7 +1823,7 @@ float: none;
     bottom: calc(100% + 8px);
     left: 50%;
     z-index: 2;
-    padding: 6px 8px;
+    padding: 4px 8px;
     border-radius: 4px;
     background: #111;
     color: var(--color-bg-primary);
@@ -2022,21 +2028,21 @@ float: none;
   .guideli .about {
     display: contents;
   }
-  /* Название кофейни крупнее основного текста, но мельче годов
-     и абзацев о себе на мобильной главной */
+  /* Название и описание одного размера, чуть крупнее основного текста.
+     Описание сразу под названием (2px), метро под описанием без
+     отступа: строка метро выше его мелких букв, на глаз выходит около 6px */
   .guideli .about-title {
     order: 1;
-    font-size: var(--font-size-lead);
-  }
-  /* Метро плотнее к названию и к описанию: по 3px над метро
-     и над описанием */
-  .guideli .geo {
-    order: 2;
-    padding-top: 3px;
+    font-size: var(--font-size-year);
   }
   .guideli .about_description {
+    order: 2;
+    padding-top: 2px;
+    font-size: var(--font-size-year);
+  }
+  .guideli .geo {
     order: 3;
-    padding-top: 3px;
+    padding-top: 0;
   }
   .guideli .geo br {
     display: none;
@@ -2112,7 +2118,7 @@ float: none;
   left: 50%;
   line-height: 1.2;
   opacity: 0;
-  padding: 6px 8px;
+  padding: 4px 8px;
   pointer-events: none;
   position: absolute;
   transform: translateX(-50%);
@@ -2323,7 +2329,7 @@ float: none;
       background-color: #111;
       color: var(--color-bg-primary);
       text-align: center;
-      padding: 4px 8px;
+      padding: 2px 8px;
       border-radius: 4px;
       position: absolute;
       z-index: 1;
@@ -2437,6 +2443,25 @@ float: none;
         border-top: 1px solid var(--color-border-muted);
     }
 }
+/* Низ страниц проектов и гида на телефонах в пропорции к боковым полям
+   16px: прежние 24 и 32px × 16/20 */
+@media (max-width: 767px)
+{
+    /* Плашки сайтов компактнее, как на десктопе: отступы в em, поэтому
+       в той же пропорции к шрифту */
+    .inner__header .inner__sites .inner__site
+    {
+        padding: 0.25em 0.5em 0.25em 0.4em;
+    }
+    .inner__nav
+    {
+        padding-bottom: 19px;
+    }
+    .guide__footer-links
+    {
+        padding-bottom: 26px;
+    }
+}
 @media (max-width: 1024px)
 {
     .work__descr a,
@@ -2460,10 +2485,10 @@ float: none;
         line-height: var(--line-height-body);
         font-weight: 400;
     }
-    /* Боковые отступы 16px, как на самых узких экранах */
+    /* Отступы страницы 16px сбоку и сверху, как на самых узких экранах */
     .header
     {
-        padding-top: 20px;
+        padding-top: 16px;
         padding-right: 16px;
         padding-left: 16px;
         padding-bottom: 48px;
@@ -2488,7 +2513,7 @@ float: none;
     {
         margin-right: 16px;
         margin-left: 16px;
-        padding-bottom: 20px;
+        padding-bottom: 16px;
     }
     .inner
     {
@@ -2497,7 +2522,7 @@ float: none;
     }
     .inner
     {
-        padding-top: 20px;
+        padding-top: 16px;
     }
     .inner__nav-arrow
     {
@@ -2516,7 +2541,7 @@ float: none;
        правое поле кнопки меньше, левое больше, размер тот же */
     .inner__close
     {
-        top: 4px;
+        top: 0;
         padding-right: 20px;
         padding-left: 28px;
     }
@@ -2553,11 +2578,11 @@ float: none;
     .footer
     {
         padding-top: 0;
-        padding-bottom: 20px;
+        padding-bottom: 16px;
     }
     .inner
     {
-        padding-top: 20px;
+        padding-top: 16px;
     }
     .inner__nav-arrow
     {
@@ -2626,7 +2651,9 @@ float: none;
       text-align: left;
       position: relative;
     }
+    /* Логотип гида крупнее вместе с названием, в той же пропорции 1,11 */
     .guidelogo {
+      height: calc(71px + 2.22vw);
       margin: -8px 20px 16px 0;
     }
     .parking {
@@ -2714,9 +2741,9 @@ float: none;
     }
     .header
     {
-        padding-right: 24px;
-        padding-left: 24px;
-        padding-top: 24px;
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 20px;
         padding-bottom: 32px;
         height: calc(100vh - 120px);
         grid-template-columns: repeat(4, 1fr);
@@ -2729,18 +2756,25 @@ float: none;
         grid-template-columns: repeat(6, 1fr);
         grid-column: 1/7;
     }
+    /* На планшетах заголовки проектов и гида на 4px крупнее, чем
+       на десктопе: колонка текста широкая, и с --font-size-display
+       заголовок терялся. С 1025px снова --font-size-display */
     .inner__header h1
     {
-        font-size: var(--font-size-display);
+        font-size: calc(20px + 2.22vw);
         margin-left: -1px;
     }
     .guide__header h1
     {
             line-height: var(--line-height-title);
     }
-    .feature span, .guide__header h1
+    .feature span
     {
         font-size: var(--font-size-display);
+    }
+    .guide__header h1
+    {
+        font-size: calc(20px + 2.22vw);
     }
     .header__text
     {
@@ -2804,8 +2838,8 @@ float: none;
     }
     .content
     {
-        margin-right: 24px;
-        margin-left: 24px;
+        margin-right: 20px;
+        margin-left: 20px;
     }
     .project
     {
@@ -2844,10 +2878,10 @@ float: none;
     }
     .footer
     {
-        margin-right: 24px;
-        margin-left: 24px;
+        margin-right: 20px;
+        margin-left: 20px;
         padding-top: 20px;
-        padding-bottom: 24px;
+        padding-bottom: 20px;
         grid-template-rows: 0;
     }
     .footer
@@ -2876,9 +2910,9 @@ float: none;
     }
     .inner
     {
-        padding-right: 24px;
-        padding-left: 24px;
-        padding-top: 28px;
+        padding-right: 20px;
+        padding-left: 20px;
+        padding-top: 23px;
     }
     .inner__container
     {
@@ -2896,10 +2930,11 @@ float: none;
     {
         grid-column: 1/5;
     }
+    /* Низ страницы в пропорции к боковым полям 20px: 32 × 20/24 */
     .inner__nav,
     .guide__footer-links
     {
-        padding-bottom: 32px;
+        padding-bottom: 27px;
         grid-column: 1/5;
     }
     .inner__nav-arrow
@@ -2932,13 +2967,17 @@ float: none;
         width: 24px;
         height: 24px;
     }
+    /* Крестик растёт вместе с заголовком: значок (ширина кнопки без
+       полей) около 0,75 кегля заголовка, как на десктопе. Центр значка
+       чуть выше середины заглавных букв первой строки заголовка. От края
+       значок на 5px дальше текста, как на телефонах и десктопе */
     .inner__close
     {
-        top: 0px;
+        top: calc(-7.2px + 0.3125vw);
         right: 0px;
-        padding: 32px;
-        width: 88px;
-        height: 88px;
+        padding: 32px 23px 32px 41px;
+        width: calc(79px + 1.665vw);
+        height: calc(79px + 1.665vw);
     }
 }
 
@@ -2948,6 +2987,11 @@ float: none;
     {
         font-size: var(--font-size-display);
         margin-left: -2px;
+    }
+    /* Плашки сайтов на десктопе компактнее */
+    .inner__header .inner__sites .inner__site
+    {
+        padding: 0.25em 0.5em 0.25em 0.4em;
     }
     .year {
       font-size: var(--font-size-year);
@@ -3039,6 +3083,11 @@ float: none;
     .feature span
     {
         font-size: calc(11px + 2.22vw);
+    }
+    /* Название гида снова размером заголовков проектов */
+    .guide__header h1
+    {
+        font-size: var(--font-size-display);
     }
     .header
     {
@@ -3272,12 +3321,13 @@ float: none;
        малом шаге, а перед фильтрами большой отступ (он у .guidefilters),
        как после названия и даты на страницах проектов */
     /* Ссылки под логотипом и названием. Над заглавными буквами ссылок
-       пустое место строки, около 0,48em: вычитаем его, чтобы от низа
-       логотипа до букв на глаз было ровно --guide-meta-gap */
+       пустое место строки, около 0,48em: вычитаем чуть меньше (0,4em),
+       чтобы от низа логотипа до букв было немного больше
+       --guide-meta-gap */
     .guidemeta {
       grid-column: 1 / -1;
       grid-row: 2;
-      margin-top: calc(var(--guide-meta-gap) - 0.48em);
+      margin-top: calc(var(--guide-meta-gap) - 0.4em);
     }
     .guidemeta .guidelinks,
     .guideseparator {
