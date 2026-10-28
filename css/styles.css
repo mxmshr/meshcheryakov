@@ -2289,7 +2289,7 @@ float: none;
    и десктопе свои размеры */
 .guidelogo {
   height: calc(66.24px + 2.07vw);
-  margin: -7px 18px 16px 0;
+  margin: -7px 18px 15px 0;
 }
 .guideupdate {
   color: var(--color-text-primary);
@@ -2458,10 +2458,14 @@ float: none;
    16px: прежние 24 и 32px × 16/20 */
 @media (max-width: 767px)
 {
-    /* Строка «Критерии · На карте · Октябрь» размером станций метро:
-       88% основного шрифта */
+    /* Строка «Критерии, На карте, Октябрь» размером станций метро:
+       88% основного шрифта, без точек между пунктами, зазор 16px */
     .guidemeta {
         font-size: calc(var(--font-size-body) * 0.88);
+        column-gap: 16px;
+    }
+    .guideseparator {
+        display: none;
     }
     /* Логотип и название гида: 4px сверху и 10px снизу. Селектор
        сильнее правил .guideh1 для узких экранов и от 480px */
