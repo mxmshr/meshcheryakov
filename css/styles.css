@@ -2561,21 +2561,31 @@ float: none;
         transform: translateY(-2px) rotate(45deg);
         align-self: center;
     }
-    /* У парковки справа подсказка, галочка встаёт после неё */
-    .guidefilters .guidefilter--tooltip.guidefilter--active::after {
-        margin-left: 12px;
+    /* Подсказка к парковке не всплывает, а стоит мелким шрифтом под
+       словом «Парковка». Сетка: слева слово и подсказка под ним, справа
+       галочка по центру обеих строк */
+    .guidefilters .guidefilter--tooltip {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        column-gap: 12px;
+        row-gap: 2px;
     }
-    /* Подсказка к парковке прямо в строке, а не всплывающая */
     .guidefilters .guidefilter__tooltip {
+        grid-column: 1;
+        grid-row: 2;
         position: static;
-        margin-left: auto;
         padding: 0;
         background: none;
         color: var(--color-text-muted);
-        font-size: 88%;
+        font-size: var(--font-size-tooltip);
+        white-space: normal;
         opacity: 1;
         visibility: visible;
         transform: none;
+    }
+    .guidefilters .guidefilter--tooltip.guidefilter--active::after {
+        grid-column: 2;
+        grid-row: 1 / span 2;
     }
     /* Без строки фильтров от ссылок под названием до первой кофейни
        столько же, сколько раньше было до фильтров (около 66px) */
