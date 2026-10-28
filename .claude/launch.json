@@ -4,14 +4,31 @@
     {
       "name": "site",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8080"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8080"
+      ],
       "port": 8080
     },
     {
       "name": "site-rare",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "47821"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "47821"
+      ],
       "port": 47821
+    },
+    {
+      "name": "site-alt",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        ".claude/serve-nocache.py",
+        "47833"
+      ],
+      "port": 47833
     }
   ]
 }
