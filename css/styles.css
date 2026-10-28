@@ -444,13 +444,6 @@ float: none;
 .guide s {
     color: var(--color-text-muted);
 }
-.guide sup {
-    font-size: 65%;
-    margin-top: 6px;
-    margin-left: calc(1px + 0.2vw);
-    font-weight: 200;
-    color: var(--color-text-primary) /**#FBC02D**/;
-}
 .guidelinks sup {
     font-size: 75%;
     margin-left: calc(1px + 0.2vw);
