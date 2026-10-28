@@ -2475,10 +2475,9 @@ float: none;
         bottom: calc(12px + env(safe-area-inset-bottom));
         transform: translateX(-50%);
         display: inline-flex;
-        align-items: center;
+        align-items: baseline;
         gap: 10px;
-        height: 40px;
-        padding: 0 20px;
+        padding: 10px 20px;
         border: 0;
         border-radius: 999px;
         /* Полупрозрачная светло-серая подложка #ECEEED с размытием того,
@@ -2512,8 +2511,8 @@ float: none;
         position: fixed;
         z-index: 30;
         left: 50%;
-        /* Над кнопкой: её отступ от низа, высота 40px и 8px */
-        bottom: calc(12px + 40px + 8px + env(safe-area-inset-bottom));
+        /* Над кнопкой: её отступ от низа, высота строки с полями и 8px */
+        bottom: calc(12px + 1.2 * var(--font-size-body) + 20px + 8px + env(safe-area-inset-bottom));
         width: max-content;
         min-width: 220px;
         max-width: calc(100vw - 32px);
@@ -2614,7 +2613,7 @@ float: none;
        (высота кнопки и её отступ от низа), чтобы она не закрывала ссылки */
     .guide__footer-links
     {
-        padding-bottom: calc(26px + 40px + 12px);
+        padding-bottom: calc(26px + 1.2 * var(--font-size-body) + 20px + 12px);
     }
 }
 @media (max-width: 1024px)
