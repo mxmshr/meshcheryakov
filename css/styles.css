@@ -2476,7 +2476,7 @@ float: none;
         transform: translateX(-50%);
         display: inline-flex;
         align-items: baseline;
-        gap: 6px;
+        gap: 10px;
         padding: 12px 20px;
         border: 0;
         border-radius: 999px;
