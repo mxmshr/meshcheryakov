@@ -2480,17 +2480,12 @@ float: none;
         padding: 12px 20px;
         border: 0;
         border-radius: 999px;
-        /* Стекло в духе iOS: полупрозрачная заливка, размытие с усиленной
-           насыщенностью того, что под ним, светлый блик по верхней кромке,
-           лёгкое затемнение по нижней и обводка в полпикселя. Без фильтров
-           стекло светлое, с выбранными — тёмное (.guidefab--active) */
-        background: rgba(240, 243, 242, 0.55);
-        -webkit-backdrop-filter: blur(12px) saturate(180%);
-                backdrop-filter: blur(12px) saturate(180%);
-        box-shadow:
-            inset 0 1px 0 rgba(255, 255, 255, 0.9),
-            inset 0 -1px 1px rgba(0, 0, 0, 0.04),
-            0 0 0 0.5px rgba(0, 0, 0, 0.12);
+        /* Полупрозрачная светло-серая подложка с размытием того, что под
+           ней, как у плавающей кнопки на area17.com. С выбранными фильтрами
+           кнопка чёрная (.guidefab--active) */
+        background: rgba(242, 242, 242, 0.8);
+        -webkit-backdrop-filter: blur(30px);
+                backdrop-filter: blur(30px);
         color: var(--color-text-primary);
         font: inherit;
         font-size: var(--font-size-body);
@@ -2507,10 +2502,6 @@ float: none;
     /* С выбранными фильтрами чёрная, и при открытом списке тоже */
     .guidefab.guidefab--active {
         background: rgba(17, 17, 17, 0.92);
-        box-shadow:
-            inset 0 1px 0 rgba(255, 255, 255, 0.22),
-            inset 0 -1px 1px rgba(0, 0, 0, 0.3),
-            0 0 0 0.5px rgba(0, 0, 0, 0.4);
         color: var(--color-bg-primary);
     }
     .guidefab__count {
@@ -2531,14 +2522,10 @@ float: none;
         align-items: stretch;
         gap: 0;
         border-radius: 16px;
-        /* Светлое стекло, как у кнопки, с размытием сильнее */
-        background: rgba(240, 243, 242, 0.6);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-                backdrop-filter: blur(20px) saturate(180%);
-        box-shadow:
-            inset 0 1px 0 rgba(255, 255, 255, 0.9),
-            inset 0 -1px 1px rgba(0, 0, 0, 0.04),
-            0 0 0 0.5px rgba(0, 0, 0, 0.1);
+        /* Такая же подложка, как у кнопки */
+        background: rgba(242, 242, 242, 0.8);
+        -webkit-backdrop-filter: blur(30px);
+                backdrop-filter: blur(30px);
         touch-action: manipulation;
         opacity: 0;
         visibility: hidden;
