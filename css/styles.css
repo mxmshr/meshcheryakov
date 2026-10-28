@@ -19,6 +19,17 @@
     --font-size-tooltip: calc(12px + 0.16vw);
     --transition-base: .25s ease-in-out;
 }
+/* На телефонах основной текст на полпикселя крупнее: около 17,3px вместо
+   16,8px. Шаг крупнее --font-size-lead — посередине между основным
+   текстом и годами на мобильной главной (--font-size-year * 1.2), около
+   19,2px на экране 375px */
+@media (max-width: 767px)
+{
+    :root {
+        --font-size-body: calc(16.5px + 0.22vw);
+        --font-size-lead: calc(17.85px + 0.362vw);
+    }
+}
 
 html {
     font-family: sans-serif;
@@ -2009,9 +2020,11 @@ float: none;
   .guideseparator {
     transform: translateY(0);
   }
+  /* До фильтров больше общих 40px, после — меньше */
   .guidefilters {
     gap: 6px 5px;
-    margin-bottom: 16px;
+    margin-top: 48px;
+    margin-bottom: 12px;
   }
   .guideli .guidegrid {
     display: flex;
@@ -2021,21 +2034,20 @@ float: none;
   .guideli .about {
     display: contents;
   }
-  /* Название и описание одного размера, чуть крупнее основного текста.
-     Описание сразу под названием (2px), метро под описанием без
-     отступа: строка метро выше его мелких букв, на глаз выходит около 6px */
+  /* Название на шаг крупнее основного текста, под ним метро и описание
+     основным шрифтом. Над метро и над описанием по 4px */
   .guideli .about-title {
     order: 1;
-    font-size: var(--font-size-year);
-  }
-  .guideli .about_description {
-    order: 2;
-    padding-top: 2px;
-    font-size: var(--font-size-year);
+    font-size: var(--font-size-lead);
   }
   .guideli .geo {
+    order: 2;
+    padding-top: 4px;
+  }
+  .guideli .about_description {
     order: 3;
-    padding-top: 0;
+    padding-top: 4px;
+    font-size: var(--font-size-body);
   }
   .guideli .geo br {
     display: none;
@@ -2195,7 +2207,10 @@ float: none;
     padding: 0;
     list-style: none;
 }
+/* «Ничего не нашлось» основным шрифтом, как текст списка */
 .guideempty {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
     color: var(--color-text-muted);
     display: none;
     margin: 0 0 40px 0;
@@ -2269,8 +2284,10 @@ float: none;
   position: relative;
   margin: 4px 0 12px 0;
 }
+/* На телефонах логотип на 15% крупнее прежних calc(64px + 2vw); на
+   планшетах и десктопе свои размеры */
 .guidelogo {
-  height: calc(64px + 2vw);
+  height: calc(73.6px + 2.3vw);
   margin: -7px 18px 16px 0;
 }
 .guideupdate {
@@ -2440,6 +2457,10 @@ float: none;
    16px: прежние 24 и 32px × 16/20 */
 @media (max-width: 767px)
 {
+    /* Кофейни в списке гида плотнее друг к другу: 28px вместо 32px */
+    .guideli {
+        padding-bottom: 28px;
+    }
     /* Плашки сайтов компактнее, как на десктопе: отступы в em, поэтому
        в той же пропорции к шрифту */
     .inner__header .inner__sites .inner__site
