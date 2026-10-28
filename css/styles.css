@@ -2480,8 +2480,10 @@ float: none;
         padding: 12px 20px;
         border: 0;
         border-radius: 999px;
-        background: var(--color-text-primary);
-        color: var(--color-bg-primary);
+        /* Без фильтров светло-серая, как подложка закрытого проекта на
+           главной; с выбранными фильтрами чёрная (.guidefab--active) */
+        background: var(--color-bg-muted);
+        color: var(--color-text-primary);
         font: inherit;
         font-size: var(--font-size-body);
         line-height: 1.2;
@@ -2490,6 +2492,10 @@ float: none;
         -webkit-tap-highlight-color: transparent;
         /* Без зума по двойному касанию: повторный тап закрывает список */
         touch-action: manipulation;
+    }
+    .guidefab--active {
+        background: var(--color-text-primary);
+        color: var(--color-bg-primary);
     }
     .guidefab__count {
         color: var(--color-text-muted);

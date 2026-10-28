@@ -871,6 +871,7 @@
     $(".guidefilter[data-filter='all']")
       .toggleClass("guidefilter--active", activeGuideFilters.length === 0)
       .attr("aria-pressed", activeGuideFilters.length === 0);
+    $(".guidefab").toggleClass("guidefab--active", activeGuideFilters.length > 0);
     $(".guidefab__count")
       .text(activeGuideFilters.length)
       .prop("hidden", activeGuideFilters.length === 0);
