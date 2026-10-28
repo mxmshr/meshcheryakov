@@ -2518,7 +2518,6 @@ float: none;
         background: rgba(240, 243, 242, 0.9);
         -webkit-backdrop-filter: blur(20px);
                 backdrop-filter: blur(20px);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
         touch-action: manipulation;
         opacity: 0;
         visibility: hidden;
@@ -2540,10 +2539,28 @@ float: none;
         line-height: 1.2;
         text-align: left;
     }
-    /* Невыбранные фильтры без своей подложки: карточка целиком одного
-       серого цвета, выбранные остаются чёрными */
-    .guidefilters .guidefilter:not(.guidefilter--active) {
+    /* Пункты без заливки: карточка целиком одного серого цвета.
+       Выбранные отмечены галочкой справа */
+    .guidefilters .guidefilter,
+    .guidefilters .guidefilter--active {
         background: transparent;
+        border-color: transparent;
+        color: var(--color-text-primary);
+    }
+    .guidefilters .guidefilter--active::after {
+        content: '';
+        flex: none;
+        width: 5px;
+        height: 10px;
+        margin-left: auto;
+        border: solid currentColor;
+        border-width: 0 1.5px 1.5px 0;
+        transform: translateY(-2px) rotate(45deg);
+        align-self: center;
+    }
+    /* У парковки справа подсказка, галочка встаёт после неё */
+    .guidefilters .guidefilter--tooltip.guidefilter--active::after {
+        margin-left: 12px;
     }
     /* Подсказка к парковке прямо в строке, а не всплывающая */
     .guidefilters .guidefilter__tooltip {
