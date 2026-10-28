@@ -2480,10 +2480,10 @@ float: none;
         padding: 12px 20px;
         border: 0;
         border-radius: 999px;
-        /* Полупрозрачная светло-серая подложка с размытием того, что под
-           ней, как у плавающей кнопки на area17.com. С выбранными фильтрами
-           кнопка чёрная (.guidefab--active) */
-        background: rgba(242, 242, 242, 0.8);
+        /* Полупрозрачная светло-серая подложка #ECEEED с размытием того,
+           что под ней (непрозрачность и размытие как у плавающей кнопки на
+           area17.com). С выбранными фильтрами кнопка чёрная (.guidefab--active) */
+        background: rgba(236, 238, 237, 0.8);
         -webkit-backdrop-filter: blur(30px);
                 backdrop-filter: blur(30px);
         color: var(--color-text-primary);
@@ -2523,7 +2523,7 @@ float: none;
         gap: 0;
         border-radius: 16px;
         /* Такая же подложка, как у кнопки */
-        background: rgba(242, 242, 242, 0.8);
+        background: rgba(236, 238, 237, 0.8);
         -webkit-backdrop-filter: blur(30px);
                 backdrop-filter: blur(30px);
         touch-action: manipulation;
