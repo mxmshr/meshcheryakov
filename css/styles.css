@@ -2512,7 +2512,7 @@ float: none;
         padding: 8px;
         flex-direction: column;
         align-items: stretch;
-        gap: 4px;
+        gap: 0;
         border-radius: 16px;
         /* Светло-серая полупрозрачная подложка с размытием того, что под ней */
         background: rgba(240, 243, 242, 0.9);
