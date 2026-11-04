@@ -15,6 +15,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/lib/emerge.js"></script>
 
 
     <!-- Yandex.Metrika counter -->
@@ -70,7 +71,7 @@
 <path fill-rule="evenodd" clip-rule="evenodd" d="M21.2412 17.9965L33.8411 5.39665L30.5884 2.14396L17.9885 14.7438L5.40018 2.15545L2.14749 5.40814L14.7358 17.9965L2.14398 30.5884L5.39667 33.8411L17.9885 21.2492L30.5919 33.8525L33.8446 30.5999L21.2412 17.9965Z" fill="white"/>
 </svg></a>
       </header>
-        <section class="inner__text">
+        <section class="inner__text emerge" data-effect="slide" data-up="4em" data-duration="400">
           <ul class="guide">
             <li class="guideli" data-tags="power wifi">
               <div class="guidegrid">
@@ -846,6 +847,17 @@
   $("#closed-count").text(closedCount);
   var activeGuideFilters = [];
   var $guideItems = $(".inner__text .guide > .guideli");
+  var guideFilterAnimations = new Map();
+
+  function guideItemFrame(item) {
+    var style = getComputedStyle(item);
+    return {
+      height: style.height,
+      minHeight: "0px",
+      paddingBottom: style.paddingBottom,
+      opacity: style.opacity
+    };
+  }
 
   function guideHasTag($item, filter) {
     var tags = $item.attr("data-tags") || "";
@@ -854,17 +866,64 @@
 
   function updateGuideFilters() {
     var visibleCount = 0;
+    var canAnimate = typeof Element.prototype.animate === "function" &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var collapsedFrame = { height: "0px", minHeight: "0px", paddingBottom: "0px", opacity: 0 };
 
-    $guideItems.each(function () {
-      var $item = $(this);
+    // Сначала запоминаем текущее состояние, в том числе при быстром
+    // переключении фильтров посреди предыдущей анимации.
+    var items = $guideItems.toArray().map(function (item) {
+      var $item = $(item);
+      var wasVisible = !$item.hasClass("guideli--filtered");
       var isVisible = activeGuideFilters.every(function (filter) {
         return guideHasTag($item, filter);
       });
 
-      $item.toggleClass("guideli--filtered", !isVisible);
       if (isVisible) {
         visibleCount++;
       }
+      return {
+        item: item,
+        isVisible: isVisible,
+        animate: canAnimate && (wasVisible !== isVisible || guideFilterAnimations.has(item)),
+        from: wasVisible ? guideItemFrame(item) : collapsedFrame
+      };
+    });
+
+    items.forEach(function (state) {
+      var animation = guideFilterAnimations.get(state.item);
+      if (animation) animation.cancel();
+      guideFilterAnimations.delete(state.item);
+      // Уходящая строка остаётся в раскладке, пока её высота не станет нулевой.
+      $(state.item)
+        .toggleClass("guideli--filtered", !state.isVisible && !state.animate)
+        .removeClass("guideli--filtering");
+      state.item.inert = !state.isVisible;
+    });
+
+    items.forEach(function (state) {
+      if (state.animate) {
+        state.to = state.isVisible ? guideItemFrame(state.item) : collapsedFrame;
+      }
+    });
+
+    items.forEach(function (state) {
+      if (!state.animate) return;
+      $(state.item).addClass("guideli--filtering");
+      var animation = state.item.animate([state.from, state.to], {
+        duration: 200,
+        easing: "ease-out",
+        fill: "both"
+      });
+      guideFilterAnimations.set(state.item, animation);
+      animation.onfinish = function () {
+        if (guideFilterAnimations.get(state.item) !== animation) return;
+        $(state.item)
+          .toggleClass("guideli--filtered", !state.isVisible)
+          .removeClass("guideli--filtering");
+        guideFilterAnimations.delete(state.item);
+        animation.cancel();
+      };
     });
 
     $(".guideempty").toggle(activeGuideFilters.length > 0 && visibleCount === 0);

@@ -2141,6 +2141,9 @@ float: none;
 .guideli--filtered {
   display: none;
 }
+.guideli--filtering {
+  overflow: hidden;
+}
 .guide {
   grid-column: 1/-1;
   max-width: 1360px;
