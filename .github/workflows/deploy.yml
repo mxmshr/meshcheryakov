@@ -1,32 +1,27 @@
-name: Deploy to Beget
+name: Deploy to Yandex Cloud Object Storage
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Version asset links so browsers never mix new pages with cached old CSS/JS
-        run: python3 .github/version-assets.py .
-
-      - name: Exclude git metadata and source files from deploy
-        run: rm -rf .git img/uncompressed img/halfcompressed
-
-      - name: Deploy to Beget
-        uses: appleboy/scp-action@v0.1.7
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          host: maximm.beget.tech
-          username: maximm
-          key: ${{ secrets.BEGET_SSH_KEY }}
-          source: "*,.htaccess"
-          target: "/home/m/maximm/meshcheryakov.com/public_html"
-          strip_components: 0
-          overwrite: true
-          tar_dereference: true
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ru-central1
+
+      - name: Sync files to bucket
+        run: |
+          aws s3 sync ./ s3://meshcheryakov.com \
+            --endpoint-url=https://storage.yandexcloud.net \
+            --delete \
+            --exclude ".git/*" \
+            --exclude ".github/*"
