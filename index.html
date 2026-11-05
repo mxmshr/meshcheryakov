@@ -35,14 +35,25 @@
         window.addEventListener('pageswap', function (event) {
           var link = openingLink;
           openingLink = null;
-          if (!link || !event.viewTransition) return;
+          if (!event.viewTransition) return;
 
           var activation = event.activation;
-          if (activation && (activation.navigationType !== 'push' || activation.entry?.url !== link.href)) return;
+          var destination = activation?.entry?.url;
+          if (destination && link?.href !== destination) {
+            link = Array.from(document.querySelectorAll('.project a[href]')).find(function (candidate) {
+              return candidate.href === destination;
+            });
+          }
+          if (!link) return;
 
           var card = link.closest('.project');
           var media = card.querySelector('a:not(.project__caption)');
           if (!media) return;
+
+          if (activation?.navigationType === 'traverse') {
+            var bounds = card.getBoundingClientRect();
+            if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
+          }
 
           var backdrop = document.createElement('div');
           backdrop.className = 'project-opening-backdrop';
