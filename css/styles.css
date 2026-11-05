@@ -6,7 +6,7 @@
     }
 
     ::view-transition {
-        background-color: var(--page-transition-bg, var(--project-bg, var(--color-bg-primary)));
+        background-color: var(--project-bg, var(--color-bg-primary));
     }
 
     ::view-transition-group(root),
@@ -53,6 +53,24 @@
     ::view-transition-new(root) {
         animation: page-fade-in 110ms ease-out 110ms both;
         mix-blend-mode: normal;
+    }
+
+    :root.home-page::view-transition {
+        background-color: transparent;
+    }
+
+    :root.home-page::view-transition-image-pair(root) {
+        isolation: isolate;
+    }
+
+    :root.home-page::view-transition-old(root) {
+        animation: page-fade-out 180ms ease-in-out both;
+        mix-blend-mode: plus-lighter;
+    }
+
+    :root.home-page::view-transition-new(root) {
+        animation: page-fade-in 180ms ease-in-out both;
+        mix-blend-mode: plus-lighter;
     }
 
     ::view-transition-old(opening-project) {

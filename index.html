@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="home-page">
   <head>
     <title>Максим Мещеряков</title>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Максим Мещеряков">
     <meta property="og:description" content="Разработка интерфейсов с&nbsp;инженерным подходом." />
     <meta property="og:url" content="https://meshcheryakov.com/" >
-    <link rel="stylesheet" href="css/styles.css?v=3">
+    <link rel="stylesheet" href="css/styles.css?v=4">
     <script>
       (function () {
         var openingLink;
@@ -54,22 +54,6 @@
           });
         });
       })();
-
-      // При возврате главная проявляется из цвета страницы, с которой ушли.
-      window.addEventListener('pagereveal', function (event) {
-        var style = document.documentElement.style;
-        style.removeProperty('--page-transition-bg');
-        try {
-          var background = JSON.parse(sessionStorage.getItem('pageTransitionBackground'));
-          sessionStorage.removeItem('pageTransitionBackground');
-          if (!event.viewTransition || !background) return;
-
-          var from = window.navigation?.activation?.from?.url;
-          if (!from || from === background.url) {
-            style.setProperty('--page-transition-bg', background.color);
-          }
-        } catch (err) {}
-      });
     </script>
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
