@@ -1,4 +1,37 @@
 @charset 'UTF-8';
+
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+
+    ::view-transition {
+        background-color: var(--page-transition-bg, var(--project-bg, var(--color-bg-primary)));
+    }
+
+    ::view-transition-group(root) {
+        animation: none;
+    }
+
+    ::view-transition-old(root) {
+        animation: page-fade-out 110ms ease-in both;
+        mix-blend-mode: normal;
+    }
+
+    ::view-transition-new(root) {
+        animation: page-fade-in 110ms ease-out 110ms both;
+        mix-blend-mode: normal;
+    }
+
+    @keyframes page-fade-out {
+        to { opacity: 0; }
+    }
+
+    @keyframes page-fade-in {
+        from { opacity: 0; }
+    }
+}
+
 :root {
     --color-text-primary: #111111;
     --color-text-muted: #999b9f;
@@ -249,7 +282,7 @@ html {
 body {
     font-family: 'SuisseIntl', -apple-system, BlinkMacSystemFont, Helvetica, 'Segoe UI', Arial, sans-serif;
     letter-spacing: -0.010em;
-    background-color: var(--color-bg-primary);
+    background-color: var(--project-bg, var(--color-bg-primary));
     -webkit-font-smoothing: antialiased;
 }
 
@@ -1180,6 +1213,32 @@ float: none;
     padding-left: 16px;
     padding-top: 16px;
 }
+
+@media (prefers-reduced-motion: no-preference) {
+    .inner:has(> .inner__header > .inner__close) {
+        & > :not(.inner__header),
+        & > .inner__header > .inner__detail {
+            animation:
+                project-content-fade 400ms ease-out backwards,
+                project-content-slide 400ms cubic-bezier(0, 0.9, 0.1, 1) backwards;
+            animation-play-state: var(--project-entrance-play-state, running);
+        }
+    }
+
+    /* Контент начинает въезжать после перехода между страницами. */
+    :root:active-view-transition {
+        --project-entrance-play-state: paused;
+    }
+
+    @keyframes project-content-fade {
+        from { opacity: 0; }
+    }
+
+    @keyframes project-content-slide {
+        from { translate: 0 4rem; }
+    }
+}
+
 .inner a {
     /**text-decoration: none;**/
     color: inherit;
@@ -1416,14 +1475,14 @@ float: none;
       color: #898989;
     }
 }
-/* Фон проекта ставим и на body: iOS 26 Safari красит область под
-   статусбаром и панелями в цвет фона body, а theme-color не учитывает */
-.project--rar, .inner--rar, body:has(.inner--rar)
+/* Цвет на :root доступен переходу, а body использует тот же цвет
+   для области под статусбаром и панелями в iOS Safari. */
+.project--rar, .inner--rar, :root:has(.inner--rar)
 {
     --project-bg: #e9e9e9;
     background-color: var(--project-bg);
 }
-.project--traktor, .inner--traktor, body:has(.inner--traktor)
+.project--traktor, .inner--traktor, :root:has(.inner--traktor)
 {
     --project-bg: #F1F3F2;
     background-color: var(--project-bg);
@@ -1432,116 +1491,119 @@ float: none;
 {
     background-color: var(--color-bg-primary);
 }
-.project--octopus, .inner--octopus, body:has(.inner--octopus)
+.project--octopus, .inner--octopus, :root:has(.inner--octopus)
 {
     --project-bg: #2F7FEF;
     background-color: var(--project-bg);
 }
-.project--tweek, .inner--tweek, body:has(.inner--tweek)
+.project--tweek, .inner--tweek, :root:has(.inner--tweek)
 {
     --project-bg: #E5D8FA;
     background-color: var(--project-bg);
 }
-.project--inone, .inner--inone, body:has(.inner--inone)
+.project--inone, .inner--inone, :root:has(.inner--inone)
 {
     --project-bg: #344e6e;
     background-color: var(--project-bg);
 }
-.project--mostravel, .inner--mostravel, body:has(.inner--mostravel)
+.project--mostravel, .inner--mostravel, :root:has(.inner--mostravel)
 {
     --project-bg: #c2433c;
     background-color: var(--project-bg);
 }
-.project--silavetra, .inner--silavetra, body:has(.inner--silavetra)
+.project--silavetra, .inner--silavetra, :root:has(.inner--silavetra)
 {
     --project-bg: #e9e9e9;
     background-color: var(--project-bg);
 }
-.project--astrametall, .inner--astrametall, body:has(.inner--astrametall)
+.project--astrametall, .inner--astrametall, :root:has(.inner--astrametall)
 {
     --project-bg: #0a529f;
     background-color: var(--project-bg);
 }
-.project--kb, .inner--kb, body:has(.inner--kb)
+.project--kb, .inner--kb, :root:has(.inner--kb)
 {
     --project-bg: #be1010;
     background-color: var(--project-bg);
 }
-.project--goodfood, .inner--goodfood, body:has(.inner--goodfood)
+.project--goodfood, .inner--goodfood, :root:has(.inner--goodfood)
 {
     --project-bg: #addf5e;
     background-color: var(--project-bg);
 }
-.project--almaz, .inner--almaz, body:has(.inner--almaz)
+.project--almaz, .inner--almaz, :root:has(.inner--almaz)
 {
     --project-bg: #a13a35;
     background-color: var(--project-bg);
 }
-.project--uxks, .inner--uxks, body:has(.inner--uxks)
+.project--uxks, .inner--uxks, :root:has(.inner--uxks)
 {
     --project-bg: #999;
     background-color: var(--project-bg);
 }
-.project--soleit, .inner--soleit, body:has(.inner--soleit)
+.project--soleit, .inner--soleit, :root:has(.inner--soleit)
 {
     --project-bg: #01a5e1;
     background-color: var(--project-bg);
 }
-.project--ktiam, .inner--ktiam, body:has(.inner--ktiam)
+.project--ktiam, .inner--ktiam, :root:has(.inner--ktiam)
 {
     --project-bg: #4e93d8;
     background-color: var(--project-bg);
 }
-.project--freeway, .inner--freeway, body:has(.inner--freeway)
+.project--freeway, .inner--freeway, :root:has(.inner--freeway)
 {
     --project-bg: #FFDB6C;
     background-color: var(--project-bg);
 }
-.project--region, .inner--region, body:has(.inner--region)
+.project--region, .inner--region, :root:has(.inner--region)
 {
     --project-bg: #758096;
     background-color: var(--project-bg);
 }
-.project--maslovka, .inner--maslovka, body:has(.inner--maslovka)
+.project--maslovka, .inner--maslovka, :root:has(.inner--maslovka)
 {
     --project-bg: #E7D3C8;
     background-color: var(--project-bg);
 }
-.project--mmlf, .inner--mmlf, body:has(.inner--mmlf)
+.project--mmlf, .inner--mmlf, :root:has(.inner--mmlf)
 {
     --project-bg: #391952;
     background-color: var(--project-bg);
 }
-.project--ksl, .inner--ksl, body:has(.inner--ksl)
+.project--ksl, .inner--ksl, :root:has(.inner--ksl)
 {
     --project-bg: #8394A6;
     background-color: var(--project-bg);
 }
-.project--octopus, .inner--octopus, body:has(.inner--octopus)
+.project--octopus, .inner--octopus, :root:has(.inner--octopus)
 {
     --project-bg: #2F7FEF;
     background-color: var(--project-bg);
 }
-.inner--reindustry, body:has(.inner--reindustry)
+.inner--reindustry, :root:has(.inner--reindustry)
 {
-    background-color: #6C7E94;
+    --project-bg: #6C7E94;
+    background-color: var(--project-bg);
 }
 .project--learningcenter
 {
     --project-bg: #377bed;
     background-color: var(--project-bg);
 }
-.inner--learningcenter, body:has(.inner--learningcenter)
+.inner--learningcenter, :root:has(.inner--learningcenter)
 {
-    background-color: #377bed;
+    --project-bg: #377bed;
+    background-color: var(--project-bg);
 }
-.inner--uxks, body:has(.inner--uxks)
+.inner--uxks, :root:has(.inner--uxks)
 {
     background-color: #999;
 }
-.inner--thegem, body:has(.inner--thegem)
+.inner--thegem, :root:has(.inner--thegem)
 {
-    background-color: #3C3D55;
+    --project-bg: #3C3D55;
+    background-color: var(--project-bg);
 }
 .inner--dark
 {

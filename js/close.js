@@ -21,6 +21,19 @@
     }
   }
 
+  window.addEventListener('pageswap', function (event) {
+    if (!event.viewTransition) return;
+    var target = sameSite(event.activation?.entry?.url);
+    if (target && !isHome(target)) return;
+
+    try {
+      sessionStorage.setItem('pageTransitionBackground', JSON.stringify({
+        url: location.href,
+        color: getComputedStyle(document.body).backgroundColor
+      }));
+    } catch (err) {}
+  });
+
   var state = history.state || {};
   var depth = state[KEY];
 
