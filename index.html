@@ -18,6 +18,45 @@
     <meta property="og:url" content="https://meshcheryakov.com/" >
     <link rel="stylesheet" href="css/styles.css">
     <script>
+      (function () {
+        var openingLink;
+
+        document.addEventListener('click', function (event) {
+          openingLink = null;
+          if (event.defaultPrevented || event.button !== 0 ||
+              event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+          var link = event.target.closest('.project a[href]');
+          if (link && link.origin === location.origin && !link.target && !link.hasAttribute('download')) {
+            openingLink = link;
+          }
+        });
+
+        window.addEventListener('pageswap', function (event) {
+          var link = openingLink;
+          openingLink = null;
+          if (!link || !event.viewTransition) return;
+
+          var activation = event.activation;
+          if (activation && (activation.navigationType !== 'push' || activation.entry?.url !== link.href)) return;
+
+          var card = link.closest('.project');
+          var media = card.querySelector('a:not(.project__caption)');
+          if (!media) return;
+
+          try { sessionStorage.setItem('openingProjectMedia', link.href); } catch (err) {}
+
+          var backdrop = document.createElement('div');
+          backdrop.className = 'project-opening-backdrop';
+          card.prepend(backdrop);
+          media.style.viewTransitionName = 'opening-project';
+          event.viewTransition.finished.then(function () {
+            backdrop.remove();
+            media.style.removeProperty('view-transition-name');
+          });
+        });
+      })();
+
       // При возврате главная проявляется из цвета страницы, с которой ушли.
       window.addEventListener('pagereveal', function (event) {
         var style = document.documentElement.style;

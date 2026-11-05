@@ -9,8 +9,46 @@
         background-color: var(--page-transition-bg, var(--project-bg, var(--color-bg-primary)));
     }
 
-    ::view-transition-group(root) {
+    ::view-transition-group(root),
+    ::view-transition-group(opening-project-background) {
         animation: none;
+    }
+
+    ::view-transition-group(opening-project-background) {
+        z-index: 1;
+        transform-origin: top left;
+    }
+
+    ::view-transition-group(opening-project) {
+        z-index: 2;
+        animation-duration: 240ms;
+        animation-timing-function: var(--project-expand-easing);
+        overflow: clip;
+    }
+
+    :root {
+        --project-expand-easing: cubic-bezier(0.2, 0.75, 0.25, 1);
+    }
+
+    :root.project-opening {
+        --project-expand-duration: 240ms;
+    }
+
+    :root.project-opening::view-transition-group(opening-project-background) {
+        animation: project-background-expand var(--project-expand-duration) var(--project-expand-easing) both;
+    }
+
+    :root.project-opening::view-transition-old(root) {
+        animation: page-fade-out var(--project-expand-duration) step-end both;
+    }
+
+    :root.project-opening::view-transition-new(root) {
+        animation: page-fade-in var(--project-expand-duration) step-end both;
+    }
+
+    ::view-transition-old(opening-project-background) {
+        animation: page-fade-out 110ms ease-out var(--project-expand-duration, 0ms) both;
+        mix-blend-mode: normal;
     }
 
     ::view-transition-old(root) {
@@ -21,6 +59,33 @@
     ::view-transition-new(root) {
         animation: page-fade-in 110ms ease-out 110ms both;
         mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(opening-project) {
+        animation: page-fade-out 120ms ease-in-out 120ms both;
+        mix-blend-mode: plus-lighter;
+    }
+
+    ::view-transition-old(opening-project):only-child {
+        animation:
+            project-card-zoom 200ms ease-out both,
+            page-fade-out 120ms ease-out both;
+        mix-blend-mode: normal;
+    }
+
+    ::view-transition-new(opening-project) {
+        animation: page-fade-in 120ms ease-in-out 120ms both;
+        mix-blend-mode: plus-lighter;
+    }
+
+    @keyframes project-background-expand {
+        from { transform: var(--project-background-transform); }
+        to { transform: scale(var(--project-background-scale-x), var(--project-background-scale-y)); }
+    }
+
+    @keyframes project-card-zoom {
+        from { scale: 1; }
+        to { scale: 1.1; }
     }
 
     @keyframes page-fade-out {
@@ -714,6 +779,14 @@ float: none;
 {
     opacity: 0;
 }
+.project-opening-backdrop
+{
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-color: inherit;
+    view-transition-name: opening-project-background;
+}
 /* Ссылка обрезает картинки, сама карточка остаётся overflow: visible,
    чтобы подпись под ней не обрезалась */
 .project a:not(.project__caption)
@@ -1216,7 +1289,7 @@ float: none;
 
 @media (prefers-reduced-motion: no-preference) {
     .inner:has(> .inner__header > .inner__close) {
-        & > :not(.inner__header),
+        & > :not(.inner__header, .project-media-arrived),
         & > .inner__header > .inner__detail {
             animation:
                 project-content-fade 400ms ease-out backwards,

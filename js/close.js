@@ -34,6 +34,54 @@
     } catch (err) {}
   });
 
+  window.addEventListener('pagereveal', function (event) {
+    var transition = event.viewTransition;
+    var destination;
+    try {
+      destination = sessionStorage.getItem('openingProjectMedia');
+      sessionStorage.removeItem('openingProjectMedia');
+    } catch (err) {}
+    if (!transition) return;
+
+    var media = document.getElementById('project-opening-media');
+    if (destination === location.href && media) {
+      var section = media.closest('.sideblock--inner');
+      section.classList.add('project-media-arrived');
+      media.style.viewTransitionName = 'opening-project';
+      transition.finished.then(function () {
+        media.style.removeProperty('view-transition-name');
+      });
+    }
+
+    transition.ready.then(function () {
+      var root = document.documentElement;
+      var group = getComputedStyle(root, '::view-transition-group(opening-project-background)');
+      var width = parseFloat(group.width);
+      var height = parseFloat(group.height);
+      if (!width || !height) return;
+
+      var viewport = getComputedStyle(root, '::view-transition');
+      var viewportWidth = parseFloat(viewport.width) || root.clientWidth;
+      var viewportHeight = parseFloat(viewport.height) || root.clientHeight;
+      var properties = {
+        '--project-background-transform': group.transform,
+        '--project-background-scale-x': viewportWidth / width,
+        '--project-background-scale-y': viewportHeight / height
+      };
+      Object.entries(properties).forEach(function (property) {
+        root.style.setProperty(property[0], property[1]);
+      });
+      root.classList.add('project-opening');
+
+      transition.finished.then(function () {
+        root.classList.remove('project-opening');
+        Object.keys(properties).forEach(function (property) {
+          root.style.removeProperty(property);
+        });
+      });
+    }, function () {});
+  });
+
   var state = history.state || {};
   var depth = state[KEY];
 
