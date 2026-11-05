@@ -36,22 +36,7 @@
 
   window.addEventListener('pagereveal', function (event) {
     var transition = event.viewTransition;
-    var destination;
-    try {
-      destination = sessionStorage.getItem('openingProjectMedia');
-      sessionStorage.removeItem('openingProjectMedia');
-    } catch (err) {}
     if (!transition) return;
-
-    var media = document.getElementById('project-opening-media');
-    if (destination === location.href && media) {
-      var section = media.closest('.sideblock--inner');
-      section.classList.add('project-media-arrived');
-      media.style.viewTransitionName = 'opening-project';
-      transition.finished.then(function () {
-        media.style.removeProperty('view-transition-name');
-      });
-    }
 
     transition.ready.then(function () {
       var root = document.documentElement;
@@ -63,10 +48,14 @@
       var viewport = getComputedStyle(root, '::view-transition');
       var viewportWidth = parseFloat(viewport.width) || root.clientWidth;
       var viewportHeight = parseFloat(viewport.height) || root.clientHeight;
+      var matrix = new DOMMatrixReadOnly(group.transform === 'none' ? undefined : group.transform);
+      var center = matrix.transformPoint({ x: width / 2, y: height / 2 });
       var properties = {
         '--project-background-transform': group.transform,
         '--project-background-scale-x': viewportWidth / width,
-        '--project-background-scale-y': viewportHeight / height
+        '--project-background-scale-y': viewportHeight / height,
+        '--project-zoom-x': (viewportWidth / 2 - center.x) * 0.1 + 'px',
+        '--project-zoom-y': (viewportHeight / 2 - center.y) * 0.1 + 'px'
       };
       Object.entries(properties).forEach(function (property) {
         root.style.setProperty(property[0], property[1]);

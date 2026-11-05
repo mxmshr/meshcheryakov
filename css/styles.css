@@ -10,7 +10,8 @@
     }
 
     ::view-transition-group(root),
-    ::view-transition-group(opening-project-background) {
+    ::view-transition-group(opening-project-background),
+    ::view-transition-group(opening-project) {
         animation: none;
     }
 
@@ -21,13 +22,6 @@
 
     ::view-transition-group(opening-project) {
         z-index: 2;
-        animation-duration: 240ms;
-        animation-timing-function: var(--project-expand-easing);
-        overflow: clip;
-    }
-
-    :root {
-        --project-expand-easing: cubic-bezier(0.2, 0.75, 0.25, 1);
     }
 
     :root.project-opening {
@@ -35,7 +29,7 @@
     }
 
     :root.project-opening::view-transition-group(opening-project-background) {
-        animation: project-background-expand var(--project-expand-duration) var(--project-expand-easing) both;
+        animation: project-background-expand var(--project-expand-duration) cubic-bezier(0.2, 0.75, 0.25, 1) both;
     }
 
     :root.project-opening::view-transition-old(root) {
@@ -62,20 +56,10 @@
     }
 
     ::view-transition-old(opening-project) {
-        animation: page-fade-out 120ms ease-in-out 120ms both;
-        mix-blend-mode: plus-lighter;
-    }
-
-    ::view-transition-old(opening-project):only-child {
         animation:
             project-card-zoom 200ms ease-out both,
             page-fade-out 120ms ease-out both;
         mix-blend-mode: normal;
-    }
-
-    ::view-transition-new(opening-project) {
-        animation: page-fade-in 120ms ease-in-out 120ms both;
-        mix-blend-mode: plus-lighter;
     }
 
     @keyframes project-background-expand {
@@ -84,8 +68,14 @@
     }
 
     @keyframes project-card-zoom {
-        from { scale: 1; }
-        to { scale: 1.1; }
+        from {
+            scale: 1;
+            translate: 0 0;
+        }
+        to {
+            scale: 1.1;
+            translate: var(--project-zoom-x, 0px) var(--project-zoom-y, 0px);
+        }
     }
 
     @keyframes page-fade-out {
@@ -1289,7 +1279,7 @@ float: none;
 
 @media (prefers-reduced-motion: no-preference) {
     .inner:has(> .inner__header > .inner__close) {
-        & > :not(.inner__header, .project-media-arrived),
+        & > :not(.inner__header),
         & > .inner__header > .inner__detail {
             animation:
                 project-content-fade 400ms ease-out backwards,

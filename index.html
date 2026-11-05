@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="Максим Мещеряков">
     <meta property="og:description" content="Разработка интерфейсов с&nbsp;инженерным подходом." />
     <meta property="og:url" content="https://meshcheryakov.com/" >
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=3">
     <script>
       (function () {
         var openingLink;
@@ -43,8 +43,6 @@
           var card = link.closest('.project');
           var media = card.querySelector('a:not(.project__caption)');
           if (!media) return;
-
-          try { sessionStorage.setItem('openingProjectMedia', link.href); } catch (err) {}
 
           var backdrop = document.createElement('div');
           backdrop.className = 'project-opening-backdrop';
