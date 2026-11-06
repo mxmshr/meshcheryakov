@@ -35,7 +35,7 @@
         window.addEventListener('pageswap', function (event) {
           var link = openingLink;
           openingLink = null;
-          if (!event.viewTransition) return;
+          if (!event.viewTransition || !window.matchMedia('(min-width: 768px)').matches) return;
 
           var activation = event.activation;
           var destination = activation?.entry?.url;
