@@ -778,11 +778,33 @@ float: none;
         aspect-ratio: 5 / 3;
     }
 }
-/* Пока макет не загрузился, карточка показывает только свой цвет, затем
-   макет плавно проявляется. Класс media-fade ставит скрипт в <head>, поэтому
-   без JS макеты видны сразу; is-loaded ставит js/media-fade.js (видео —
-   когда начинает играть, до этого под ним видна обложка) */
-.media-fade .project a:not(.project__caption) img:not(.is-loaded),
+/* Макеты проявляются по мере загрузки. Отдельное свойство scale
+   совмещается с transform при наведении на карточку. */
+@media (prefers-reduced-motion: no-preference) {
+    .media-fade :is(.project a:not(.project__caption), .inner :is(.inner__img, .grid-item, .inner__tile)) img {
+        &:not(.is-loaded, .is-load-error) {
+            opacity: 0;
+        }
+
+        &.is-loaded {
+            animation:
+                image-fade-in 500ms ease-out,
+                image-zoom-in 500ms cubic-bezier(0, 0.75, 0.25, 1);
+            animation-play-state: var(--project-entrance-play-state, running);
+        }
+    }
+
+    @keyframes image-fade-in {
+        from { opacity: 0; }
+    }
+
+    @keyframes image-zoom-in {
+        from { scale: 0.96; }
+        to { scale: 1; }
+    }
+}
+
+/* Обложка видна до начала воспроизведения. */
 .media-fade .project a:not(.project__caption) video:not(.is-loaded)
 {
     opacity: 0;
