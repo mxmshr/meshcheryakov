@@ -124,6 +124,7 @@
     --font-size-meta: calc(10px + 0.22vw);
     --font-size-tooltip: calc(12px + 0.16vw);
     --transition-base: .25s ease-in-out;
+    --image-reveal-start-scale: 0.96;
 }
 /* На телефонах основной текст на полпикселя крупнее: около 17,3px вместо
    16,8px */
@@ -799,7 +800,7 @@ float: none;
     }
 
     @keyframes image-zoom-in {
-        from { scale: 0.96; }
+        from { scale: var(--image-reveal-start-scale); }
         to { scale: 1; }
     }
 }
@@ -911,7 +912,7 @@ float: none;
         opacity: 0;
     }
 }
-.project img, .project video
+.project :is(.project__media, video)
 {
     position: absolute;
     /* Обычные карточки: макет по центру шириной 80%, по 10% полей слева
@@ -921,14 +922,89 @@ float: none;
     top: 15%;
     left: 10%;
     width: 80%;
+    -webkit-transition: -webkit-transform var(--transition-base);
+            transition: transform var(--transition-base);
+}
+.project video
+{
     -webkit-transition: -webkit-transform var(--transition-base), opacity 400ms ease-out;
             transition: transform var(--transition-base), opacity 400ms ease-out;
+}
+.project__media
+{
+    aspect-ratio: var(--image-ratio);
+}
+.project__media > img
+{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.project__media > img, .project video
+{
     -o-object-fit: contain;
        object-fit: contain;
 }
+.media-fade .inner :is(.inner__img, .grid-item, .inner__tile):has(img)
+{
+    position: relative;
+
+    & img {
+        position: relative;
+    }
+}
+.media-fade :where(.project__media, .inner :is(.inner__img, .grid-item, .inner__tile):has(img))
+{
+    &::before {
+        --skeleton-bg: var(--project-bg, var(--color-text-muted));
+        --skeleton-base: color-mix(in srgb, var(--skeleton-bg) 72%, white);
+        --skeleton-highlight: color-mix(in srgb, var(--skeleton-bg) 55%, white);
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        scale: var(--image-reveal-start-scale);
+        background: linear-gradient(105deg, var(--skeleton-base) 6%, var(--skeleton-highlight) 50%, var(--skeleton-base) 94%)
+                    150% 0 / 300% 100% no-repeat var(--skeleton-base);
+        opacity: 0;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: opacity 240ms ease-out;
+        }
+    }
+    &:has(img:not(.is-loaded, .is-load-error))::before {
+        opacity: 1;
+
+        @media (prefers-reduced-motion: no-preference) {
+            animation: project-skeleton-shimmer 1.6s linear infinite;
+        }
+    }
+}
+
+/* В рамках с заданной высотой повторяем размеры изображения при object-fit: contain. */
+:is(.project--center, .project--side) .project__media
+{
+    container-type: size;
+}
+.media-fade :is(.project--center, .project--side) .project__media::before
+{
+    inset: 50% auto auto 50%;
+    translate: -50% -50%;
+    width: min(100%, calc(100cqh * var(--image-ratio)));
+    aspect-ratio: var(--image-ratio);
+}
+
+@media (prefers-reduced-motion: no-preference)
+{
+    @keyframes project-skeleton-shimmer
+    {
+        to { background-position: -50% 0; }
+    }
+}
 @media (hover: hover)
 {
-    .project:hover img, .project:hover video
+    .project:hover :is(.project__media, video)
     {
       cursor: pointer;
         -webkit-transform: translateY(-10px);
@@ -937,7 +1013,7 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--multi:hover img, .project--multi:hover video
+    .project--multi:hover :is(.project__media, video)
     {
       cursor: pointer;
         -webkit-transition: -webkit-transform var(--transition-base);
@@ -948,7 +1024,7 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--multi:hover img:first-child, .project--multi:hover video:first-child
+    .project--multi:hover :is(.project__media, video):first-child
     {
         -webkit-transform: translateY(-16px);
                 transform: translateY(-16px);
@@ -956,7 +1032,7 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--multi:hover img:nth-child(2), .project--multi:hover video:nth-child(2)
+    .project--multi:hover :is(.project__media, video):nth-child(2)
     {
         -webkit-transition-delay: .0s;
                 transition-delay: .0s;
@@ -966,7 +1042,7 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--multi:hover img:last-child, .project--multi:hover video:last-child
+    .project--multi:hover :is(.project__media, video):last-child
     {
         -webkit-transition-delay: .0s;
                 transition-delay: .0s;
@@ -979,7 +1055,7 @@ float: none;
 
 @media (hover: hover)
 {
-    .project--multi-kb:hover img, .project--multi-reindustry:hover img
+    .project--multi-kb:hover .project__media, .project--multi-reindustry:hover .project__media
     {
       cursor: pointer;
         -webkit-transition: -webkit-transform var(--transition-base);
@@ -990,7 +1066,7 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--multi-kb:hover img:first-child, .project--multi-reindustry:hover img:first-child
+    .project--multi-kb:hover .project__media:first-child, .project--multi-reindustry:hover .project__media:first-child
     {
         -webkit-transform: translateY(-14px) translateX(0px);
                 transform: translateY(-14px) translateX(0px);
@@ -998,7 +1074,7 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--multi-kb:hover img:nth-child(2), .project--multi-reindustry:hover img:nth-child(2) 
+    .project--multi-kb:hover .project__media:nth-child(2), .project--multi-reindustry:hover .project__media:nth-child(2)
     {
         -webkit-transition-delay: .0s;
                 transition-delay: .0s;
@@ -1044,55 +1120,59 @@ float: none;
         --mock-front: 57.4%;
     }
 }
-.project--multi img:first-child, .project--multi video:first-child
+.project--multi :is(.project__media, video):first-child
 {
     z-index: 3;
     top: var(--mock-top);
     left: calc((100% - var(--mock-front)) / 2);
     width: var(--mock-front);
 }
-.project--multi img:nth-child(2), .project--multi video:nth-child(2)
+.project--multi :is(.project__media, video):nth-child(2)
 {
     z-index: 2;
     top: calc(var(--mock-top) + var(--mock-step));
     left: var(--mock-side);
     width: var(--mock-back);
 }
-.project--multi img:nth-child(3), .project--multi video:nth-child(3)
+.project--multi :is(.project__media, video):nth-child(3)
 {
     z-index: 1;
     top: calc(var(--mock-top) + var(--mock-step) * 2);
     left: calc(100% - var(--mock-side) - var(--mock-back));
     width: var(--mock-back);
 }
-.project--multi-kb img:first-child, .project--multi-reindustry img:first-child
+.project--multi-kb .project__media:first-child, .project--multi-reindustry .project__media:first-child
 {
     z-index: 3;
     top: var(--mock-top);
     left: var(--mock-side);
     width: var(--mock-front);
+}
+.project--multi-kb .project__media:first-child > img,
+.project--multi-reindustry .project__media:first-child > img
+{
     box-shadow: var(--color-shadow-soft) 0px 10px 40px;
 }
-.project--multi-kb img:nth-child(2), .project--multi-reindustry img:nth-child(2)
+.project--multi-kb .project__media:nth-child(2), .project--multi-reindustry .project__media:nth-child(2)
 {
     z-index: 2;
     top: calc(var(--mock-top) + var(--mock-step));
     left: calc(100% - var(--mock-side) - var(--mock-back));
     width: var(--mock-back);
 }
-.project--multi-octopus img:nth-child(2)
+.project--multi-octopus .project__media:nth-child(2)
 {
     -webkit-transform: translateY(0px) translateX(10%) scale(0.9, 0.9);
             transform: translateY(0px) translateX(10%) scale(0.9, 0.9);
 }
-.project--multi-octopus img:first-child
+.project--multi-octopus .project__media:first-child
 {
     -webkit-transform: translateY(0px) translateX(-10%) scale(0.9, 0.9);
             transform: translateY(0px) translateX(-10%) scale(0.9, 0.9);
 }
 @media (hover: hover)
 {
-    .project--multi-octopus:hover img:nth-child(3)
+    .project--multi-octopus:hover .project__media:nth-child(3)
     {
       -webkit-transform: scale(1.02, 1.02);
               transform: scale(1.02, 1.02);
@@ -1100,7 +1180,7 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--multi-octopus:hover img:nth-child(2)
+    .project--multi-octopus:hover .project__media:nth-child(2)
     {
         -webkit-transform: translateY(0px) translateX(12%) scale(0.92, 0.92);
                 transform: translateY(0px) translateX(12%) scale(0.92, 0.92);
@@ -1108,18 +1188,12 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--multi-octopus:hover img:first-child
+    .project--multi-octopus:hover .project__media:first-child
     {
         -webkit-transform: translateY(0px) translateX(-12%) scale(0.92, 0.92);
                 transform: translateY(0px) translateX(-12%) scale(0.92, 0.92);
     }
 }
-/**
-.project--multi-octopus:hover img
-{
-  -webkit-transform: scale(1.02, 1.02);
-          transform: scale(1.02, 1.02);
-}**/
 .project--side a:not(.project__caption)
 {
     width: 100%;
@@ -1127,13 +1201,13 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--side:hover img, .project--side:hover video
+    .project--side:hover :is(.project__media, video)
     {
         -webkit-transform: translateX(-10px);
                 transform: translateX(-10px);
     }
 }
-.project--side img, .project--side video
+.project--side :is(.project__media, video)
 {
     /* Левый край макета на одной линии с левым краем макетов обычных
        карточек (10% ширины), правый уходит за край; высота уменьшена
@@ -1152,7 +1226,7 @@ float: none;
 }
 @media (hover: hover)
 {
-    .project--center:hover img, .project--center:hover video
+    .project--center:hover :is(.project__media, video)
     {
       -webkit-transform: scale(1.025, 1.025);
               transform: scale(1.025, 1.025);
@@ -1164,7 +1238,7 @@ float: none;
 {
     z-index: 1;
 }
-.project--center img, .project--center video
+.project--center :is(.project__media, video)
 {
     /* По центру карточки, но на 1% её высоты выше: верх и низ рамки
        сдвинуты вверх на одинаковую величину */
@@ -3667,7 +3741,7 @@ float: none;
     {
         --project-gap: 28px;
     }
-    .project--multi-kb img:first-child, .project--multi-reindustry img:first-child
+    .project--multi-kb .project__media:first-child > img, .project--multi-reindustry .project__media:first-child > img
     {
         box-shadow: var(--color-shadow-soft) 0px 10px 80px;
     }
@@ -3935,7 +4009,7 @@ float: none;
     {
         --project-gap: 36px;
     }
-    .project--multi-kb img:first-child, .project--multi-reindustry img:first-child
+    .project--multi-kb .project__media:first-child > img, .project--multi-reindustry .project__media:first-child > img
     {
         box-shadow: var(--color-shadow-soft) 0px 10px 160px;
     }
